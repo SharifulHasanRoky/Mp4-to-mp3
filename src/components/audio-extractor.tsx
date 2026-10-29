@@ -56,7 +56,7 @@ async function loadFFmpeg(): Promise<FFmpegInstance> {
   ffmpegLoadPromise = (async () => {
     // Dynamically import the FFmpeg WASM modules.
     const { FFmpeg } = (await import("@ffmpeg/ffmpeg")) as FFmpegModule;
-    const { fetchFile, toBlobURL } = await import("@ffmpeg/util");
+    const { toBlobURL } = await import("@ffmpeg/util");
 
     const ffmpeg = new FFmpeg();
 
@@ -71,17 +71,17 @@ async function loadFFmpeg(): Promise<FFmpegInstance> {
       }
     });
 
-    // Load the WASM core from a CDN that sends proper CORS headers.
-    // jsDelivr sends `access-control-allow-origin: *` which unpkg doesn't.
+    // Load the single-threaded WASM core.
+    // IMPORTANT: We deliberately use the single-threaded core (not @ffmpeg/core-mt)
+    // because the multi-threaded version requires SharedArrayBuffer, which in turn
+    // requires Cross-Origin-Embedder-Policy headers — and those headers break
+    // third-party scripts like Google AdSense, Google Analytics, Facebook Pixel,
+    // and most embeds. Single-threaded is ~3x slower but works everywhere with
+    // no special configuration, and AdSense still loads normally.
     const baseURL = "https://cdn.jsdelivr.net/npm/@ffmpeg/core@0.12.6/dist/umd";
     await ffmpeg.load({
       coreURL: await toBlobURL(`${baseURL}/ffmpeg-core.js`, "text/javascript"),
       wasmURL: await toBlobURL(`${baseURL}/ffmpeg-core.wasm`, "application/wasm"),
-      // Multi-threaded worker (requires COOP/COEP headers — set in next.config.ts)
-      workerURL: await toBlobURL(
-        `${baseURL}/ffmpeg-core.worker.js`,
-        "text/javascript"
-      ),
     });
 
     ffmpegInstance = ffmpeg;
@@ -152,19 +152,6 @@ export function AudioExtractor({
   const inputRef = useRef<HTMLInputElement>(null);
   const dragRef = useRef<HTMLDivElement>(null);
   const [dragOver, setDragOver] = useState(false);
-  const [supported, setSupported] = useState<boolean | null>(null);
-
-  // Check if browser supports SharedArrayBuffer (needed for multi-threaded
-  // FFmpeg WASM). If not, we fall back to single-threaded (still works,
-  // just slower).
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      const hasSAB =
-        typeof SharedArrayBuffer !== "undefined" &&
-        typeof Atomics !== "undefined";
-      setSupported(hasSAB);
-    }
-  }, []);
 
   // Subscribe to FFmpeg progress events
   useEffect(() => {
@@ -459,12 +446,6 @@ export function AudioExtractor({
               Max 100 MB. Files are processed entirely in your browser — they
               never leave your device.
             </p>
-            {supported === false && (
-              <p className="mt-2 text-xs text-amber-600 dark:text-amber-400">
-                Your browser doesn&apos;t support multi-threaded WASM. Conversion
-                will still work, but may be slower.
-              </p>
-            )}
           </div>
         )}
 

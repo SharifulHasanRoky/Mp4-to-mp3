@@ -4,7 +4,7 @@ import { PageShell } from "@/components/page-shell";
 export const metadata: Metadata = {
   title: "Contact Us",
   description:
-    "Get in touch with the ReelAudio Studio team. We respond to general inquiries within 1–2 business days and to DMCA / copyright takedown requests within 24 hours.",
+    "Get in touch with the MP4 to MP3 team. We respond to general inquiries within 1–2 business days and to DMCA / copyright takedown requests within 24 hours.",
   alternates: { canonical: "/contact" },
 };
 
@@ -20,10 +20,10 @@ export default function Page() {
           For feature requests, bug reports, partnership inquiries, or general
           feedback, email us at{" "}
           <a
-            href="mailto:hello@reelaudiosudio.example.com"
+            href="mailto:hello@mp4-to-mp3.app"
             className="font-medium text-primary underline-offset-4 hover:underline"
           >
-            hello@reelaudiosudio.example.com
+            hello@mp4-to-mp3.app
           </a>
           . We typically respond within 1–2 business days.
         </p>
@@ -61,10 +61,10 @@ export default function Page() {
           first. Most questions are answered there. If you still have
           concerns, email{" "}
           <a
-            href="mailto:privacy@reelaudiosudio.example.com"
+            href="mailto:privacy@mp4-to-mp3.app"
             className="font-medium text-primary underline-offset-4 hover:underline"
           >
-            privacy@reelaudiosudio.example.com
+            privacy@mp4-to-mp3.app
           </a>
           .
         </p>
@@ -75,10 +75,10 @@ export default function Page() {
         <p className="mt-3 text-base leading-relaxed text-muted-foreground">
           Members of the press can reach us at{" "}
           <a
-            href="mailto:press@reelaudiosudio.example.com"
+            href="mailto:press@mp4-to-mp3.app"
             className="font-medium text-primary underline-offset-4 hover:underline"
           >
-            press@reelaudiosudio.example.com
+            press@mp4-to-mp3.app
           </a>
           . Please include your outlet and deadline in the subject line.
         </p>
@@ -87,7 +87,7 @@ export default function Page() {
       <section className="rounded-2xl border border-border/70 bg-secondary/30 p-6">
         <h3 className="text-lg font-semibold">Please note</h3>
         <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-          ReelAudio Studio is an independent utility. We are not affiliated
+          MP4 to MP3 is an independent utility. We are not affiliated
           with Instagram, TikTok, YouTube, Facebook, or any other platform.
           We cannot help you download content from those platforms —
           requests of that nature will not receive a response.

@@ -15,13 +15,13 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const siteUrl = "https://reelaudiosudio.example.com";
+const siteUrl = "https://mp4-to-mp3.app";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
     default: "MP4 to MP3 Converter – Free Online Video to Audio Tool",
-    template: "%s | ReelAudio Studio",
+    template: "%s | MP4 to MP3",
   },
   description:
     "Convert MP4 to MP3 online for free. Upload any video file and extract a high-quality MP3 audio track in seconds — fast, private, FFmpeg-powered, no sign-up required.",
@@ -35,14 +35,14 @@ export const metadata: Metadata = {
     "mp3 extractor",
     "video to mp3 converter",
   ],
-  authors: [{ name: "ReelAudio Studio" }],
-  creator: "ReelAudio Studio",
+  authors: [{ name: "MP4 to MP3" }],
+  creator: "MP4 to MP3",
   openGraph: {
     title: "MP4 to MP3 Converter – Free Online Video to Audio Tool",
     description:
       "Convert MP4 to MP3 audio online for free. Fast, private, no sign-up required. Supports MP4, MOV, WebM, MKV and more.",
     url: siteUrl,
-    siteName: "ReelAudio Studio",
+    siteName: "MP4 to MP3",
     type: "website",
   },
   twitter: {

@@ -11,7 +11,7 @@ import { NextResponse } from "next/server";
  */
 export function GET() {
   return NextResponse.json({
-    name: "ReelAudio Studio API",
+    name: "MP4 to MP3 API",
     status: "ok",
     message:
       "Audio extraction is performed client-side in your browser using FFmpeg.wasm. There is no server-side endpoint to call.",

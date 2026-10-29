@@ -44,7 +44,7 @@ export default function Page() {
         {
           heading: "Free online video to audio converter",
           paragraphs: [
-            "ReelAudio Studio is a free video-to-audio converter that runs entirely in your browser. Drop an MP4, MOV, WebM, MKV, AVI, or M4V file into the tool above, click Extract Audio, and within seconds you'll have a clean MP3 ready to download. There is no software to install, no plug-in to enable, and no account to create — the conversion happens on our server using FFmpeg, the same open-source framework trusted by YouTube, OBS, and almost every major media pipeline.",
+            "MP4 to MP3 is a free video-to-audio converter that runs entirely in your browser. Drop an MP4, MOV, WebM, MKV, AVI, or M4V file into the tool above, click Extract Audio, and within seconds you'll have a clean MP3 ready to download. There is no software to install, no plug-in to enable, and no account to create — the conversion happens on our server using FFmpeg, the same open-source framework trusted by YouTube, OBS, and almost every major media pipeline.",
             "What makes this converter different from the dozens of other online tools is its privacy model. Your uploaded video is written to a temporary directory, processed immediately by FFmpeg, and deleted the moment the MP3 is returned to your browser. We never persist, log, share, or distribute your media. If you are a creator, journalist, podcaster, or student handling sensitive footage, this matters: nothing of yours remains on our infrastructure after the conversion is complete.",
             "This tool is designed for your own content — videos you recorded, exported from your editing software, or have explicit permission to process. It is not a downloader. It does not scrape Instagram, TikTok, YouTube, or any other platform. If you arrived here looking for a way to pull audio from someone else's Reel, please use the official share features on those platforms instead.",
           ],
@@ -64,7 +64,7 @@ export default function Page() {
         {
           heading: "Common use cases for converting video to audio",
           paragraphs: [
-            "There are dozens of legitimate reasons to convert a video into an audio file. Podcasters often record video interviews on Zoom or Riverside and need just the audio for their editor. Musicians record scratch takes on their phone and want a portable MP3 for the studio. Students record lectures and want to listen on the commute. Translators and transcriptionists work faster from audio than video. Whatever your reason, ReelAudio Studio handles the conversion without imposing any branding, watermarks, or sign-up friction.",
+            "There are dozens of legitimate reasons to convert a video into an audio file. Podcasters often record video interviews on Zoom or Riverside and need just the audio for their editor. Musicians record scratch takes on their phone and want a portable MP3 for the studio. Students record lectures and want to listen on the commute. Translators and transcriptionists work faster from audio than video. Whatever your reason, MP4 to MP3 handles the conversion without imposing any branding, watermarks, or sign-up friction.",
             "Because the output is a standard MP3, the resulting file will play on every modern device, browser, and audio app — from iOS Music and Android's default player to VLC, Audacity, Premiere Pro, GarageBand, and Discord uploads. There is no DRM, no special codec, and no container to worry about.",
           ],
         },
@@ -84,7 +84,7 @@ export default function Page() {
         },
         {
           q: "Can I use this to convert YouTube videos to MP3?",
-          a: "No. ReelAudio Studio is built for your own video files only. It does not download or fetch content from YouTube, Instagram, TikTok, or any third-party platform. Doing so would violate copyright law and our Terms of Service.",
+          a: "No. MP4 to MP3 is built for your own video files only. It does not download or fetch content from YouTube, Instagram, TikTok, or any third-party platform. Doing so would violate copyright law and our Terms of Service.",
         },
         {
           q: "Do you keep a copy of my video?",

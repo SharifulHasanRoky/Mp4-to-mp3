@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 
-const baseUrl = "https://reelaudiosudio.example.com";
+const baseUrl = "https://mp4-to-mp3.app";
 
 export default function robots(): MetadataRoute.Robots {
   return {

@@ -43,7 +43,7 @@ export default function Page() {
         {
           heading: "Convert video to MP3 — the fast, free way",
           paragraphs: [
-            "ReelAudio Studio is a free online video-to-MP3 converter that takes any video file you upload and turns it into a clean, portable MP3 audio file. Whether you recorded a podcast on Zoom, exported a video from your editing software, captured a voice memo on your phone, or pulled a clip from your own camera, this tool extracts just the audio and saves it as a universally playable MP3.",
+            "MP4 to MP3 is a free online video-to-MP3 converter that takes any video file you upload and turns it into a clean, portable MP3 audio file. Whether you recorded a podcast on Zoom, exported a video from your editing software, captured a voice memo on your phone, or pulled a clip from your own camera, this tool extracts just the audio and saves it as a universally playable MP3.",
             "Conversion is powered by FFmpeg, the same open-source media framework used by YouTube, Vimeo, OBS Studio, and almost every major media pipeline. We use the libmp3lame encoder at Variable Bit Rate quality 2 (~190 kbps), which is widely regarded as the sweet spot between file size and audio quality. The output is 'near-transparent' — indistinguishable from the source for almost all listeners, including on high-end equipment.",
             "This tool is built for your own content only. It does not connect to, scrape, or download videos from Instagram, TikTok, YouTube, Facebook, or any other platform. Converting copyrighted music or video that you don't own is illegal and against our Terms of Service. If you arrived here looking to download audio from someone else's content, please use the official share features on those platforms instead.",
           ],
@@ -53,7 +53,7 @@ export default function Page() {
           paragraphs: [
             "MP3 is the most universally compatible audio format in the world. It plays on every phone, every browser, every music app, every podcast platform, and every video editor — and it will continue to play for decades. Converting your video to MP3 gives you a smaller, more portable, more editable file that you can share, upload, archive, or import into any audio workflow.",
             "Common reasons to convert video to MP3 include: pulling the audio from a Zoom recording for a podcast editor, exporting a scratch vocal take from a phone video for the studio, archiving old home videos as audio files, extracting lecture audio for offline listening, preparing a voiceover sample for a portfolio, or just saving a favorite personal moment as an audio file.",
-            "Whatever your reason, ReelAudio Studio handles the conversion cleanly. There is no watermark, no branding, no intro or outro, and no metadata pollution. The MP3 you download is exactly what FFmpeg produces — nothing more, nothing less.",
+            "Whatever your reason, MP4 to MP3 handles the conversion cleanly. There is no watermark, no branding, no intro or outro, and no metadata pollution. The MP3 you download is exactly what FFmpeg produces — nothing more, nothing less.",
           ],
         },
         {
@@ -84,7 +84,7 @@ export default function Page() {
         },
         {
           q: "Can I convert YouTube or Instagram videos to MP3?",
-          a: "No. ReelAudio Studio only processes files you upload yourself. It does not fetch, scrape, or download videos from any third-party platform. Converting copyrighted audio is illegal and against our Terms of Service.",
+          a: "No. MP4 to MP3 only processes files you upload yourself. It does not fetch, scrape, or download videos from any third-party platform. Converting copyrighted audio is illegal and against our Terms of Service.",
         },
         {
           q: "Are my uploaded videos stored on your server?",

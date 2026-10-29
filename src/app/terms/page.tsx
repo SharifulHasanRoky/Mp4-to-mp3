@@ -4,7 +4,7 @@ import { PageShell } from "@/components/page-shell";
 export const metadata: Metadata = {
   title: "Terms of Service",
   description:
-    "The terms and conditions for using ReelAudio Studio. By using the service, you agree to these terms, including the prohibition on processing copyrighted content.",
+    "The terms and conditions for using MP4 to MP3. By using the service, you agree to these terms, including the prohibition on processing copyrighted content.",
   alternates: { canonical: "/terms" },
 };
 
@@ -16,7 +16,7 @@ export default function Page() {
     >
       <section>
         <p className="text-base leading-relaxed text-muted-foreground">
-          Welcome to ReelAudio Studio. By accessing or using our website and
+          Welcome to MP4 to MP3. By accessing or using our website and
           audio extraction tool, you agree to be bound by these Terms of
           Service. If you do not agree with any part of these terms, please
           do not use the service.
@@ -28,7 +28,7 @@ export default function Page() {
           1. Permitted use
         </h2>
         <p className="mt-3 text-base leading-relaxed text-muted-foreground">
-          ReelAudio Studio is a personal audio-extraction utility. You may
+          MP4 to MP3 is a personal audio-extraction utility. You may
           use the service to extract audio from video files that:
         </p>
         <ul className="mt-3 space-y-2 text-base leading-relaxed text-muted-foreground">
@@ -49,7 +49,7 @@ export default function Page() {
           2. Prohibited use
         </h2>
         <p className="mt-3 text-base leading-relaxed text-muted-foreground">
-          You may <strong>not</strong> use ReelAudio Studio to:
+          You may <strong>not</strong> use MP4 to MP3 to:
         </p>
         <ul className="mt-3 space-y-2 text-base leading-relaxed text-muted-foreground">
           <li>
@@ -86,13 +86,13 @@ export default function Page() {
         <p className="mt-3 text-base leading-relaxed text-muted-foreground">
           You are solely responsible for the content you upload and the
           audio you extract. You affirm that you have the legal right to
-          process every file you upload. ReelAudio Studio is not responsible
+          process every file you upload. MP4 to MP3 is not responsible
           for verifying ownership of uploaded files and cannot be held
           liable for misuse of the tool by users.
         </p>
         <p className="mt-3 text-base leading-relaxed text-muted-foreground">
           By using the service, you agree to indemnify and hold harmless
-          ReelAudio Studio, its operators, and its hosting providers from any
+          MP4 to MP3, its operators, and its hosting providers from any
           claim, demand, or damage arising from your use of the service or
           your violation of these Terms.
         </p>
@@ -117,7 +117,7 @@ export default function Page() {
           5. Limitation of liability
         </h2>
         <p className="mt-3 text-base leading-relaxed text-muted-foreground">
-          To the maximum extent permitted by law, ReelAudio Studio shall not
+          To the maximum extent permitted by law, MP4 to MP3 shall not
           be liable for any indirect, incidental, special, consequential, or
           punitive damages arising from your use of, or inability to use,
           the service. Our total liability for any claim arising from these
@@ -175,10 +175,10 @@ export default function Page() {
         <p className="mt-3 text-base leading-relaxed text-muted-foreground">
           For any questions about these Terms, email{" "}
           <a
-            href="mailto:hello@reelaudiosudio.example.com"
+            href="mailto:hello@mp4-to-mp3.app"
             className="font-medium text-primary underline-offset-4 hover:underline"
           >
-            hello@reelaudiosudio.example.com
+            hello@mp4-to-mp3.app
           </a>
           .
         </p>

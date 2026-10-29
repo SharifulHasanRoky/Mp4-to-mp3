@@ -26,7 +26,7 @@ export function SiteFooter() {
           <div className="col-span-2 md:col-span-1">
             <div className="flex items-center gap-2 font-bold">
               <span className="text-lg">
-                ReelAudio<span className="text-primary"> Studio</span>
+                MP4 to <span className="text-primary">MP3</span>
               </span>
             </div>
             <p className="mt-3 text-sm text-muted-foreground">
@@ -125,7 +125,7 @@ export function SiteFooter() {
 
         <div className="mt-10 border-t border-border/60 pt-6">
           <p className="text-xs leading-relaxed text-muted-foreground">
-            <strong>Disclaimer:</strong> ReelAudio Studio is an independent
+            <strong>Disclaimer:</strong> MP4 to MP3 is an independent
             audio-extraction utility. We are not affiliated with Instagram,
             TikTok, YouTube, Facebook, or any other platform. Users must only
             upload videos they own or have explicit permission to process. We
@@ -134,7 +134,7 @@ export function SiteFooter() {
             uploaded content.
           </p>
           <p className="mt-4 text-xs text-muted-foreground">
-            &copy; {new Date().getFullYear()} ReelAudio Studio. All rights
+            &copy; {new Date().getFullYear()} MP4 to MP3. All rights
             reserved.
           </p>
         </div>

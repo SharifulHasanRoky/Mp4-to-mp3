@@ -43,7 +43,7 @@ export default function Page() {
         {
           heading: "Convert MP4 to WAV — lossless audio extraction",
           paragraphs: [
-            "ReelAudio Studio is a free MP4 to WAV converter that takes any MP4 video file you upload and extracts the audio track as a lossless, uncompressed WAV file. Unlike MP3 (which is a lossy format), WAV preserves the audio exactly as it exists inside the MP4 — no re-encoding artifacts, no quality loss. This makes WAV the right choice for professional audio editing, mixing, mastering, and any workflow where bit-perfect audio matters.",
+            "MP4 to MP3 is a free MP4 to WAV converter that takes any MP4 video file you upload and extracts the audio track as a lossless, uncompressed WAV file. Unlike MP3 (which is a lossy format), WAV preserves the audio exactly as it exists inside the MP4 — no re-encoding artifacts, no quality loss. This makes WAV the right choice for professional audio editing, mixing, mastering, and any workflow where bit-perfect audio matters.",
             "Because we use FFmpeg, the extraction is identical to what you'd get from a desktop audio editor. Your MP4 file is uploaded over HTTPS, the audio stream is demuxed and decoded to PCM (raw uncompressed audio), and re-wrapped as a standard WAV file. The original MP4 and the temporary WAV are both deleted automatically after the conversion completes.",
             "This tool is built for your own content only. It does not connect to Instagram, TikTok, YouTube, or any other platform. Converting copyrighted music or video that you do not own is illegal and against our Terms of Service.",
           ],
@@ -98,7 +98,7 @@ export default function Page() {
         },
         {
           q: "Can I convert copyrighted music from MP4 to WAV?",
-          a: "No. ReelAudio Studio only processes files you own or have explicit permission to use. Converting copyrighted music or video is illegal and against our Terms of Service.",
+          a: "No. MP4 to MP3 only processes files you own or have explicit permission to use. Converting copyrighted music or video is illegal and against our Terms of Service.",
         },
         {
           q: "How long does the MP4 to WAV conversion take?",

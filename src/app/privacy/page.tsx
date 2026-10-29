@@ -4,7 +4,7 @@ import { PageShell } from "@/components/page-shell";
 export const metadata: Metadata = {
   title: "Privacy Policy",
   description:
-    "How ReelAudio Studio handles your data: uploaded files, cookies, analytics, advertising, and your rights under GDPR and CCPA.",
+    "How MP4 to MP3 handles your data: uploaded files, cookies, analytics, advertising, and your rights under GDPR and CCPA.",
   alternates: { canonical: "/privacy" },
 };
 
@@ -16,7 +16,7 @@ export default function Page() {
     >
       <section>
         <p className="text-base leading-relaxed text-muted-foreground">
-          This Privacy Policy explains how ReelAudio Studio (&quot;we&quot;,
+          This Privacy Policy explains how MP4 to MP3 (&quot;we&quot;,
           &quot;us&quot;, or &quot;our&quot;) collects, uses, and protects
           information when you use our website and audio extraction tool. By
           using the service, you consent to the practices described below.
@@ -145,10 +145,10 @@ export default function Page() {
         <p className="mt-3 text-base leading-relaxed text-muted-foreground">
           To exercise any data right, contact{" "}
           <a
-            href="mailto:privacy@reelaudiosudio.example.com"
+            href="mailto:privacy@mp4-to-mp3.app"
             className="font-medium text-primary underline-offset-4 hover:underline"
           >
-            privacy@reelaudiosudio.example.com
+            privacy@mp4-to-mp3.app
           </a>
           . We respond to all valid requests within 30 days.
         </p>
@@ -159,7 +159,7 @@ export default function Page() {
           6. Children&apos;s privacy
         </h2>
         <p className="mt-3 text-base leading-relaxed text-muted-foreground">
-          ReelAudio Studio is not directed at children under 13 (or the
+          MP4 to MP3 is not directed at children under 13 (or the
           minimum age in your jurisdiction). We do not knowingly collect
           personal information from children. If you believe a child has
           provided us with personal data, please contact us and we will
@@ -184,10 +184,10 @@ export default function Page() {
         <p className="mt-3 text-base leading-relaxed text-muted-foreground">
           For any privacy questions, email{" "}
           <a
-            href="mailto:privacy@reelaudiosudio.example.com"
+            href="mailto:privacy@mp4-to-mp3.app"
             className="font-medium text-primary underline-offset-4 hover:underline"
           >
-            privacy@reelaudiosudio.example.com
+            privacy@mp4-to-mp3.app
           </a>
           .
         </p>
