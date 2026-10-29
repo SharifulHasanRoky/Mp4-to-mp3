@@ -6,14 +6,14 @@ import { JsonLd } from "@/components/json-ld";
 export const metadata: Metadata = {
   title: "FAQ – Frequently Asked Questions",
   description:
-    "Answers to the most common questions about ReelAudio Studio: supported formats, file size limits, audio quality, privacy, and what you can legally extract.",
+    "Answers to the most common questions about MP4 to MP3: supported formats, file size limits, audio quality, privacy, and what you can legally extract.",
   alternates: { canonical: "/faq" },
 };
 
 const faqItems = [
   {
-    q: "Is ReelAudio Studio free to use?",
-    a: "Yes. ReelAudio Studio is 100% free for personal use. There are no hidden fees, no sign-up requirement, and no watermark on your output. You can extract audio from as many videos as you like, up to 100 MB per file.",
+    q: "Is MP4 to MP3 free to use?",
+    a: "Yes. MP4 to MP3 is 100% free for personal use. There are no hidden fees, no sign-up requirement, and no watermark on your output. You can extract audio from as many videos as you like, up to 100 MB per file.",
   },
   {
     q: "What file formats are supported?",
@@ -29,7 +29,7 @@ const faqItems = [
   },
   {
     q: "Can I extract audio from any video on the internet?",
-    a: "No. ReelAudio Studio is designed for your own content — videos you recorded, edited, or have explicit permission to use. You cannot use this tool to download audio from copyrighted material on Instagram, TikTok, YouTube, or any other platform. Doing so would violate copyright law and our Terms of Service.",
+    a: "No. MP4 to MP3 is designed for your own content — videos you recorded, edited, or have explicit permission to use. You cannot use this tool to download audio from copyrighted material on Instagram, TikTok, YouTube, or any other platform. Doing so would violate copyright law and our Terms of Service.",
   },
   {
     q: "What audio quality does the MP3 output have?",
@@ -64,8 +64,8 @@ const faqItems = [
     a: "No. The MP3 you download is exactly what FFmpeg produces — no watermark, no branding, no metadata pollution, no intro or outro. Your audio is yours.",
   },
   {
-    q: "Is ReelAudio Studio affiliated with Instagram, TikTok, or YouTube?",
-    a: "No. ReelAudio Studio is an independent audio-extraction utility. We are not affiliated with, endorsed by, or sponsored by any social media platform. The 'Reel' in our name refers to short video content in general — it does not imply any affiliation with Instagram Reels specifically.",
+    q: "Is MP4 to MP3 affiliated with Instagram, TikTok, or YouTube?",
+    a: "No. MP4 to MP3 is an independent audio-extraction utility. We are not affiliated with, endorsed by, or sponsored by any social media platform. The 'Reel' in our name refers to short video content in general — it does not imply any affiliation with Instagram Reels specifically.",
   },
   {
     q: "How can I contact you?",
@@ -89,7 +89,7 @@ export default function Page() {
       <JsonLd data={faqJsonLd} />
       <PageShell
         title="Frequently Asked Questions"
-        subtitle="Everything you need to know about extracting audio from video files with ReelAudio Studio."
+        subtitle="Everything you need to know about extracting audio from video files with MP4 to MP3."
       >
         <div className="mt-2">
           <Faq items={faqItems} title="" />

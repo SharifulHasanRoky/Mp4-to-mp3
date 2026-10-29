@@ -43,7 +43,7 @@ export default function Page() {
         {
           heading: "Free online WAV to MP4 converter",
           paragraphs: [
-            "ReelAudio Studio is a free WAV to MP4 converter that takes any WAV audio file you upload and wraps it in an MP4 video container with a static visual background. This is useful when you have audio (a podcast, song, voice memo, lecture, or interview) that you want to upload to a video-only platform like YouTube, Instagram, TikTok, or Facebook — most of which don't accept raw audio uploads.",
+            "MP4 to MP3 is a free WAV to MP4 converter that takes any WAV audio file you upload and wraps it in an MP4 video container with a static visual background. This is useful when you have audio (a podcast, song, voice memo, lecture, or interview) that you want to upload to a video-only platform like YouTube, Instagram, TikTok, or Facebook — most of which don't accept raw audio uploads.",
             "Because we use FFmpeg under the hood, the conversion is identical to what you'd get from a desktop video editor. Your WAV file is uploaded over HTTPS, paired with a static image (a black background by default), and encoded as a standard MP4 file with H.264 video and AAC audio. The original WAV and the temporary MP4 are both deleted automatically after the conversion completes.",
             "This tool is built for your own content only. It does not connect to streaming platforms, music services, or any other platform. Converting copyrighted music or audio that you do not own is illegal and against our Terms of Service.",
           ],
@@ -101,7 +101,7 @@ export default function Page() {
         },
         {
           q: "Can I convert copyrighted music from a WAV file to MP4?",
-          a: "No. ReelAudio Studio only processes files you own or have explicit permission to use. Converting copyrighted music is illegal and against our Terms of Service.",
+          a: "No. MP4 to MP3 only processes files you own or have explicit permission to use. Converting copyrighted music is illegal and against our Terms of Service.",
         },
         {
           q: "Do you store my uploaded WAV files?",

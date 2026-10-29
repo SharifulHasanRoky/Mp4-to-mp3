@@ -42,16 +42,16 @@ export default function Page() {
         {
           heading: "What is an MP3 extractor?",
           paragraphs: [
-            "An MP3 extractor is a tool that takes a video file (or any other multimedia container) and pulls out just the audio stream, re-encoding it as a standard MP3 file that you can play on any device. The word 'extract' is important — it implies that the audio already exists inside the file and we are simply isolating it, rather than synthesizing or transforming it. That is exactly what ReelAudio Studio does, using FFmpeg under the hood.",
+            "An MP3 extractor is a tool that takes a video file (or any other multimedia container) and pulls out just the audio stream, re-encoding it as a standard MP3 file that you can play on any device. The word 'extract' is important — it implies that the audio already exists inside the file and we are simply isolating it, rather than synthesizing or transforming it. That is exactly what MP4 to MP3 does, using FFmpeg under the hood.",
             "MP3 remains the most universal audio format in the world. Every phone, every browser, every music app, every video editor, every podcast platform supports MP3 playback. By extracting your audio as MP3, you guarantee that the file will be playable everywhere — now and decades from now. Other formats like AAC, Opus, or FLAC are technically superior in some ways, but none has the universal compatibility of MP3.",
-            "ReelAudio Studio is built as a privacy-first MP3 extractor. Your video is uploaded to a temporary directory, processed by FFmpeg, and deleted immediately. We never persist, log, share, or distribute your media. This makes the tool safe to use even for sensitive content like confidential interviews, personal voice memos, or unreleased music demos.",
+            "MP4 to MP3 is built as a privacy-first MP3 extractor. Your video is uploaded to a temporary directory, processed by FFmpeg, and deleted immediately. We never persist, log, share, or distribute your media. This makes the tool safe to use even for sensitive content like confidential interviews, personal voice memos, or unreleased music demos.",
           ],
         },
         {
           heading: "Why use an online MP3 extractor?",
           paragraphs: [
             "The alternative to an online extractor is installing desktop software like Audacity, VLC, HandBrake, or Adobe Media Encoder. These are powerful tools, but they require installation, take up disk space, and have a learning curve. For most one-off audio extraction tasks — pulling a voice memo out of a phone recording, exporting a podcast interview from a Zoom video, grabbing a scratch vocal take from a phone video — an online tool is faster and simpler.",
-            "ReelAudio Studio runs entirely in your browser. There is nothing to download, nothing to install, nothing to update. You drag your file in, click one button, and the MP3 is delivered back to you in seconds. This makes it ideal for quick tasks on phones, tablets, shared computers, or workstations where you don't have admin privileges.",
+            "MP4 to MP3 runs entirely in your browser. There is nothing to download, nothing to install, nothing to update. You drag your file in, click one button, and the MP3 is delivered back to you in seconds. This makes it ideal for quick tasks on phones, tablets, shared computers, or workstations where you don't have admin privileges.",
             "The trade-off is the 100 MB file size limit, which exists to keep the service fast and free for everyone. If you regularly need to extract MP3s from multi-gigabyte video files, you may want to install a local tool like FFmpeg directly or use HandBrake. For 95% of personal audio extraction tasks, however, the online tool is the right choice.",
           ],
         },
@@ -83,7 +83,7 @@ export default function Page() {
         },
         {
           q: "Can I extract MP3 audio from a copyrighted song in someone else's video?",
-          a: "No. ReelAudio Studio only processes files you upload yourself. It does not connect to or fetch content from Instagram, TikTok, YouTube, or any other platform. Extracting copyrighted audio without permission is illegal and against our Terms of Service.",
+          a: "No. MP4 to MP3 only processes files you upload yourself. It does not connect to or fetch content from Instagram, TikTok, YouTube, or any other platform. Extracting copyrighted audio without permission is illegal and against our Terms of Service.",
         },
         {
           q: "Do you store the videos I upload?",

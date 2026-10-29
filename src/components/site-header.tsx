@@ -34,7 +34,7 @@ export function SiteHeader() {
             <AudioWaveform className="h-5 w-5" />
           </span>
           <span className="text-lg tracking-tight">
-            ReelAudio<span className="text-primary"> Studio</span>
+            MP4 to <span className="text-primary">MP3</span>
           </span>
         </Link>
 

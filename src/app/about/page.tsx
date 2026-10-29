@@ -4,20 +4,20 @@ import { PageShell } from "@/components/page-shell";
 export const metadata: Metadata = {
   title: "About Us",
   description:
-    "ReelAudio Studio is an independent, privacy-first online audio extraction tool. Learn about our mission, our technology, and our commitment to copyright compliance.",
+    "MP4 to MP3 is an independent, privacy-first online audio extraction tool. Learn about our mission, our technology, and our commitment to copyright compliance.",
   alternates: { canonical: "/about" },
 };
 
 export default function Page() {
   return (
     <PageShell
-      title="About ReelAudio Studio"
+      title="About MP4 to MP3"
       subtitle="A free, private, and copyright-compliant online audio extraction tool."
     >
       <section>
         <h2 className="text-2xl font-bold tracking-tight">Our mission</h2>
         <p className="mt-3 text-base leading-relaxed text-muted-foreground">
-          ReelAudio Studio exists to make audio extraction from video files
+          MP4 to MP3 exists to make audio extraction from video files
           simple, fast, and private. We believe that converting your own
           recorded videos into portable audio files should not require
           installing desktop software, signing up for an account, or
@@ -28,7 +28,7 @@ export default function Page() {
           that respects both your privacy and the rights of content creators.
         </p>
         <p className="mt-3 text-base leading-relaxed text-muted-foreground">
-          We deliberately built ReelAudio Studio as a personal-use utility,
+          We deliberately built MP4 to MP3 as a personal-use utility,
           not a downloader. The tool only accepts files you upload yourself
           and never connects to Instagram, TikTok, YouTube, or any other
           third-party platform. This is not a limitation we are working
@@ -76,7 +76,7 @@ export default function Page() {
           Copyright compliance
         </h2>
         <p className="mt-3 text-base leading-relaxed text-muted-foreground">
-          We take copyright seriously. ReelAudio Studio does not host, store,
+          We take copyright seriously. MP4 to MP3 does not host, store,
           or distribute any copyrighted media. We do not scrape, fetch, or
           download content from any third-party platform. If you believe
           that someone is using this tool to process copyrighted content

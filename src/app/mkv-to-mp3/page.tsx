@@ -42,7 +42,7 @@ export default function Page() {
         {
           heading: "Free online MKV to MP3 converter",
           paragraphs: [
-            "ReelAudio Studio is a free MKV to MP3 converter that takes any Matroska .mkv file you upload and turns it into a clean, portable MP3 audio track. MKV (Matroska Video) is a popular open-source container format often used for high-definition anime, movies, and downloaded video — it can hold multiple audio tracks, subtitles, and chapters in a single file. If you have an MKV with a soundtrack, dialogue, or commentary track that you want to listen to as audio only, this tool extracts it in seconds.",
+            "MP4 to MP3 is a free MKV to MP3 converter that takes any Matroska .mkv file you upload and turns it into a clean, portable MP3 audio track. MKV (Matroska Video) is a popular open-source container format often used for high-definition anime, movies, and downloaded video — it can hold multiple audio tracks, subtitles, and chapters in a single file. If you have an MKV with a soundtrack, dialogue, or commentary track that you want to listen to as audio only, this tool extracts it in seconds.",
             "Because MKV is an open format, FFmpeg handles it natively and reliably. Your MKV file is uploaded over HTTPS, demuxed, and the audio stream is re-encoded as MP3 using the libmp3lame encoder at Variable Bit Rate quality 2 (~190 kbps). The original MKV and the temporary MP3 are both deleted automatically after the conversion completes. We do not store, share, or distribute your media.",
             "This tool is built for your own content only. It does not connect to streaming services, torrent sites, or any other platform. Converting copyrighted movies, music, or commentary tracks that you do not own is illegal and against our Terms of Service.",
           ],
@@ -95,7 +95,7 @@ export default function Page() {
         },
         {
           q: "Can I convert copyrighted movies or shows from MKV files?",
-          a: "No. ReelAudio Studio only processes files you own or have explicit permission to use. Converting copyrighted movies, music, or commentary tracks is illegal and against our Terms of Service.",
+          a: "No. MP4 to MP3 only processes files you own or have explicit permission to use. Converting copyrighted movies, music, or commentary tracks is illegal and against our Terms of Service.",
         },
         {
           q: "Do you store my uploaded MKV files?",

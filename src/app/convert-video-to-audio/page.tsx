@@ -43,7 +43,7 @@ export default function Page() {
         {
           heading: "Convert video to audio file — the simple way",
           paragraphs: [
-            "ReelAudio Studio is a free online tool that lets you convert video to audio file in seconds. Whether you have an MP4 from your phone, a MOV from QuickTime, a WebM from a screen recorder, or an MKV from a download, our tool takes any video file you upload and changes it into a clean, portable MP3 audio track. No software to install, no sign-up, no email verification — just drag, drop, and convert.",
+            "MP4 to MP3 is a free online tool that lets you convert video to audio file in seconds. Whether you have an MP4 from your phone, a MOV from QuickTime, a WebM from a screen recorder, or an MKV from a download, our tool takes any video file you upload and changes it into a clean, portable MP3 audio track. No software to install, no sign-up, no email verification — just drag, drop, and convert.",
             "Because we use FFmpeg under the hood, the conversion is identical to what you'd get from a desktop audio editor. Your video file is uploaded over HTTPS, the audio stream is extracted and re-encoded as MP3 using the libmp3lame encoder at VBR quality 2 (~190 kbps), and the resulting MP3 is delivered straight to your browser. The original video and the temporary MP3 are both deleted automatically once the conversion completes.",
             "This tool is built for your own content only. It does not connect to Instagram, TikTok, YouTube, or any other platform. Converting copyrighted music or video that you do not own is illegal and against our Terms of Service.",
           ],
@@ -100,7 +100,7 @@ export default function Page() {
         },
         {
           q: "Can I convert copyrighted video to audio?",
-          a: "No. ReelAudio Studio only processes files you own or have explicit permission to use. Converting copyrighted music or video is illegal and against our Terms of Service.",
+          a: "No. MP4 to MP3 only processes files you own or have explicit permission to use. Converting copyrighted music or video is illegal and against our Terms of Service.",
         },
         {
           q: "Do you store my uploaded videos?",

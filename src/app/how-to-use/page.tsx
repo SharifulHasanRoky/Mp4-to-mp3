@@ -4,20 +4,20 @@ import { FileAudio, Film, Download, Check } from "lucide-react";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "How to Use – ReelAudio Studio Guide",
+  title: "How to Use – MP4 to MP3 Guide",
   description:
-    "Step-by-step guide to extract audio from your own video files using ReelAudio Studio. Upload a video, extract the audio, download the MP3 — all in under a minute.",
+    "Step-by-step guide to extract audio from your own video files using MP4 to MP3. Upload a video, extract the audio, download the MP3 — all in under a minute.",
   alternates: { canonical: "/how-to-use" },
 };
 
 export default function Page() {
   return (
     <PageShell
-      title="How to use ReelAudio Studio"
+      title="How to use MP4 to MP3"
       subtitle="A complete step-by-step guide to extract audio from your own video files in under a minute."
     >
       <p className="text-base leading-relaxed text-muted-foreground">
-        ReelAudio Studio is designed to be self-explanatory — drag, drop,
+        MP4 to MP3 is designed to be self-explanatory — drag, drop,
         extract, download. But if you are new to audio extraction or want to
         make sure you are getting the best results, here is a detailed walk-through
         of every step.
@@ -113,7 +113,7 @@ export default function Page() {
           What you cannot do with this tool
         </h2>
         <p className="mt-3 text-base leading-relaxed text-muted-foreground">
-          ReelAudio Studio is a personal audio-extraction utility. It is not a
+          MP4 to MP3 is a personal audio-extraction utility. It is not a
           downloader, it is not a scraper, and it does not connect to any
           third-party platform. Specifically, you cannot use this tool to:
         </p>

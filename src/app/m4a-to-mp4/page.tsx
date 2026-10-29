@@ -43,7 +43,7 @@ export default function Page() {
         {
           heading: "Free online M4A to MP4 converter",
           paragraphs: [
-            "ReelAudio Studio is a free M4A to MP4 converter that takes any M4A audio file you upload and wraps it in an MP4 video container with a static visual background. This is useful when you have an iPhone voice memo, an AAC audio file, or an M4A song that you want to upload to a video-only platform like YouTube, Instagram, TikTok, or Facebook — most of which don't accept raw audio uploads.",
+            "MP4 to MP3 is a free M4A to MP4 converter that takes any M4A audio file you upload and wraps it in an MP4 video container with a static visual background. This is useful when you have an iPhone voice memo, an AAC audio file, or an M4A song that you want to upload to a video-only platform like YouTube, Instagram, TikTok, or Facebook — most of which don't accept raw audio uploads.",
             "M4A is the default audio format for Apple's Voice Memos app, iTunes purchases, and many AAC-encoded audio files. iPhone users accumulate dozens of M4A voice memos — interviews, lectures, song ideas, meetings — and often want to share them on social media as audiograms or video posts. Converting M4A to MP4 makes this possible without needing a desktop video editor.",
             "Because we use FFmpeg under the hood, the conversion is identical to what you'd get from a desktop tool. Your M4A file is uploaded over HTTPS, paired with a static black image as the video track, and encoded as a standard MP4 with H.264 video and AAC audio. The original M4A and the temporary MP4 are both deleted automatically after the conversion completes.",
             "This tool is built for your own content only. It does not connect to streaming platforms, music services, or any other platform. Converting copyrighted music or audio that you do not own is illegal and against our Terms of Service.",
@@ -103,7 +103,7 @@ export default function Page() {
         },
         {
           q: "Can I convert copyrighted M4A music (e.g., iTunes purchases) to MP4?",
-          a: "No. ReelAudio Studio only processes files you own or have explicit permission to use. iTunes purchases are DRM-protected in some cases and even without DRM, redistributing copyrighted music is illegal and against our Terms of Service.",
+          a: "No. MP4 to MP3 only processes files you own or have explicit permission to use. iTunes purchases are DRM-protected in some cases and even without DRM, redistributing copyrighted music is illegal and against our Terms of Service.",
         },
         {
           q: "Do you store my uploaded M4A files?",

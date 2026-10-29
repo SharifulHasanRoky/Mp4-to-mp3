@@ -4,7 +4,7 @@ import { PageShell } from "@/components/page-shell";
 export const metadata: Metadata = {
   title: "Copyright / DMCA Policy",
   description:
-    "How to file a DMCA takedown notice with ReelAudio Studio. We respond to all valid copyright takedown requests within 24 hours.",
+    "How to file a DMCA takedown notice with MP4 to MP3. We respond to all valid copyright takedown requests within 24 hours.",
   alternates: { canonical: "/copyright" },
 };
 
@@ -12,14 +12,14 @@ export default function Page() {
   return (
     <PageShell
       title="Copyright / DMCA Policy"
-      subtitle="ReelAudio Studio respects intellectual property rights. Here is how to file a takedown request."
+      subtitle="MP4 to MP3 respects intellectual property rights. Here is how to file a takedown request."
     >
       <section>
         <h2 className="text-2xl font-bold tracking-tight">
           Our copyright policy
         </h2>
         <p className="mt-3 text-base leading-relaxed text-muted-foreground">
-          ReelAudio Studio is a personal audio-extraction utility. We do not
+          MP4 to MP3 is a personal audio-extraction utility. We do not
           host, store, distribute, or scrape any copyrighted content. The
           service only processes files that users upload themselves. By
           design, we have no ability to identify, filter, or remove specific
@@ -46,10 +46,10 @@ export default function Page() {
           removed. To file a valid notice with us, please send a written
           communication to{" "}
           <a
-            href="mailto:dmca@reelaudiosudio.example.com"
+            href="mailto:dmca@mp4-to-mp3.app"
             className="font-medium text-primary underline-offset-4 hover:underline"
           >
-            dmca@reelaudiosudio.example.com
+            dmca@mp4-to-mp3.app
           </a>{" "}
           that includes the following information:
         </p>
@@ -65,7 +65,7 @@ export default function Page() {
           </li>
           <li>
             Identification of the allegedly infringing activity — since
-            ReelAudio Studio does not host content, please describe the
+            MP4 to MP3 does not host content, please describe the
             nature of the alleged misuse (e.g. &quot;a user is repeatedly
             using this tool to extract audio from my copyrighted song
             titled ___ and redistribute it&quot;).
@@ -98,10 +98,10 @@ export default function Page() {
           counter-notification with the same information required under
           17 U.S.C. §512(g)(3). Send counter-notices to{" "}
           <a
-            href="mailto:dmca@reelaudiosudio.example.com"
+            href="mailto:dmca@mp4-to-mp3.app"
             className="font-medium text-primary underline-offset-4 hover:underline"
           >
-            dmca@reelaudiosudio.example.com
+            dmca@mp4-to-mp3.app
           </a>
           .
         </p>
@@ -114,7 +114,7 @@ export default function Page() {
         <p className="mt-3 text-base leading-relaxed text-muted-foreground">
           In accordance with the DMCA, we maintain a policy of terminating,
           in appropriate circumstances, the accounts or access of users who
-          are determined to be repeat infringers. Because ReelAudio Studio
+          are determined to be repeat infringers. Because MP4 to MP3
           does not require user accounts, &quot;termination&quot; in this
           context means blocking the IP addresses and device fingerprints
           associated with repeat infringing activity.
@@ -126,7 +126,7 @@ export default function Page() {
           What we cannot do
         </h2>
         <p className="mt-3 text-base leading-relaxed text-muted-foreground">
-          Please note that ReelAudio Studio:
+          Please note that MP4 to MP3:
         </p>
         <ul className="mt-3 space-y-2 text-base leading-relaxed text-muted-foreground">
           <li>
@@ -157,14 +157,14 @@ export default function Page() {
         <p className="mt-3 text-base leading-relaxed text-muted-foreground">
           Designated DMCA Agent:
           <br />
-          ReelAudio Studio Copyright Team
+          MP4 to MP3 Copyright Team
           <br />
           Email:{" "}
           <a
-            href="mailto:dmca@reelaudiosudio.example.com"
+            href="mailto:dmca@mp4-to-mp3.app"
             className="font-medium text-primary underline-offset-4 hover:underline"
           >
-            dmca@reelaudiosudio.example.com
+            dmca@mp4-to-mp3.app
           </a>
         </p>
       </section>

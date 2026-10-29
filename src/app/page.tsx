@@ -78,7 +78,7 @@ const faqItems = [
   },
   {
     q: "Is the MP4 to MP3 converter free?",
-    a: "Yes. ReelAudio Studio is 100% free for personal use. There are no hidden fees, no sign-up requirement, and no watermark on your output. You can convert as many MP4 files to MP3 as you like, up to 100 MB per file.",
+    a: "Yes. MP4 to MP3 is 100% free for personal use. There are no hidden fees, no sign-up requirement, and no watermark on your output. You can convert as many MP4 files to MP3 as you like, up to 100 MB per file.",
   },
   {
     q: "What video formats can I convert to MP3?",
@@ -98,7 +98,7 @@ const faqItems = [
   },
   {
     q: "Can I convert MP4 to MP3 from any video on the internet?",
-    a: "No. ReelAudio Studio is designed for your own content — videos you recorded, edited, or have explicit permission to use. You cannot use this tool to download audio from copyrighted material on Instagram, TikTok, YouTube, or any other platform. Doing so would violate copyright law and our Terms of Service.",
+    a: "No. MP4 to MP3 is designed for your own content — videos you recorded, edited, or have explicit permission to use. You cannot use this tool to download audio from copyrighted material on Instagram, TikTok, YouTube, or any other platform. Doing so would violate copyright law and our Terms of Service.",
   },
   {
     q: "Is there a file size limit for MP4 to MP3 conversion?",
@@ -132,8 +132,8 @@ export default function Home() {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "WebApplication",
-    name: "ReelAudio Studio",
-    url: "https://reelaudiosudio.example.com",
+    name: "MP4 to MP3",
+    url: "https://mp4-to-mp3.app",
     description:
       "Free online MP4 to MP3 converter. Convert any video file to high-quality MP3 audio with FFmpeg-powered processing. No sign-up, no watermark.",
     applicationCategory: "MultimediaApplication",
@@ -249,7 +249,7 @@ export default function Home() {
       <section className="mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-20 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
           <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-            Why use ReelAudio Studio?
+            Why use MP4 to MP3?
           </h2>
           <p className="mt-4 text-base text-muted-foreground sm:text-lg">
             The fastest, cleanest, and most private way to convert MP4 to MP3
@@ -327,7 +327,7 @@ export default function Home() {
             Convert MP4 to MP3 — the easy, legal way
           </h2>
           <p className="mt-4 text-base leading-relaxed text-muted-foreground">
-            ReelAudio Studio is a free online MP4 to MP3 converter that takes
+            MP4 to MP3 is a free online MP4 to MP3 converter that takes
             any MP4 video file you upload and turns it into a clean, portable
             MP3 audio track. Whether you recorded a podcast on your phone,
             exported a video from your editing software, or captured a personal
@@ -339,7 +339,7 @@ export default function Home() {
           </p>
           <p className="mt-4 text-base leading-relaxed text-muted-foreground">
             Unlike many &quot;Instagram audio downloader&quot; or &quot;Reel
-            audio download&quot; sites, ReelAudio Studio does not scrape, fetch,
+            audio download&quot; sites, MP4 to MP3 does not scrape, fetch,
             or distribute content from third-party platforms. We only process
             files that you upload yourself, which means there is no copyright
             infringement, no DMCA risk, and no platform-terms violation. This
@@ -415,14 +415,14 @@ export default function Home() {
               Searching for the best MP4 to MP3 converter usually turns up two
               kinds of results: desktop software like Audacity, VLC, and
               HandBrake (powerful but require installation, take up disk space,
-              and have a learning curve), and online tools like ReelAudio
+              and have a learning curve), and online tools like MP4 to MP3
               Studio (instant, free, no install). For most one-off conversions
               — pulling a voice memo from a phone video, exporting a podcast
               interview from Zoom, isolating a scratch vocal take — an online
               tool is faster, simpler, and just as reliable.
             </p>
             <p className="mt-4 text-base leading-relaxed text-muted-foreground">
-              Unlike downloadable MP4 to MP3 software, ReelAudio Studio runs
+              Unlike downloadable MP4 to MP3 software, MP4 to MP3 runs
               entirely in your browser. There is nothing to download, nothing
               to install, nothing to update, and nothing to expose your computer
               to potential malware from sketchy download sites. You drag your

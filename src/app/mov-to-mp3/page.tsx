@@ -43,7 +43,7 @@ export default function Page() {
         {
           heading: "Free online MOV to MP3 converter",
           paragraphs: [
-            "ReelAudio Studio is a free MOV to MP3 converter that takes any QuickTime .mov file you upload and turns it into a clean, portable MP3 audio track. MOV is Apple's native video container — every iPhone records video as .mov by default, every QuickTime screen recording is .mov, and most macOS video tools export as .mov. If you have a voice memo, an interview, or a song recorded on an iPhone that you want to listen to as audio only, this tool extracts the audio in seconds without installing any software.",
+            "MP4 to MP3 is a free MOV to MP3 converter that takes any QuickTime .mov file you upload and turns it into a clean, portable MP3 audio track. MOV is Apple's native video container — every iPhone records video as .mov by default, every QuickTime screen recording is .mov, and most macOS video tools export as .mov. If you have a voice memo, an interview, or a song recorded on an iPhone that you want to listen to as audio only, this tool extracts the audio in seconds without installing any software.",
             "Because we use FFmpeg under the hood, the conversion is exactly the same as you would get with a desktop app like HandBrake or VLC — but without the download. Your MOV file is uploaded over HTTPS, processed by FFmpeg on our server, and the resulting MP3 is delivered straight to your browser. The original MOV and the temporary MP3 are both deleted automatically once the conversion is complete. We do not store, share, or distribute your media.",
             "This tool is built for your own content only. It does not connect to Instagram, TikTok, YouTube, or any other platform. Converting copyrighted music or video that you do not own is illegal and against our Terms of Service.",
           ],
@@ -104,7 +104,7 @@ export default function Page() {
         },
         {
           q: "Can I convert copyrighted music from someone else's MOV file?",
-          a: "No. ReelAudio Studio only processes files you own or have explicit permission to use. Converting copyrighted audio without permission is illegal and against our Terms of Service.",
+          a: "No. MP4 to MP3 only processes files you own or have explicit permission to use. Converting copyrighted audio without permission is illegal and against our Terms of Service.",
         },
       ]}
     />
