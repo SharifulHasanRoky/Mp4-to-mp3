@@ -13,10 +13,29 @@ const nextConfig: NextConfig = {
       bodySizeLimit: "100mb",
     },
   },
-  // Increase the dev server response timeout so big-file extractions don't
-  // get killed mid-flight
   httpAgentOptions: {
     keepAlive: true,
+  },
+  // Required headers for FFmpeg.wasm — without these, SharedArrayBuffer
+  // is not available and the WASM version falls back to single-threaded
+  // mode which can be 5-10x slower. With these headers, multi-threaded
+  // WASM works and extraction is fast.
+  async headers() {
+    return [
+      {
+        source: "/(.*)",
+        headers: [
+          {
+            key: "Cross-Origin-Opener-Policy",
+            value: "same-origin",
+          },
+          {
+            key: "Cross-Origin-Embedder-Policy",
+            value: "credentialless",
+          },
+        ],
+      },
+    ];
   },
 };
 

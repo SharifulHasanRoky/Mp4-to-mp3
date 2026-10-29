@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useRef, useState, useEffect } from "react";
 import {
   Upload,
   FileAudio,
@@ -15,7 +15,23 @@ import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { toast } from "@/hooks/use-toast";
 
-type Status = "idle" | "uploading" | "processing" | "ready" | "error";
+// Lazy-load FFmpeg WASM only on the client to avoid SSR issues.
+// The dynamic import also reduces initial bundle size.
+type FFmpegInstance = {
+  writeFile: (path: string, data: Uint8Array) => Promise<boolean>;
+  exec: (args: string[]) => Promise<number>;
+  readFile: (path: string) => Promise<Uint8Array>;
+  deleteFile: (path: string) => Promise<boolean>;
+  loaded: boolean;
+  on: (event: string, cb: (e: { progress?: number; time?: number }) => void) => void;
+  off: (event: string, cb: (e: { progress?: number; time?: number }) => void) => void;
+};
+
+type FFmpegModule = {
+  FFmpeg: new () => FFmpegInstance;
+};
+
+type Status = "idle" | "loading" | "uploading" | "processing" | "ready" | "error";
 
 interface ResultInfo {
   url: string;
@@ -24,8 +40,56 @@ interface ResultInfo {
   durationSec: number;
 }
 
-const ACCEPTED = ".mp4,.mov,.webm,.mkv,.avi,.m4v,.3gp,.flv,.mp3,.m4a,.aac,.wav,.ogg,.opus,.flac";
+const ACCEPTED =
+  ".mp4,.mov,.webm,.mkv,.avi,.m4v,.3gp,.flv,.mp3,.m4a,.aac,.wav,.ogg,.opus,.flac";
 const MAX_SIZE = 100 * 1024 * 1024; // 100 MB
+
+// Cache the FFmpeg instance across uploads — the WASM core is ~30MB
+// so we don't want to re-download/re-init it on every conversion.
+let ffmpegInstance: FFmpegInstance | null = null;
+let ffmpegLoadPromise: Promise<FFmpegInstance> | null = null;
+
+async function loadFFmpeg(): Promise<FFmpegInstance> {
+  if (ffmpegInstance && ffmpegInstance.loaded) return ffmpegInstance;
+  if (ffmpegLoadPromise) return ffmpegLoadPromise;
+
+  ffmpegLoadPromise = (async () => {
+    // Dynamically import the FFmpeg WASM modules.
+    const { FFmpeg } = (await import("@ffmpeg/ffmpeg")) as FFmpegModule;
+    const { fetchFile, toBlobURL } = await import("@ffmpeg/util");
+
+    const ffmpeg = new FFmpeg();
+
+    // Listen for progress events
+    ffmpeg.on("progress", ({ progress }) => {
+      if (typeof window !== "undefined") {
+        window.dispatchEvent(
+          new CustomEvent("ffmpeg-progress", {
+            detail: { progress: Math.max(0, Math.min(1, progress)) },
+          })
+        );
+      }
+    });
+
+    // Load the WASM core from a CDN that sends proper CORS headers.
+    // jsDelivr sends `access-control-allow-origin: *` which unpkg doesn't.
+    const baseURL = "https://cdn.jsdelivr.net/npm/@ffmpeg/core@0.12.6/dist/umd";
+    await ffmpeg.load({
+      coreURL: await toBlobURL(`${baseURL}/ffmpeg-core.js`, "text/javascript"),
+      wasmURL: await toBlobURL(`${baseURL}/ffmpeg-core.wasm`, "application/wasm"),
+      // Multi-threaded worker (requires COOP/COEP headers — set in next.config.ts)
+      workerURL: await toBlobURL(
+        `${baseURL}/ffmpeg-core.worker.js`,
+        "text/javascript"
+      ),
+    });
+
+    ffmpegInstance = ffmpeg;
+    return ffmpeg;
+  })();
+
+  return ffmpegLoadPromise;
+}
 
 function formatBytes(bytes: number): string {
   if (bytes < 1024) return `${bytes} B`;
@@ -40,6 +104,32 @@ function formatDuration(sec: number): string {
   return `${m}:${s.toString().padStart(2, "0")}`;
 }
 
+/**
+ * Get the audio duration of a File using the browser's built-in
+ * HTMLAudioElement. This avoids needing ffprobe.
+ */
+function getAudioDuration(file: File): Promise<number> {
+  return new Promise((resolve) => {
+    if (typeof window === "undefined") {
+      resolve(0);
+      return;
+    }
+    // For audio files, use HTMLAudioElement directly.
+    // For video files, use HTMLVideoElement.
+    const isVideo = file.type.startsWith("video/");
+    const media = document.createElement(isVideo ? "video" : "audio") as
+      HTMLMediaElement;
+    media.preload = "metadata";
+    media.onloadedmetadata = () => {
+      const d = media.duration;
+      resolve(isFinite(d) ? d : 0);
+      media.src = "";
+    };
+    media.onerror = () => resolve(0);
+    media.src = URL.createObjectURL(file);
+  });
+}
+
 export function AudioExtractor({
   id = "extractor",
   uploadTitle = "Drop your MP4 file here",
@@ -51,21 +141,51 @@ export function AudioExtractor({
   uploadTitle?: string;
   uploadHint?: string;
   primaryButtonLabel?: string;
-  /** Output format: mp3 (default), wav (lossless), mp4 (audio-to-video) */
   outputFormat?: "mp3" | "wav" | "mp4";
 }) {
   const [status, setStatus] = useState<Status>("idle");
   const [progress, setProgress] = useState(0);
+  const [progressLabel, setProgressLabel] = useState("");
   const [file, setFile] = useState<File | null>(null);
   const [result, setResult] = useState<ResultInfo | null>(null);
   const [errorMsg, setErrorMsg] = useState<string>("");
   const inputRef = useRef<HTMLInputElement>(null);
   const dragRef = useRef<HTMLDivElement>(null);
   const [dragOver, setDragOver] = useState(false);
+  const [supported, setSupported] = useState<boolean | null>(null);
+
+  // Check if browser supports SharedArrayBuffer (needed for multi-threaded
+  // FFmpeg WASM). If not, we fall back to single-threaded (still works,
+  // just slower).
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const hasSAB =
+        typeof SharedArrayBuffer !== "undefined" &&
+        typeof Atomics !== "undefined";
+      setSupported(hasSAB);
+    }
+  }, []);
+
+  // Subscribe to FFmpeg progress events
+  useEffect(() => {
+    const handler = (e: Event) => {
+      const detail = (e as CustomEvent).detail;
+      if (detail && typeof detail.progress === "number") {
+        // FFmpeg progress goes 0 → 1; map it to our 60-95% range
+        const pct = Math.round(60 + detail.progress * 35);
+        setProgress(pct);
+      }
+    };
+    if (typeof window !== "undefined") {
+      window.addEventListener("ffmpeg-progress", handler);
+      return () => window.removeEventListener("ffmpeg-progress", handler);
+    }
+  }, []);
 
   const reset = useCallback(() => {
     setStatus("idle");
     setProgress(0);
+    setProgressLabel("");
     setFile(null);
     setResult(null);
     setErrorMsg("");
@@ -111,71 +231,151 @@ export function AudioExtractor({
     setDragOver(false);
   };
 
-  const startExtraction = async () => {
+  const buildFFmpegArgs = (
+    inputName: string,
+    outputName: string,
+    format: "mp3" | "wav" | "mp4",
+    duration: number
+  ): string[] => {
+    const args: string[] = ["-i", inputName];
+
+    if (format === "mp3") {
+      // Extract audio, encode as MP3 (libmp3lame VBR ~190 kbps)
+      args.push(
+        "-vn",
+        "-map",
+        "a",
+        "-acodec",
+        "libmp3lame",
+        "-q:a",
+        "2"
+      );
+    } else if (format === "wav") {
+      // Lossless PCM WAV (16-bit 44.1kHz stereo)
+      args.push(
+        "-vn",
+        "-map",
+        "a",
+        "-acodec",
+        "pcm_s16le",
+        "-ar",
+        "44100",
+        "-ac",
+        "2"
+      );
+    } else {
+      // MP4 — generate a black background video with the audio track.
+      // We use a color filter source matched to the audio duration.
+      args.push(
+        "-f",
+        "lavfi",
+        "-i",
+        `color=c=black:s=320x240:r=10:d=${duration.toFixed(2)}`,
+        "-map",
+        "1:v",
+        "-map",
+        "0:a",
+        "-c:v",
+        "libx264",
+        "-pix_fmt",
+        "yuv420p",
+        "-preset",
+        "ultrafast",
+        "-c:a",
+        "aac",
+        "-b:a",
+        "128k",
+        "-shortest",
+        "-movflags",
+        "+faststart"
+      );
+    }
+
+    args.push(outputName);
+    return args;
+  };
+
+  const startConversion = async () => {
     if (!file) return;
-    setStatus("uploading");
+    setStatus("loading");
     setProgress(5);
+    setProgressLabel("Loading FFmpeg engine (one-time, ~30MB)...");
 
     try {
-      // Simulated upload progress (caps at 50% — extraction phase comes after)
-      const uploadInterval = setInterval(() => {
-        setProgress((p) => Math.min(p + 3, 50));
-      }, 200);
+      // Pre-load FFmpeg (shows progress in UI)
+      const ffmpeg = await loadFFmpeg();
 
-      const formData = new FormData();
-      formData.append("file", file);
-      formData.append("output", outputFormat);
+      setProgress(35);
+      setStatus("uploading");
+      setProgressLabel("Reading file...");
 
-      // Use AbortController with a generous 5-minute timeout. Large
-      // videos can take 60-120 seconds to extract with FFmpeg.
-      const controller = new AbortController();
-      const timeoutMs = 5 * 60 * 1000;
-      const timeout = setTimeout(() => controller.abort(), timeoutMs);
+      // Read file into Uint8Array
+      const { fetchFile } = await import("@ffmpeg/util");
+      const fileData = await fetchFile(file);
 
-      let res: Response;
-      try {
-        res = await fetch("/api/extract-audio", {
-          method: "POST",
-          body: formData,
-          signal: controller.signal,
-        });
-      } catch (fetchErr) {
-        clearTimeout(timeout);
-        clearInterval(uploadInterval);
-        if (fetchErr instanceof Error && fetchErr.name === "AbortError") {
-          throw new Error(
-            "The extraction took too long and was cancelled. Please try a shorter or smaller video (under 100 MB)."
-          );
-        }
-        throw new Error(
-          "Network error during upload. Please check your internet connection and try again."
-        );
-      }
+      // Generate unique filenames inside FFmpeg's virtual FS
+      const inputExt = file.name.split(".").pop()?.toLowerCase() || "mp4";
+      const inputName = `input.${inputExt}`;
+      const outputName = `output.${outputFormat}`;
 
-      clearTimeout(timeout);
-      clearInterval(uploadInterval);
-      setProgress(75);
+      setProgress(50);
+      setProgressLabel("Writing file to FFmpeg virtual FS...");
+      await ffmpeg.writeFile(inputName, fileData);
+
+      // Get audio duration (used for MP4 video track length)
+      setProgress(58);
+      setProgressLabel("Analyzing audio...");
+      const duration = await getAudioDuration(file);
+
+      setProgress(60);
       setStatus("processing");
+      setProgressLabel(`Converting to ${outputFormat.toUpperCase()}...`);
 
-      if (!res.ok) {
-        const data = await res.json().catch(() => ({}));
-        throw new Error(data.error || `Server error (${res.status}). Please try again.`);
-      }
+      // Build FFmpeg args based on output format
+      const args = buildFFmpegArgs(inputName, outputName, outputFormat, duration || 30);
+      await ffmpeg.exec(args);
 
-      // Stream-based response: the body itself is the converted file
-      const blob = await res.blob();
       setProgress(95);
+      setProgressLabel("Reading converted file...");
 
+      // Read output
+      const outputData = await ffmpeg.readFile(outputName);
+      const outputArray =
+        outputData instanceof Uint8Array
+          ? outputData
+          : new Uint8Array(outputData);
+
+      const mime =
+        outputFormat === "mp3"
+          ? "audio/mpeg"
+          : outputFormat === "wav"
+          ? "audio/wav"
+          : "video/mp4";
+
+      const blob = new Blob([outputArray], { type: mime });
       const url = URL.createObjectURL(blob);
-      const sizeBytes = Number(res.headers.get("X-Audio-Size") || blob.size);
-      const durationSec = Number(res.headers.get("X-Audio-Duration") || 0);
-      const origName = res.headers.get("X-Original-Name") || file.name;
-      const baseName = origName.replace(/\.[^.]+$/, "") || "audio";
+
+      const baseName = file.name.replace(/\.[^.]+$/, "") || "audio";
       const filename = `${baseName}.${outputFormat}`;
 
-      setResult({ url, filename, sizeBytes, durationSec });
+      setResult({
+        url,
+        filename,
+        sizeBytes: outputArray.byteLength,
+        durationSec: duration,
+      });
+
       setProgress(100);
       setStatus("ready");
+
+      // Cleanup FFmpeg virtual files
+      try {
+        await ffmpeg.deleteFile(inputName);
+        await ffmpeg.deleteFile(outputName);
+      } catch {
+        // ignore cleanup errors
+      }
+
       const friendlyType =
         outputFormat === "mp3"
           ? "MP3 audio"
@@ -187,11 +387,19 @@ export function AudioExtractor({
         description: `Your ${friendlyType} file is ready to download.`,
       });
     } catch (err) {
-      const message = err instanceof Error ? err.message : "Unknown error";
+      console.error("[AudioExtractor] Conversion failed:", err);
+      const message =
+        err instanceof Error ? err.message : "Conversion failed.";
       setStatus("error");
-      setErrorMsg(message);
+      setErrorMsg(
+        message.includes("SharedArrayBuffer") ||
+        message.includes("COOP") ||
+        message.includes("COEP")
+          ? "Your browser or hosting environment doesn't support multi-threaded FFmpeg. Conversion may be slower. Please try a smaller file."
+          : `Conversion failed: ${message}`
+      );
       toast({
-        title: "Extraction failed",
+        title: "Conversion failed",
         description: message,
         variant: "destructive",
       });
@@ -248,8 +456,15 @@ export function AudioExtractor({
               className="hidden"
             />
             <p className="mt-4 text-xs text-muted-foreground">
-              Max 100 MB. Only upload videos you own or have permission to use.
+              Max 100 MB. Files are processed entirely in your browser — they
+              never leave your device.
             </p>
+            {supported === false && (
+              <p className="mt-2 text-xs text-amber-600 dark:text-amber-400">
+                Your browser doesn&apos;t support multi-threaded WASM. Conversion
+                will still work, but may be slower.
+              </p>
+            )}
           </div>
         )}
 
@@ -278,40 +493,32 @@ export function AudioExtractor({
               </Button>
             </div>
 
-            {(status === "uploading" || status === "processing") && (
+            {(status === "loading" ||
+              status === "uploading" ||
+              status === "processing") && (
               <div className="space-y-2">
                 <div className="flex items-center justify-between text-xs text-muted-foreground">
                   <span className="flex items-center gap-1.5">
                     <Loader2 className="h-3.5 w-3.5 animate-spin" />
-                    {progress < 50
-                      ? "Uploading video to server..."
-                      : progress < 80
-                      ? "Extracting audio with FFmpeg..."
-                      : "Finalizing your MP3..."}
+                    {progressLabel || "Processing..."}
                   </span>
                   <span>{progress}%</span>
                 </div>
                 <Progress value={progress} />
                 <p className="text-[11px] text-muted-foreground/80">
-                  This usually takes 5–20 seconds for typical Reels. Larger
-                  files may take up to a minute.
+                  All processing happens in your browser. Your file never leaves
+                  your device — fully private.
                 </p>
               </div>
             )}
 
             {status === "idle" && (
               <Button
-                onClick={startExtraction}
+                onClick={startConversion}
                 size="lg"
                 className="w-full rounded-full"
               >
                 <FileAudio className="h-4 w-4" /> {primaryButtonLabel}
-              </Button>
-            )}
-
-            {(status === "uploading" || status === "processing") && (
-              <Button disabled size="lg" className="w-full rounded-full">
-                <Loader2 className="h-4 w-4 animate-spin" /> Please wait...
               </Button>
             )}
 
@@ -341,7 +548,7 @@ export function AudioExtractor({
                 <Music className="h-8 w-8" />
               </div>
               <div>
-                <p className="text-base font-semibold">Audio ready!</p>
+                <p className="text-base font-semibold">Conversion complete!</p>
                 <p className="mt-1 text-xs text-muted-foreground">
                   {result.filename} · {formatBytes(result.sizeBytes)}
                   {result.durationSec > 0 &&
@@ -362,7 +569,7 @@ export function AudioExtractor({
                 variant="outline"
                 className="w-full rounded-full"
               >
-                Extract another file
+                Convert another file
               </Button>
             </div>
           </div>
