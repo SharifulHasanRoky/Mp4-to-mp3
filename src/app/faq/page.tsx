@@ -65,7 +65,7 @@ const faqItems = [
   },
   {
     q: "Is MP4 to MP3 affiliated with Instagram, TikTok, or YouTube?",
-    a: "No. MP4 to MP3 is an independent audio-extraction utility. We are not affiliated with, endorsed by, or sponsored by any social media platform. The 'Reel' in our name refers to short video content in general — it does not imply any affiliation with Instagram Reels specifically.",
+    a: "No. MP4 to MP3 is an independent audio-extraction utility. We are not affiliated with, endorsed by, or sponsored by any social media platform. We only process video files that users upload themselves.",
   },
   {
     q: "How can I contact you?",

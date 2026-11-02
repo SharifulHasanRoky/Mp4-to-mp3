@@ -120,11 +120,11 @@ export default function Page() {
         <ul className="mt-3 space-y-2 text-base leading-relaxed text-muted-foreground">
           <li className="flex items-start gap-2">
             <span className="mt-1 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-destructive" />
-            <span>Download audio from someone else&apos;s Instagram Reel</span>
+            <span>Download or convert audio from YouTube, TikTok, Instagram, Facebook, or any other streaming/social platform</span>
           </li>
           <li className="flex items-start gap-2">
             <span className="mt-1 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-destructive" />
-            <span>Convert copyrighted music from YouTube videos</span>
+            <span>Convert copyrighted music from any video you don&apos;t own</span>
           </li>
           <li className="flex items-start gap-2">
             <span className="mt-1 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-destructive" />

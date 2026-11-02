@@ -287,6 +287,95 @@ export function AudioExtractor({
   };
 
   /**
+   * Google Drive URLs come in many formats, none of which point directly
+   * to the file. We normalize them to the official "uc?export=download"
+   * endpoint which serves the actual file content.
+   *
+   * Supported input formats:
+   *   - https://drive.google.com/file/d/FILE_ID/view?usp=sharing
+   *   - https://drive.google.com/open?id=FILE_ID
+   *   - https://drive.google.com/uc?id=FILE_ID
+   *   - https://drive.google.com/uc?export=download&id=FILE_ID
+   *   - https://docs.google.com/uc?id=FILE_ID
+   *
+   * Returns the normalized direct-download URL, or null if the input is
+   * not a recognizable Google Drive URL.
+   *
+   * NOTE: The file MUST be shared publicly ("Anyone with the link"),
+   * otherwise the download will fail.
+   */
+  const normalizeGoogleDriveUrl = (input: string): string | null => {
+    let parsed: URL;
+    try {
+      parsed = new URL(input);
+    } catch {
+      return null;
+    }
+    const host = parsed.hostname.toLowerCase();
+    const isGDrive =
+      host === "drive.google.com" ||
+      host === "docs.google.com" ||
+      host === "drive.usercontent.google.com";
+    if (!isGDrive) return null;
+
+    // Try to extract FILE_ID from the /file/d/FILE_ID/... path
+    const pathMatch = parsed.pathname.match(/\/file\/d\/([^/]+)/);
+    if (pathMatch && pathMatch[1]) {
+      const fileId = pathMatch[1];
+      return `https://drive.usercontent.google.com/download?id=${fileId}&export=download&confirm=t`;
+    }
+
+    // Try to extract FILE_ID from ?id=... query param
+    const idParam = parsed.searchParams.get("id");
+    if (idParam) {
+      return `https://drive.usercontent.google.com/download?id=${idParam}&export=download&confirm=t`;
+    }
+
+    return null;
+  };
+
+  /**
+   * Detect if a URL is a Google Drive link. Used to display a helpful
+   * loading hint ("Fetching from Google Drive...") and to validate
+   * before attempting the fetch.
+   */
+  const isGoogleDriveUrl = (input: string): boolean => {
+    try {
+      const u = new URL(input);
+      const h = u.hostname.toLowerCase();
+      return (
+        h === "drive.google.com" ||
+        h === "docs.google.com" ||
+        h === "drive.usercontent.google.com"
+      );
+    } catch {
+      return false;
+    }
+  };
+
+  /**
+   * Normalize Dropbox share URLs to direct-download URLs.
+   * Dropbox share URLs (https://www.dropbox.com/s/abc123/file.mp4?dl=0)
+   * need to be converted to ?dl=1 to serve the actual file instead of
+   * an HTML preview page.
+   */
+  const normalizeDropboxUrl = (input: string): string | null => {
+    let parsed: URL;
+    try {
+      parsed = new URL(input);
+    } catch {
+      return null;
+    }
+    if (parsed.hostname.toLowerCase() !== "www.dropbox.com" &&
+        parsed.hostname.toLowerCase() !== "dropbox.com") {
+      return null;
+    }
+    // Set dl=1 for direct download
+    parsed.searchParams.set("dl", "1");
+    return parsed.toString();
+  };
+
+  /**
    * Try to fetch a remote URL through several CORS-friendly strategies.
    * Browser CORS rules block direct fetches from cross-origin URLs that
    * don't send `Access-Control-Allow-Origin`. We try, in order:
@@ -444,6 +533,9 @@ export function AudioExtractor({
 
   const startConversion = async () => {
     if (mode === "upload" && !file) return;
+    let effectiveUrl: string | null = null;
+    let isGoogleDrive = false;
+
     if (mode === "url") {
       // Validate URL first
       const parsed = validateUrl(urlInput);
@@ -462,6 +554,24 @@ export function AudioExtractor({
         });
         return;
       }
+
+      // Special handling for cloud-storage URLs that need normalization
+      // before they can be fetched as direct file downloads.
+      isGoogleDrive = isGoogleDriveUrl(parsed.href);
+      if (isGoogleDrive) {
+        const normalized = normalizeGoogleDriveUrl(parsed.href);
+        if (!normalized) {
+          setUrlError(
+            "Could not parse this Google Drive URL. Please make sure the file is shared as 'Anyone with the link' and the URL looks like https://drive.google.com/file/d/FILE_ID/view"
+          );
+          return;
+        }
+        effectiveUrl = normalized;
+      } else {
+        // Try Dropbox normalization (returns null if not a Dropbox URL)
+        const dropboxNormalized = normalizeDropboxUrl(parsed.href);
+        effectiveUrl = dropboxNormalized || parsed.href;
+      }
       setUrlError("");
     }
 
@@ -477,12 +587,15 @@ export function AudioExtractor({
       let sourceBlob: Blob;
       let sourceName: string;
 
-      if (mode === "url") {
+      if (mode === "url" && effectiveUrl) {
         setProgress(20);
         setStatus("uploading");
-        setProgressLabel("Fetching file from URL...");
-        const parsed = validateUrl(urlInput)!;
-        const fetchedBlob = await fetchUrlWithCorsFallback(parsed.href);
+        setProgressLabel(
+          isGoogleDrive
+            ? "Fetching file from Google Drive..."
+            : "Fetching file from URL..."
+        );
+        const fetchedBlob = await fetchUrlWithCorsFallback(effectiveUrl);
 
         // Enforce 500 MB size limit
         if (fetchedBlob.size > MAX_SIZE) {
@@ -494,11 +607,20 @@ export function AudioExtractor({
         }
 
         sourceBlob = fetchedBlob;
-        // Try to extract filename from URL path, else fallback
-        const urlPath = parsed.pathname;
+        // Try to extract filename from the (effective, possibly normalized)
+        // URL path, else fallback. For Google Drive, the path won't contain
+        // a real filename, so we use a generic name.
+        let urlPath = "";
+        try {
+          urlPath = new URL(effectiveUrl).pathname;
+        } catch {
+          urlPath = "";
+        }
         const lastSegment = urlPath.split("/").filter(Boolean).pop() || "";
         sourceName = lastSegment.includes(".")
           ? lastSegment
+          : isGoogleDrive
+          ? `google-drive-file.${outputFormat === "mp4" ? "mp4" : "mp3"}`
           : `input-from-url.${outputFormat === "mp4" ? "mp4" : "mp3"}`;
       } else {
         sourceBlob = file!;
@@ -760,8 +882,14 @@ export function AudioExtractor({
                 <strong>Works with:</strong> Direct file links ending in{" "}
                 <code>.mp4</code>, <code>.mov</code>, <code>.webm</code>,{" "}
                 <code>.mkv</code>, <code>.mp3</code>, <code>.wav</code> (e.g.
-                from your own website, Dropbox direct link, archive.org, GitHub
-                raw, AWS S3 with CORS).
+                from your own website, archive.org, GitHub raw, AWS S3 with
+                CORS).
+              </p>
+              <p className="mt-2 text-xs text-muted-foreground">
+                <strong>Cloud storage supported:</strong>{" "}
+                Google Drive (file must be shared as &quot;Anyone with the
+                link&quot;) and Dropbox (paste the share URL — we
+                automatically convert it to a direct download link).
               </p>
               <p className="mt-2 text-xs text-amber-600 dark:text-amber-400">
                 <strong>Does NOT work with:</strong> YouTube, TikTok, Instagram,
