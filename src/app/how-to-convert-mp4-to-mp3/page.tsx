@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { PageShell } from "@/components/page-shell";
 import { JsonLd } from "@/components/json-ld";
+import { QuickAnswer } from "@/components/quick-answer";
 import { FileAudio, Film, Gauge, Download, Check } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -71,6 +72,16 @@ export default function Page() {
         title="How to Convert MP4 to MP3"
         subtitle="A complete step-by-step guide for iPhone, Android, Mac, Windows, and Linux. No software install, no sign-up — takes about a minute."
       >
+        {/* Voice-search quick answer — read aloud by Google Assistant
+            when users ask "How do I convert MP4 to MP3?" */}
+        <QuickAnswer>
+          To convert MP4 to MP3, upload your MP4 video file to
+          MP4toMP3.online, click &quot;Convert to MP3,&quot; and download
+          the resulting MP3 audio file. The conversion takes about 30
+          seconds and runs entirely in your browser — no software install
+          required.
+        </QuickAnswer>
+
         <section>
           <h2 className="text-2xl font-bold tracking-tight">Quick summary</h2>
           <p className="mt-3 text-base leading-relaxed text-muted-foreground">

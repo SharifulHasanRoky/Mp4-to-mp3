@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { PageShell } from "@/components/page-shell";
 import { JsonLd } from "@/components/json-ld";
+import { QuickAnswer } from "@/components/quick-answer";
 import { FileAudio, Check } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -37,6 +38,15 @@ export default function Page() {
         title="MP4 vs MP3: What's the Difference?"
         subtitle="A simple, practical guide to understanding when to use MP4, when to use MP3, and how to convert between them."
       >
+        {/* Voice-search quick answer — read aloud by Google Assistant
+            when users ask "What's the difference between MP4 and MP3?" */}
+        <QuickAnswer>
+          MP4 is a video format that holds both video and audio. MP3 is an
+          audio-only format with no video. Converting MP4 to MP3 simply
+          means taking the audio track out of a video file and saving it
+          as a standalone audio file — the video portion is discarded.
+        </QuickAnswer>
+
         <section>
           <h2 className="text-2xl font-bold tracking-tight">
             The short answer

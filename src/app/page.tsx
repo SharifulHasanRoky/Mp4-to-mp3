@@ -17,6 +17,7 @@ import { AudioExtractor } from "@/components/audio-extractor";
 import { Faq } from "@/components/faq";
 import { JsonLd } from "@/components/json-ld";
 import { AllToolsGrid } from "@/components/all-tools-grid";
+import { QuickAnswer } from "@/components/quick-answer";
 
 const features = [
   {
@@ -326,6 +327,18 @@ export default function Home() {
           <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">
             Convert MP4 to MP3 — the easy, legal way
           </h2>
+
+          {/* Voice-search-friendly Quick Answer — read aloud by Google
+              Assistant/Alexa/Siri when users ask "How do I convert MP4
+              to MP3?" Keep this 40-60 words, conversational, brand-named. */}
+          <QuickAnswer>
+            To convert MP4 to MP3, upload your MP4 file to MP4toMP3.online,
+            click &quot;Convert to MP3,&quot; and download the resulting MP3
+            audio file. The whole process takes about 30 seconds, runs
+            entirely in your browser, and is completely free with no
+            sign-up required.
+          </QuickAnswer>
+
           <p className="mt-4 text-base leading-relaxed text-muted-foreground">
             MP4 to MP3 is a free online MP4 to MP3 converter that takes
             any MP4 video file you upload and turns it into a clean, portable

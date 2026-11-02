@@ -88,10 +88,42 @@ const webAppSchema = {
 };
 
 /**
+ * Speakable schema — tells voice assistants (Google Assistant, Alexa,
+ * Siri) which parts of the page are good candidates to be read aloud
+ * when a user asks a question like "Hey Google, how do I convert MP4
+ * to MP3?"
+ *
+ * We point at the .speakable CSS class — content blocks tagged with
+ * that class are short, direct, conversational answers designed for
+ * voice delivery.
+ *
+ * Spec: https://developers.google.com/search/docs/appearance/structured-data/speakable
+ */
+const speakableSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  url: SITE_URL,
+  speakable: {
+    "@type": "SpeakableSpecification",
+    cssSelector: [".speakable"],
+  },
+};
+
+/**
  * SiteSchema — drop this once into the root layout. Emits the
- * Organization, WebSite, and WebApplication schemas so every page on
- * the site has consistent machine-readable identity.
+ * Organization, WebSite, WebApplication, and Speakable schemas so
+ * every page on the site has consistent machine-readable identity
+ * AND voice-search optimization.
  */
 export function SiteSchema() {
-  return <JsonLd data={[organizationSchema, websiteSchema, webAppSchema]} />;
+  return (
+    <JsonLd
+      data={[
+        organizationSchema,
+        websiteSchema,
+        webAppSchema,
+        speakableSchema,
+      ]}
+    />
+  );
 }

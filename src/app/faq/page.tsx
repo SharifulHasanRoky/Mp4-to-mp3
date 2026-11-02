@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { PageShell } from "@/components/page-shell";
 import { Faq } from "@/components/faq";
 import { JsonLd } from "@/components/json-ld";
+import { QuickAnswer } from "@/components/quick-answer";
 
 export const metadata: Metadata = {
   title: "FAQ – Frequently Asked Questions",
@@ -11,65 +12,91 @@ export const metadata: Metadata = {
 };
 
 const faqItems = [
+  // Voice-search-friendly questions first — these are the ones people
+  // actually speak to Google Assistant, Alexa, and Siri. They're written
+  // in conversational English and the answers start directly with the
+  // answer (no "Yes," no "Sure," no fluff) so the first ~40-60 words can
+  // be read aloud by voice assistants.
+
   {
-    q: "Is MP4 to MP3 free to use?",
-    a: "Yes. MP4 to MP3 is 100% free for personal use. There are no hidden fees, no sign-up requirement, and no watermark on your output. You can extract audio from as many videos as you like, up to 100 MB per file.",
+    q: "How do I convert MP4 to MP3?",
+    a: "Upload your MP4 file to MP4toMP3.online, click Convert to MP3, and download the resulting MP3 audio file. The conversion runs entirely in your browser using FFmpeg.wasm — your video never leaves your device. The whole process takes about 30 seconds for a typical short video.",
   },
   {
-    q: "What file formats are supported?",
-    a: "We support all major video containers — MP4, MOV, WebM, MKV, AVI, M4V, FLV, and 3GP. We also accept direct audio formats like MP3, M4A, AAC, WAV, OGG, Opus, and FLAC if you want to convert them to a standard MP3.",
+    q: "Can I convert MP4 to MP3 online for free?",
+    a: "Yes. MP4toMP3.online is 100% free with no sign-up, no watermark, and no software install. You can convert as many videos as you want, up to 500 MB per file. There are no hidden fees or premium tiers — every feature is available to every user.",
   },
   {
-    q: "How long does audio extraction take?",
-    a: "Most videos under 100 MB are processed in 5 to 30 seconds. Our backend uses FFmpeg, the industry standard for media processing, so extraction is fast and reliable.",
+    q: "Do I need software to convert MP4 to MP3?",
+    a: "No. MP4toMP3.online runs entirely in your browser — no software install required. Just open the website in Chrome, Firefox, Safari, or Edge, upload your MP4 file, and click Convert. The conversion happens on your device using FFmpeg compiled to WebAssembly, so nothing is uploaded to a server.",
   },
   {
-    q: "Do you store my uploaded videos?",
-    a: "No. Uploaded files are written to a temporary directory, processed immediately by FFmpeg, and deleted right after the MP3 is returned to you. We never persist, share, or distribute your media.",
+    q: "How do I convert MP4 to MP3 on iPhone?",
+    a: "Open MP4toMP3.online in Safari on your iPhone, tap Choose File, select Photo Library, pick your video, and tap Convert to MP3. The MP3 file will be saved to your Files app. The whole process takes about 30 seconds and works on any iPhone running iOS 13 or later.",
   },
   {
-    q: "Can I extract audio from any video on the internet?",
-    a: "No. MP4 to MP3 is designed for your own content — videos you recorded, edited, or have explicit permission to use. You cannot use this tool to download audio from copyrighted material on Instagram, TikTok, YouTube, or any other platform. Doing so would violate copyright law and our Terms of Service.",
+    q: "How do I convert MP4 to MP3 on Android?",
+    a: "Open MP4toMP3.online in Chrome on your Android phone, tap Choose File, select Files or Photo Library, pick your video, and tap Convert to MP3. The MP3 will save to your Downloads folder. No app install is needed — it works entirely in the browser.",
+  },
+  {
+    q: "How do I convert MP4 to MP3 on Mac?",
+    a: "Open MP4toMP3.online in Safari, Chrome, or Firefox on your Mac, drag and drop your MP4 file onto the upload area, click Convert to MP3, and the MP3 will download to your Downloads folder. No software install, no QuickTime, no iTunes required.",
+  },
+  {
+    q: "How do I convert MP4 to MP3 on Windows?",
+    a: "Open MP4toMP3.online in Chrome, Edge, or Firefox on your Windows PC, drag and drop your MP4 file onto the upload area, click Convert to MP3, and the MP3 will save to your Downloads folder. No software install required — works on Windows 10 and Windows 11.",
+  },
+  {
+    q: "What is the difference between MP4 and MP3?",
+    a: "MP4 is a video container that holds both video and audio. MP3 is an audio-only format with no video. Converting MP4 to MP3 simply means taking the audio track out of a video file and saving it as a standalone audio file. The video portion is discarded.",
+  },
+  {
+    q: "Does converting MP4 to MP3 reduce quality?",
+    a: "Slightly. MP4 to MP3 conversion re-encodes the audio using lossy compression. However, MP4toMP3.online uses the libmp3lame encoder at VBR quality 2 (approximately 190 kbps), which produces near-transparent audio — indistinguishable from the source for almost all listeners, even on high-end equipment.",
+  },
+  {
+    q: "Is it safe to use an online MP4 to MP3 converter?",
+    a: "Yes, MP4toMP3.online is safe. All conversion happens in your browser using FFmpeg.wasm — your video file never leaves your device and is never uploaded to a server. There is no account, no tracking of file contents, and no storage of your media. Your privacy is fully protected.",
+  },
+  {
+    q: "How long does MP4 to MP3 conversion take?",
+    a: "Most videos under 100 MB convert in 10 to 60 seconds. Conversion speed depends on the length of your video, the speed of your device, and your internet connection (the FFmpeg engine downloads once, about 30 MB, then is cached for future conversions).",
+  },
+  {
+    q: "Can I convert MP4 to MP3 without internet?",
+    a: "Not with MP4toMP3.online — the FFmpeg.wasm engine downloads from a CDN the first time you convert. After that, your browser may cache it, but you still need internet to load the page. For offline conversion, install a desktop tool like Audacity, VLC, or FFmpeg directly.",
+  },
+  {
+    q: "Can I convert a Google Drive video to MP3?",
+    a: "Yes. Switch to the From URL mode in MP4toMP3.online, paste your Google Drive share link (the file must be shared as Anyone with the link), and click Convert. We automatically convert the share link to a direct download URL and extract the audio.",
+  },
+  {
+    q: "Can I convert YouTube videos to MP3?",
+    a: "No. MP4toMP3.online cannot convert YouTube videos. YouTube serves video through its own player, not as a direct video file, and downloading from YouTube violates their Terms of Service and copyright law. You can only convert video files you own or have explicit permission to use.",
   },
   {
     q: "What audio quality does the MP3 output have?",
-    a: "We use FFmpeg with the libmp3lame encoder at VBR quality 2 (~190 kbps), which delivers near-transparent audio quality suitable for podcasts, music production, video editing, and personal listening.",
+    a: "MP4toMP3.online uses the libmp3lame encoder at Variable Bit Rate quality 2, which produces approximately 190 kbps audio. This is widely considered near-transparent — indistinguishable from the source for almost all listeners, suitable for podcasts, music production, video editing, and personal listening.",
   },
   {
-    q: "Is there a file size limit?",
-    a: "Yes, the maximum upload size is 100 MB per file. This limit helps keep the service fast and free for everyone. If you regularly need to process larger files, consider trimming your video first or using a local tool like HandBrake.",
+    q: "What file formats can be converted to MP3?",
+    a: "MP4toMP3.online supports MP4, MOV, WebM, MKV, AVI, M4V, FLV, and 3GP as video input formats. It also accepts direct audio formats like MP3, M4A, AAC, WAV, OGG, Opus, and FLAC if you want to standardize them on MP3. Output is always a standard MP3 file.",
   },
   {
-    q: "Does this work on iPhone and Android?",
-    a: "Yes. The website is fully responsive and works in modern mobile browsers including Safari on iOS and Chrome on Android. You can upload videos directly from your phone's camera roll or file manager.",
+    q: "Is there a file size limit for MP4 to MP3 conversion?",
+    a: "Yes, the maximum file size is 500 MB per file. Since conversion happens entirely in your browser, the limit is based on browser memory and processing time, not server upload. Larger files may take a few minutes to convert on slower devices.",
   },
   {
-    q: "Why MP3 instead of AAC, Opus, or FLAC?",
-    a: "MP3 is the most universally compatible audio format in the world. It plays on every device, browser, music app, podcast platform, and video editor — and will continue to play for decades. AAC, Opus, and FLAC are technically superior in some ways but lack universal support.",
+    q: "Are online MP4 to MP3 converters legal?",
+    a: "Yes, converting MP4 to MP3 is legal when you own the video or have explicit permission to use it — for example, your own recordings, your own Zoom meetings, your own podcast interviews. Converting copyrighted content (movies, songs, TV shows) without permission is illegal and against our Terms of Service.",
+  },
+  {
+    q: "Do you store my uploaded files?",
+    a: "No. MP4toMP3.online processes all files entirely in your browser using FFmpeg.wasm. Your video never leaves your device, is never uploaded to a server, and is never stored. There is no server-side storage of any media.",
   },
   {
     q: "Can I extract audio from a Zoom recording?",
-    a: "Yes, as long as you were a participant or host of the meeting and have permission to use the recording. Just upload the MP4 file from Zoom and we'll extract the audio as MP3 — perfect for podcast editors.",
-  },
-  {
-    q: "Can I extract audio from a video someone sent me on WhatsApp?",
-    a: "Only if you have permission from the original creator. If the video contains copyrighted music, you should not extract and redistribute the audio. For personal listening only, it is generally fine in many jurisdictions, but always check local copyright law.",
-  },
-  {
-    q: "What happens if my video has no audio track?",
-    a: "We use ffprobe to verify that your video contains an audio stream before running the extraction. If no audio is detected, we return a clear error message — no MP3 is generated, and the file is deleted immediately.",
-  },
-  {
-    q: "Do you add any watermark or intro to the MP3?",
-    a: "No. The MP3 you download is exactly what FFmpeg produces — no watermark, no branding, no metadata pollution, no intro or outro. Your audio is yours.",
-  },
-  {
-    q: "Is MP4 to MP3 affiliated with Instagram, TikTok, or YouTube?",
-    a: "No. MP4 to MP3 is an independent audio-extraction utility. We are not affiliated with, endorsed by, or sponsored by any social media platform. We only process video files that users upload themselves.",
-  },
-  {
-    q: "How can I contact you?",
-    a: "You can reach us through our contact page. We typically respond within 1–2 business days for general inquiries and within 24 hours for DMCA / copyright takedown requests.",
+    a: "Yes. Upload the MP4 file from Zoom to MP4toMP3.online and click Convert to MP3. The audio track will be extracted as a high-quality MP3, perfect for podcast editors. As long as you were the host or participant with permission to record, this is fully legal.",
   },
 ];
 
@@ -89,8 +116,18 @@ export default function Page() {
       <JsonLd data={faqJsonLd} />
       <PageShell
         title="Frequently Asked Questions"
-        subtitle="Everything you need to know about extracting audio from video files with MP4 to MP3."
+        subtitle="Everything you need to know about converting MP4 to MP3 — answers written for both voice search and quick reading."
       >
+        {/* Voice-search-friendly quick answer — read aloud by Google
+            Assistant / Alexa / Siri when users ask "What is MP4 to MP3?" */}
+        <QuickAnswer label="What is MP4toMP3.online?">
+          MP4toMP3.online is a free online tool that converts MP4 video files
+          to MP3 audio files. Upload your video, click Convert to MP3, and
+          download the audio. Everything runs in your browser — no software
+          install, no sign-up, no upload to a server. Free, private, and
+          takes about 30 seconds.
+        </QuickAnswer>
+
         <div className="mt-2">
           <Faq items={faqItems} title="" />
         </div>
