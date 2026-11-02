@@ -46,10 +46,10 @@ export default function Page() {
           removed. To file a valid notice with us, please send a written
           communication to{" "}
           <a
-            href="mailto:dmca@mp4-to-mp3.app"
+            href="mailto:dmca@mp4tomp3.online"
             className="font-medium text-primary underline-offset-4 hover:underline"
           >
-            dmca@mp4-to-mp3.app
+            dmca@mp4tomp3.online
           </a>{" "}
           that includes the following information:
         </p>
@@ -98,10 +98,10 @@ export default function Page() {
           counter-notification with the same information required under
           17 U.S.C. §512(g)(3). Send counter-notices to{" "}
           <a
-            href="mailto:dmca@mp4-to-mp3.app"
+            href="mailto:dmca@mp4tomp3.online"
             className="font-medium text-primary underline-offset-4 hover:underline"
           >
-            dmca@mp4-to-mp3.app
+            dmca@mp4tomp3.online
           </a>
           .
         </p>
@@ -161,10 +161,10 @@ export default function Page() {
           <br />
           Email:{" "}
           <a
-            href="mailto:dmca@mp4-to-mp3.app"
+            href="mailto:dmca@mp4tomp3.online"
             className="font-medium text-primary underline-offset-4 hover:underline"
           >
-            dmca@mp4-to-mp3.app
+            dmca@mp4tomp3.online
           </a>
         </p>
       </section>

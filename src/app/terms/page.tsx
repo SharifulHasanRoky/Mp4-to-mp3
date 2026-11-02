@@ -175,10 +175,10 @@ export default function Page() {
         <p className="mt-3 text-base leading-relaxed text-muted-foreground">
           For any questions about these Terms, email{" "}
           <a
-            href="mailto:hello@mp4-to-mp3.app"
+            href="mailto:hello@mp4tomp3.online"
             className="font-medium text-primary underline-offset-4 hover:underline"
           >
-            hello@mp4-to-mp3.app
+            hello@mp4tomp3.online
           </a>
           .
         </p>

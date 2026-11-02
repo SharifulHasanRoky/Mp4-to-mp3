@@ -15,6 +15,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { toast } from "@/hooks/use-toast";
+import { track } from "@/lib/analytics";
 
 // Lazy-load FFmpeg WASM only on the client to avoid SSR issues.
 // The dynamic import also reduces initial bundle size.
@@ -162,12 +163,15 @@ export function AudioExtractor({
   uploadHint = "or click to browse — MP4, MOV, WebM, MKV, AVI, MP3, WAV & more",
   primaryButtonLabel = "Convert to MP3",
   outputFormat = "mp3",
+  page = "/",
 }: {
   id?: string;
   uploadTitle?: string;
   uploadHint?: string;
   primaryButtonLabel?: string;
   outputFormat?: "mp3" | "wav" | "mp4";
+  /** Current page path, used for analytics attribution (no PII). */
+  page?: string;
 }) {
   const [status, setStatus] = useState<Status>("idle");
   const [progress, setProgress] = useState(0);
@@ -437,13 +441,16 @@ export function AudioExtractor({
         description: "Please upload a file under 500 MB.",
         variant: "destructive",
       });
+      track.conversionError(outputFormat, "upload", "file_too_large", page);
       return;
     }
     setFile(f);
     setStatus("idle");
     setResult(null);
     setErrorMsg("");
-  }, []);
+    // Track successful file selection (no PII, just size bucket + source)
+    track.fileUploadSuccess(f.size, page);
+  }, [outputFormat, id]);
 
   const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const f = e.target.files?.[0];
@@ -552,6 +559,7 @@ export function AudioExtractor({
           description: platformError,
           variant: "destructive",
         });
+        track.conversionError(outputFormat, "url", "unsupported_platform", page);
         return;
       }
 
@@ -564,6 +572,7 @@ export function AudioExtractor({
           setUrlError(
             "Could not parse this Google Drive URL. Please make sure the file is shared as 'Anyone with the link' and the URL looks like https://drive.google.com/file/d/FILE_ID/view"
           );
+          track.conversionError(outputFormat, "url", "invalid_gdrive_url", page);
           return;
         }
         effectiveUrl = normalized;
@@ -578,6 +587,11 @@ export function AudioExtractor({
     setStatus("loading");
     setProgress(5);
     setProgressLabel("Loading FFmpeg engine (one-time, ~30MB)...");
+
+    // Track conversion start
+    track.conversionStart(outputFormat, mode, page);
+    if (mode === "url") track.urlPasteStart(page);
+    else if (file) track.fileUploadStart(page);
 
     try {
       // Pre-load FFmpeg (shows progress in UI)
@@ -605,6 +619,9 @@ export function AudioExtractor({
             )}). Max 500 MB.`
           );
         }
+
+        // Track successful URL fetch (size bucket only, no URL itself)
+        track.urlPasteSuccess(fetchedBlob.size, page);
 
         sourceBlob = fetchedBlob;
         // Try to extract filename from the (effective, possibly normalized)
@@ -693,6 +710,9 @@ export function AudioExtractor({
       setProgress(100);
       setStatus("ready");
 
+      // Track successful conversion
+      track.conversionSuccess(outputFormat, mode, page);
+
       // Cleanup FFmpeg virtual files
       try {
         await ffmpeg.deleteFile(inputName);
@@ -723,6 +743,17 @@ export function AudioExtractor({
           ? "Your browser or hosting environment doesn't support multi-threaded FFmpeg. Conversion may be slower. Please try a smaller file."
           : `Conversion failed: ${message}`
       );
+      // Track conversion error (categorize for analytics without PII)
+      const errorType = message.includes("fetch")
+        ? "fetch_failed"
+        : message.includes("ffmpeg")
+        ? "ffmpeg_error"
+        : message.includes("timeout") || message.includes("took too long")
+        ? "timeout"
+        : message.includes("size") || message.includes("large")
+        ? "file_too_large"
+        : "unknown";
+      track.conversionError(outputFormat, mode, errorType, page);
       toast({
         title: "Conversion failed",
         description: message,
@@ -733,6 +764,8 @@ export function AudioExtractor({
 
   const download = () => {
     if (!result) return;
+    // Track the download event before triggering it
+    track.download(outputFormat, page);
     const a = document.createElement("a");
     a.href = result.url;
     a.download = result.filename;

@@ -139,6 +139,7 @@ export function LandingPage({
               uploadHint={uploadHint}
               primaryButtonLabel={buttonLabel}
               outputFormat={outputFormat}
+              page={currentPath}
             />
           </div>
         </div>

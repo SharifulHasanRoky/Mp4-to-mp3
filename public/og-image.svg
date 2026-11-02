@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#7c3aed"/>
+      <stop offset="100%" stop-color="#c026d3"/>
+    </linearGradient>
+    <linearGradient id="card" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#f5f3ff"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect x="80" y="80" width="1040" height="470" rx="32" fill="url(#card)" opacity="0.95"/>
+  <text x="600" y="220" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif" font-size="84" font-weight="800" fill="#1e1b4b" text-anchor="middle">MP4 to MP3</text>
+  <text x="600" y="290" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif" font-size="36" font-weight="600" fill="#7c3aed" text-anchor="middle">Converter Online — Free &amp; Fast</text>
+  <text x="600" y="370" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif" font-size="26" font-weight="400" fill="#52525b" text-anchor="middle">Extract audio from MP4, MOV, WebM, MKV in seconds.</text>
+  <text x="600" y="410" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif" font-size="26" font-weight="400" fill="#52525b" text-anchor="middle">Runs in your browser — private, no sign-up, no upload.</text>
+  <rect x="400" y="450" width="400" height="60" rx="30" fill="#7c3aed"/>
+  <text x="600" y="490" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif" font-size="24" font-weight="600" fill="#ffffff" text-anchor="middle">MP4toMP3.online</text>
+</svg>

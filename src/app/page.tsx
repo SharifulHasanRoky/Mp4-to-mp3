@@ -1,4 +1,5 @@
 import Link from "next/link";
+import type { Metadata } from "next";
 import {
   Zap,
   ShieldCheck,
@@ -128,27 +129,26 @@ function Download({ className }: { className?: string }) {
   );
 }
 
-export default function Home() {
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "WebApplication",
-    name: "MP4 to MP3",
-    url: "https://mp4-to-mp3.app",
+export const metadata: Metadata = {
+  title: "MP4 to MP3 Converter Online – Free & Fast",
+  description:
+    "Convert MP4 to MP3 online for free. Extract audio from MP4, MOV, WebM, MKV, AVI files in seconds. Runs entirely in your browser — no upload to server, no sign-up, no watermark.",
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    title: "MP4 to MP3 Converter Online – Free & Fast",
     description:
-      "Free online MP4 to MP3 converter. Convert any video file to high-quality MP3 audio with FFmpeg-powered processing. No sign-up, no watermark.",
-    applicationCategory: "MultimediaApplication",
-    operatingSystem: "Web",
-    offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
-    featureList: [
-      "MP4 to MP3 conversion",
-      "Video to audio conversion",
-      "Extract audio from video",
-      "Supports MP4, MOV, WebM, MKV, AVI",
-      "FFmpeg-powered processing",
-      "Private and secure",
-      "Mobile-friendly",
-    ],
-  };
+      "Convert MP4 to MP3 audio online for free. Files are processed in your browser — private, fast, no sign-up.",
+    url: "https://www.mp4tomp3.online/",
+    type: "website",
+  },
+};
+
+export default function Home() {
+  // Note: the WebApplication, Organization, and WebSite schemas are emitted
+  // globally by SiteSchema in src/app/layout.tsx. Here we only emit the
+  // FAQPage schema that's specific to this page's visible FAQ content.
 
   const faqJsonLd = {
     "@context": "https://schema.org",
@@ -162,7 +162,7 @@ export default function Home() {
 
   return (
     <>
-      <JsonLd data={[jsonLd, faqJsonLd]} />
+      <JsonLd data={faqJsonLd} />
 
       {/* Hero */}
       <section className="relative overflow-hidden">
@@ -223,7 +223,7 @@ export default function Home() {
             </div>
 
             <div>
-              <AudioExtractor />
+              <AudioExtractor page="/" />
             </div>
           </div>
         </div>

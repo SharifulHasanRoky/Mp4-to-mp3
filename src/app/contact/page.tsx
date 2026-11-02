@@ -20,10 +20,10 @@ export default function Page() {
           For feature requests, bug reports, partnership inquiries, or general
           feedback, email us at{" "}
           <a
-            href="mailto:hello@mp4-to-mp3.app"
+            href="mailto:hello@mp4tomp3.online"
             className="font-medium text-primary underline-offset-4 hover:underline"
           >
-            hello@mp4-to-mp3.app
+            hello@mp4tomp3.online
           </a>
           . We typically respond within 1–2 business days.
         </p>
@@ -61,10 +61,10 @@ export default function Page() {
           first. Most questions are answered there. If you still have
           concerns, email{" "}
           <a
-            href="mailto:privacy@mp4-to-mp3.app"
+            href="mailto:privacy@mp4tomp3.online"
             className="font-medium text-primary underline-offset-4 hover:underline"
           >
-            privacy@mp4-to-mp3.app
+            privacy@mp4tomp3.online
           </a>
           .
         </p>
@@ -75,10 +75,10 @@ export default function Page() {
         <p className="mt-3 text-base leading-relaxed text-muted-foreground">
           Members of the press can reach us at{" "}
           <a
-            href="mailto:press@mp4-to-mp3.app"
+            href="mailto:press@mp4tomp3.online"
             className="font-medium text-primary underline-offset-4 hover:underline"
           >
-            press@mp4-to-mp3.app
+            press@mp4tomp3.online
           </a>
           . Please include your outlet and deadline in the subject line.
         </p>

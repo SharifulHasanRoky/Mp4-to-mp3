@@ -145,10 +145,10 @@ export default function Page() {
         <p className="mt-3 text-base leading-relaxed text-muted-foreground">
           To exercise any data right, contact{" "}
           <a
-            href="mailto:privacy@mp4-to-mp3.app"
+            href="mailto:privacy@mp4tomp3.online"
             className="font-medium text-primary underline-offset-4 hover:underline"
           >
-            privacy@mp4-to-mp3.app
+            privacy@mp4tomp3.online
           </a>
           . We respond to all valid requests within 30 days.
         </p>
@@ -184,10 +184,10 @@ export default function Page() {
         <p className="mt-3 text-base leading-relaxed text-muted-foreground">
           For any privacy questions, email{" "}
           <a
-            href="mailto:privacy@mp4-to-mp3.app"
+            href="mailto:privacy@mp4tomp3.online"
             className="font-medium text-primary underline-offset-4 hover:underline"
           >
-            privacy@mp4-to-mp3.app
+            privacy@mp4tomp3.online
           </a>
           .
         </p>

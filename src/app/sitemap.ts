@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 import { TOOL_PAGES } from "@/lib/tool-pages";
 
-const baseUrl = "https://mp4-to-mp3.app";
+const baseUrl = "https://www.mp4tomp3.online";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
