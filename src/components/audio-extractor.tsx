@@ -233,6 +233,60 @@ export function AudioExtractor({
   };
 
   /**
+   * Detect if a URL points to a known streaming/social platform that
+   * we cannot convert (YouTube, TikTok, Instagram, Facebook, etc.).
+   * These platforms serve HTML pages, not direct video files, and
+   * downloading from them is also against their Terms of Service and
+   * copyright law.
+   *
+   * Returns a user-friendly explanation if blocked, or null if the URL
+   * appears to be a direct file link.
+   */
+  const detectUnsupportedPlatform = (input: string): string | null => {
+    const lower = input.toLowerCase();
+    const patterns: Array<{ hosts: string[]; name: string }> = [
+      {
+        hosts: ["youtube.com", "youtu.be", "m.youtube.com", "music.youtube.com"],
+        name: "YouTube",
+      },
+      { hosts: ["tiktok.com", "vm.tiktok.com"], name: "TikTok" },
+      {
+        hosts: ["instagram.com", "instagr.am"],
+        name: "Instagram",
+      },
+      {
+        hosts: ["facebook.com", "fb.watch", "fb.com", "m.facebook.com"],
+        name: "Facebook",
+      },
+      { hosts: ["twitter.com", "x.com", "t.co"], name: "Twitter/X" },
+      { hosts: ["vimeo.com"], name: "Vimeo" },
+      { hosts: ["twitch.tv"], name: "Twitch" },
+      { hosts: ["soundcloud.com"], name: "SoundCloud" },
+      { hosts: ["spotify.com", "open.spotify.com"], name: "Spotify" },
+      { hosts: ["netflix.com"], name: "Netflix" },
+      { hosts: ["dailymotion.com", "dai.ly"], name: "Dailymotion" },
+      { hosts: ["pinterest.com", "pin.it"], name: "Pinterest" },
+      { hosts: ["reddit.com", "redditmedia.com"], name: "Reddit" },
+      { hosts: ["bilibili.com", "b23.tv"], name: "Bilibili" },
+      { hosts: ["snapchat.com"], name: "Snapchat" },
+    ];
+
+    for (const pattern of patterns) {
+      for (const host of pattern.hosts) {
+        if (
+          lower.includes(`://${host}`) ||
+          lower.includes(`://${host}:`) ||
+          lower.includes(`//www.${host}`) ||
+          lower.includes(`//m.${host}`)
+        ) {
+          return `${pattern.name} links cannot be converted. ${pattern.name} serves video through its own player, not as a direct video file. Downloading from ${pattern.name} also violates their Terms of Service and copyright law. Please upload a video file you own instead.`;
+        }
+      }
+    }
+    return null;
+  };
+
+  /**
    * Try to fetch a remote URL through several CORS-friendly strategies.
    * Browser CORS rules block direct fetches from cross-origin URLs that
    * don't send `Access-Control-Allow-Origin`. We try, in order:
@@ -395,6 +449,17 @@ export function AudioExtractor({
       const parsed = validateUrl(urlInput);
       if (!parsed) {
         setUrlError("Please enter a valid http(s) URL pointing to a video or audio file.");
+        return;
+      }
+      // Check for known streaming/social platforms that can't be converted
+      const platformError = detectUnsupportedPlatform(parsed.href);
+      if (platformError) {
+        setUrlError(platformError);
+        toast({
+          title: "Unsupported URL",
+          description: platformError,
+          variant: "destructive",
+        });
         return;
       }
       setUrlError("");
@@ -690,6 +755,19 @@ export function AudioExtractor({
                 Max 500 MB. Only use URLs pointing to files you own or have
                 permission to use. We try multiple CORS proxies automatically
                 if the source blocks cross-origin requests.
+              </p>
+              <p className="mt-2 text-xs text-muted-foreground">
+                <strong>Works with:</strong> Direct file links ending in{" "}
+                <code>.mp4</code>, <code>.mov</code>, <code>.webm</code>,{" "}
+                <code>.mkv</code>, <code>.mp3</code>, <code>.wav</code> (e.g.
+                from your own website, Dropbox direct link, archive.org, GitHub
+                raw, AWS S3 with CORS).
+              </p>
+              <p className="mt-2 text-xs text-amber-600 dark:text-amber-400">
+                <strong>Does NOT work with:</strong> YouTube, TikTok, Instagram,
+                Facebook, Twitter, Spotify, Netflix, SoundCloud, Vimeo — these
+                serve HTML pages, not video files, and downloading from them
+                violates copyright law.
               </p>
             </div>
           </div>
