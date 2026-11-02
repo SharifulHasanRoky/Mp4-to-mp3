@@ -10,6 +10,7 @@ import {
   X,
   Music,
   Film,
+  Link as LinkIcon,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
@@ -152,6 +153,9 @@ export function AudioExtractor({
   const inputRef = useRef<HTMLInputElement>(null);
   const dragRef = useRef<HTMLDivElement>(null);
   const [dragOver, setDragOver] = useState(false);
+  const [mode, setMode] = useState<"upload" | "url">("upload");
+  const [urlInput, setUrlInput] = useState("");
+  const [urlError, setUrlError] = useState("");
 
   // Subscribe to FFmpeg progress events
   useEffect(() => {
@@ -176,8 +180,85 @@ export function AudioExtractor({
     setFile(null);
     setResult(null);
     setErrorMsg("");
-    if (inputRef.current) inputRef.current.value = "";
-  }, []);
+    setUrlError("");
+    if (mode === "url") {
+      // Keep the URL input so the user can tweak and retry
+    } else {
+      if (inputRef.current) inputRef.current.value = "";
+    }
+  }, [mode]);
+
+  /**
+   * Validate a URL string. Returns the parsed URL object or null.
+   * Accepts http(s) URLs pointing to a video/audio file.
+   */
+  const validateUrl = (input: string): URL | null => {
+    const trimmed = input.trim();
+    if (!trimmed) return null;
+    let parsed: URL;
+    try {
+      parsed = new URL(trimmed);
+    } catch {
+      return null;
+    }
+    if (parsed.protocol !== "http:" && parsed.protocol !== "https:") {
+      return null;
+    }
+    return parsed;
+  };
+
+  /**
+   * Try to fetch a remote URL through several CORS-friendly strategies.
+   * Browser CORS rules block direct fetches from cross-origin URLs that
+   * don't send `Access-Control-Allow-Origin`. We try, in order:
+   *   1. Direct fetch (works for CORS-enabled sources like GitHub raw,
+   *      Google Cloud Storage, AWS S3 with CORS, etc.)
+   *   2. allorigins.win (public CORS proxy, free, no auth needed)
+   *   3. corsproxy.io (public CORS proxy, fallback)
+   *   4. codetabs proxy (last resort)
+   * Returns the fetched Blob, or throws on failure.
+   */
+  async function fetchUrlWithCorsFallback(url: string): Promise<Blob> {
+    const strategies: Array<{ name: string; url: string }> = [
+      { name: "direct", url },
+      { name: "allorigins", url: `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}` },
+      { name: "corsproxy.io", url: `https://corsproxy.io/?url=${encodeURIComponent(url)}` },
+      { name: "codetabs", url: `https://api.codetabs.com/v1/proxy/?quest=${encodeURIComponent(url)}` },
+    ];
+
+    let lastError: Error | null = null;
+    for (const strategy of strategies) {
+      try {
+        const res = await fetch(strategy.url, {
+          method: "GET",
+          redirect: "follow",
+        });
+        if (!res.ok) {
+          lastError = new Error(`${strategy.name} returned HTTP ${res.status}`);
+          continue;
+        }
+        const blob = await res.blob();
+        if (blob.size === 0) {
+          lastError = new Error(`${strategy.name} returned empty response`);
+          continue;
+        }
+        // Sanity check: a video/audio file should be at least 1 KB
+        if (blob.size < 1024) {
+          lastError = new Error(`${strategy.name} returned suspiciously small response (${blob.size} bytes)`);
+          continue;
+        }
+        return blob;
+      } catch (err) {
+        lastError = err instanceof Error ? err : new Error(String(err));
+        continue;
+      }
+    }
+    throw new Error(
+      `Could not fetch the URL. The host may block cross-origin requests, or the URL may be invalid. Last error: ${
+        lastError?.message || "unknown"
+      }. Try downloading the file and uploading it instead.`
+    );
+  }
 
   const handleFile = useCallback((f: File) => {
     if (f.size > MAX_SIZE) {
@@ -283,7 +364,17 @@ export function AudioExtractor({
   };
 
   const startConversion = async () => {
-    if (!file) return;
+    if (mode === "upload" && !file) return;
+    if (mode === "url") {
+      // Validate URL first
+      const parsed = validateUrl(urlInput);
+      if (!parsed) {
+        setUrlError("Please enter a valid http(s) URL pointing to a video or audio file.");
+        return;
+      }
+      setUrlError("");
+    }
+
     setStatus("loading");
     setProgress(5);
     setProgressLabel("Loading FFmpeg engine (one-time, ~30MB)...");
@@ -292,27 +383,62 @@ export function AudioExtractor({
       // Pre-load FFmpeg (shows progress in UI)
       const ffmpeg = await loadFFmpeg();
 
-      setProgress(35);
-      setStatus("uploading");
-      setProgressLabel("Reading file...");
+      // Determine source: uploaded file OR fetched blob from URL
+      let sourceBlob: Blob;
+      let sourceName: string;
 
-      // Read file into Uint8Array
-      const { fetchFile } = await import("@ffmpeg/util");
-      const fileData = await fetchFile(file);
+      if (mode === "url") {
+        setProgress(20);
+        setStatus("uploading");
+        setProgressLabel("Fetching file from URL...");
+        const parsed = validateUrl(urlInput)!;
+        const fetchedBlob = await fetchUrlWithCorsFallback(parsed.href);
+
+        // Enforce 100 MB size limit
+        if (fetchedBlob.size > MAX_SIZE) {
+          throw new Error(
+            `Fetched file is too large (${formatBytes(
+              fetchedBlob.size
+            )}). Max 100 MB.`
+          );
+        }
+
+        sourceBlob = fetchedBlob;
+        // Try to extract filename from URL path, else fallback
+        const urlPath = parsed.pathname;
+        const lastSegment = urlPath.split("/").filter(Boolean).pop() || "";
+        sourceName = lastSegment.includes(".")
+          ? lastSegment
+          : `input-from-url.${outputFormat === "mp4" ? "mp4" : "mp3"}`;
+      } else {
+        sourceBlob = file!;
+        sourceName = file!.name;
+      }
+
+      setProgress(45);
+      setProgressLabel("Reading file data...");
+
+      // Read source into Uint8Array
+      const sourceArray = new Uint8Array(await sourceBlob.arrayBuffer());
 
       // Generate unique filenames inside FFmpeg's virtual FS
-      const inputExt = file.name.split(".").pop()?.toLowerCase() || "mp4";
+      const inputExt = sourceName.split(".").pop()?.toLowerCase() || "mp4";
       const inputName = `input.${inputExt}`;
       const outputName = `output.${outputFormat}`;
 
-      setProgress(50);
+      setProgress(55);
       setProgressLabel("Writing file to FFmpeg virtual FS...");
-      await ffmpeg.writeFile(inputName, fileData);
+      await ffmpeg.writeFile(inputName, sourceArray);
 
       // Get audio duration (used for MP4 video track length)
       setProgress(58);
       setProgressLabel("Analyzing audio...");
-      const duration = await getAudioDuration(file);
+      // For URL mode, getAudioDuration needs a File (uses HTMLMediaElement
+      // with createObjectURL). Convert blob → File for that purpose.
+      const durationFile = new File([sourceBlob], sourceName, {
+        type: sourceBlob.type || "video/mp4",
+      });
+      const duration = await getAudioDuration(durationFile);
 
       setProgress(60);
       setStatus("processing");
@@ -342,7 +468,7 @@ export function AudioExtractor({
       const blob = new Blob([outputArray], { type: mime });
       const url = URL.createObjectURL(blob);
 
-      const baseName = file.name.replace(/\.[^.]+$/, "") || "audio";
+      const baseName = sourceName.replace(/\.[^.]+$/, "") || "audio";
       const filename = `${baseName}.${outputFormat}`;
 
       setResult({
@@ -406,7 +532,49 @@ export function AudioExtractor({
   return (
     <section id={id} className="scroll-mt-24">
       <div className="rounded-2xl border border-border/70 bg-card p-6 shadow-sm sm:p-8">
-        {!file && (
+        {/* Mode toggle: Upload | From URL */}
+        {!file && status !== "ready" && (
+          <div className="mb-4 flex justify-center">
+            <div className="inline-flex rounded-full border border-border bg-secondary/40 p-1">
+              <button
+                type="button"
+                onClick={() => {
+                  setMode("upload");
+                  setUrlError("");
+                  reset();
+                }}
+                className={`flex items-center gap-1.5 rounded-full px-4 py-1.5 text-xs font-semibold transition-colors ${
+                  mode === "upload"
+                    ? "bg-primary text-primary-foreground shadow-sm"
+                    : "text-muted-foreground hover:text-foreground"
+                }`}
+              >
+                <Upload className="h-3.5 w-3.5" /> Upload
+              </button>
+              <button
+                type="button"
+                onClick={() => {
+                  setMode("url");
+                  setFile(null);
+                  setResult(null);
+                  setErrorMsg("");
+                  setStatus("idle");
+                  if (inputRef.current) inputRef.current.value = "";
+                }}
+                className={`flex items-center gap-1.5 rounded-full px-4 py-1.5 text-xs font-semibold transition-colors ${
+                  mode === "url"
+                    ? "bg-primary text-primary-foreground shadow-sm"
+                    : "text-muted-foreground hover:text-foreground"
+                }`}
+              >
+                <LinkIcon className="h-3.5 w-3.5" /> From URL
+              </button>
+            </div>
+          </div>
+        )}
+
+        {/* Upload mode (drag-and-drop) */}
+        {!file && status !== "ready" && mode === "upload" && (
           <div
             ref={dragRef}
             onDrop={onDrop}
@@ -446,6 +614,59 @@ export function AudioExtractor({
               Max 100 MB. Files are processed entirely in your browser — they
               never leave your device.
             </p>
+          </div>
+        )}
+
+        {/* URL mode (paste link) */}
+        {!file && status !== "ready" && mode === "url" && (
+          <div className="space-y-4">
+            <div className="rounded-xl border-2 border-dashed border-border bg-secondary/30 p-6 sm:p-8">
+              <div className="flex h-14 w-14 items-center justify-center rounded-full bg-primary/10 text-primary">
+                <LinkIcon className="h-7 w-7" />
+              </div>
+              <h3 className="mt-4 text-base font-semibold sm:text-lg">
+                Paste a video URL
+              </h3>
+              <p className="mt-1 text-sm text-muted-foreground">
+                Direct link to a video or audio file (MP4, MOV, WebM, MKV,
+                MP3, WAV, etc.)
+              </p>
+              <div className="mt-5 flex flex-col gap-2 sm:flex-row">
+                <input
+                  type="url"
+                  value={urlInput}
+                  onChange={(e) => {
+                    setUrlInput(e.target.value);
+                    if (urlError) setUrlError("");
+                  }}
+                  placeholder="https://example.com/video.mp4"
+                  className="flex-1 rounded-full border border-input bg-background px-4 py-2.5 text-sm outline-none transition-colors focus:border-primary focus:ring-2 focus:ring-primary/20"
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter") {
+                      e.preventDefault();
+                      startConversion();
+                    }
+                  }}
+                />
+                <Button
+                  type="button"
+                  onClick={startConversion}
+                  disabled={!urlInput.trim()}
+                  className="rounded-full sm:flex-shrink-0"
+                  size="lg"
+                >
+                  <FileAudio className="h-4 w-4" /> Convert
+                </Button>
+              </div>
+              {urlError && (
+                <p className="mt-2 text-xs text-destructive">{urlError}</p>
+              )}
+              <p className="mt-4 text-xs text-muted-foreground">
+                Max 100 MB. Only use URLs pointing to files you own or have
+                permission to use. We try multiple CORS proxies automatically
+                if the source blocks cross-origin requests.
+              </p>
+            </div>
           </div>
         )}
 
@@ -550,7 +771,7 @@ export function AudioExtractor({
                 variant="outline"
                 className="w-full rounded-full"
               >
-                Convert another file
+                {mode === "url" ? "Convert another URL" : "Convert another file"}
               </Button>
             </div>
           </div>
