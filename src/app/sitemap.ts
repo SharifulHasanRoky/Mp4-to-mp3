@@ -17,6 +17,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // Resource + policy pages
   const staticRoutes: MetadataRoute.Sitemap = [
     { path: "/how-to-use", priority: 0.7, changeFrequency: "monthly" as const },
+    { path: "/how-to-convert-mp4-to-mp3", priority: 0.9, changeFrequency: "monthly" as const },
+    { path: "/mp4-vs-mp3", priority: 0.8, changeFrequency: "monthly" as const },
     { path: "/faq", priority: 0.7, changeFrequency: "monthly" as const },
     { path: "/about", priority: 0.5, changeFrequency: "yearly" as const },
     { path: "/contact", priority: 0.5, changeFrequency: "yearly" as const },

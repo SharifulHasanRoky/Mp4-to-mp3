@@ -99,6 +99,13 @@ export default function RootLayout({
       <head>
         <GoogleTagManager />
         <SiteSchema />
+        {/* Preconnect to jsDelivr CDN — speeds up FFmpeg.wasm load
+            (~30MB) when user clicks Convert for the first time.
+            Saves ~200-500ms of DNS+TLS handshake time. */}
+        <link rel="preconnect" href="https://cdn.jsdelivr.net" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
+        {/* Preconnect to Google Tag Manager domain for faster analytics */}
+        <link rel="preconnect" href="https://www.googletagmanager.com" crossOrigin="anonymous" />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background text-foreground min-h-screen flex flex-col`}

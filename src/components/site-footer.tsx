@@ -3,6 +3,8 @@ import { TOOL_PAGES } from "@/lib/tool-pages";
 
 const resourceLinks = [
   { href: "/how-to-use", label: "How to Use" },
+  { href: "/how-to-convert-mp4-to-mp3", label: "How to Convert MP4 to MP3" },
+  { href: "/mp4-vs-mp3", label: "MP4 vs MP3" },
   { href: "/faq", label: "FAQ" },
   { href: "/about", label: "About Us" },
   { href: "/contact", label: "Contact" },
