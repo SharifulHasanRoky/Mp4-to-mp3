@@ -132,3 +132,42 @@ export const track = {
   },
   toolPageView: (page: string) => trackEvent("tool_page_view", { page }),
 };
+
+/**
+ * Debug helper — exposes window.debugAnalytics() in the browser console
+ * for verifying that events are firing correctly during development
+ * and in production via GTM Tag Assistant / browser DevTools.
+ *
+ * Usage in console:
+ *   window.debugAnalytics()           // list all custom events
+ *   window.debugAnalytics().last(5)   // last 5 events
+ *   window.debugAnalytics().reset()    // clear dataLayer (dev only!)
+ */
+if (typeof window !== "undefined") {
+  (window as Window & { debugAnalytics?: () => unknown }).debugAnalytics =
+    () => {
+      const events = (window.dataLayer || []).filter(
+        (e) =>
+          typeof e === "object" &&
+          e !== null &&
+          "event" in e &&
+          !String(e.event).startsWith("gtm.")
+      );
+      const api = {
+        count: () => events.length,
+        all: () => events,
+        last: (n = 10) => events.slice(-n),
+        reset: () => {
+          // Dev only — clears the entire dataLayer. Use with caution.
+          if (typeof window !== "undefined") {
+            window.dataLayer = [];
+            console.warn(
+              "[analytics] dataLayer cleared for debugging. This should only be used in development."
+            );
+          }
+        },
+      };
+      console.table(events.slice(-10), ["event", "format", "source", "size_bucket", "page"]);
+      return api;
+    };
+}
