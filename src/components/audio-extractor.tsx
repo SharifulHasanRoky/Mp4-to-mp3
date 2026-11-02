@@ -43,7 +43,13 @@ interface ResultInfo {
 
 const ACCEPTED =
   ".mp4,.mov,.webm,.mkv,.avi,.m4v,.3gp,.flv,.mp3,.m4a,.aac,.wav,.ogg,.opus,.flac";
-const MAX_SIZE = 100 * 1024 * 1024; // 100 MB
+// Maximum file size: 500 MB.
+// Since all processing happens client-side (in the browser via FFmpeg.wasm),
+// there's no server upload limit. The only constraint is browser memory
+// and how long the user is willing to wait. 500 MB is a reasonable cap that
+// covers almost all personal videos while keeping conversion times under
+// ~5 minutes for typical home internet connections.
+const MAX_SIZE = 500 * 1024 * 1024; // 500 MB
 
 // Cache the FFmpeg instance across uploads — the WASM core is ~30MB
 // so we don't want to re-download/re-init it on every conversion.
@@ -80,10 +86,29 @@ async function loadFFmpeg(): Promise<FFmpegInstance> {
     // and most embeds. Single-threaded is ~3x slower but works everywhere with
     // no special configuration, and AdSense still loads normally.
     const baseURL = "https://cdn.jsdelivr.net/npm/@ffmpeg/core@0.12.6/dist/umd";
-    await ffmpeg.load({
-      coreURL: await toBlobURL(`${baseURL}/ffmpeg-core.js`, "text/javascript"),
-      wasmURL: await toBlobURL(`${baseURL}/ffmpeg-core.wasm`, "application/wasm"),
+
+    // 30 second timeout for loading the WASM core. The file is ~30MB so on a
+    // slow connection this can take a while, but if it's not loaded in 30s
+    // something is probably wrong (network blocked, CDN down, etc).
+    const loadTimeout = new Promise<never>((_, reject) => {
+      setTimeout(
+        () =>
+          reject(
+            new Error(
+              "FFmpeg engine took too long to load (>30s). Check your internet connection and try again. If the problem persists, the CDN may be blocked in your region."
+            )
+          ),
+        30_000
+      );
     });
+
+    await Promise.race([
+      ffmpeg.load({
+        coreURL: await toBlobURL(`${baseURL}/ffmpeg-core.js`, "text/javascript"),
+        wasmURL: await toBlobURL(`${baseURL}/ffmpeg-core.wasm`, "application/wasm"),
+      }),
+      loadTimeout,
+    ]);
 
     ffmpegInstance = ffmpeg;
     return ffmpeg;
@@ -263,10 +288,10 @@ export function AudioExtractor({
   const handleFile = useCallback((f: File) => {
     if (f.size > MAX_SIZE) {
       setStatus("error");
-      setErrorMsg(`File too large (${formatBytes(f.size)}). Max 100 MB.`);
+      setErrorMsg(`File too large (${formatBytes(f.size)}). Max 500 MB.`);
       toast({
         title: "File too large",
-        description: "Please upload a file under 100 MB.",
+        description: "Please upload a file under 500 MB.",
         variant: "destructive",
       });
       return;
@@ -394,12 +419,12 @@ export function AudioExtractor({
         const parsed = validateUrl(urlInput)!;
         const fetchedBlob = await fetchUrlWithCorsFallback(parsed.href);
 
-        // Enforce 100 MB size limit
+        // Enforce 500 MB size limit
         if (fetchedBlob.size > MAX_SIZE) {
           throw new Error(
             `Fetched file is too large (${formatBytes(
               fetchedBlob.size
-            )}). Max 100 MB.`
+            )}). Max 500 MB.`
           );
         }
 
@@ -611,7 +636,7 @@ export function AudioExtractor({
               className="hidden"
             />
             <p className="mt-4 text-xs text-muted-foreground">
-              Max 100 MB. Files are processed entirely in your browser — they
+              Max 500 MB. Files are processed entirely in your browser — they
               never leave your device.
             </p>
           </div>
@@ -662,7 +687,7 @@ export function AudioExtractor({
                 <p className="mt-2 text-xs text-destructive">{urlError}</p>
               )}
               <p className="mt-4 text-xs text-muted-foreground">
-                Max 100 MB. Only use URLs pointing to files you own or have
+                Max 500 MB. Only use URLs pointing to files you own or have
                 permission to use. We try multiple CORS proxies automatically
                 if the source blocks cross-origin requests.
               </p>
@@ -698,19 +723,43 @@ export function AudioExtractor({
             {(status === "loading" ||
               status === "uploading" ||
               status === "processing") && (
-              <div className="space-y-2">
-                <div className="flex items-center justify-between text-xs text-muted-foreground">
-                  <span className="flex items-center gap-1.5">
-                    <Loader2 className="h-3.5 w-3.5 animate-spin" />
-                    {progressLabel || "Processing..."}
-                  </span>
-                  <span>{progress}%</span>
+              <div className="space-y-3">
+                <div className="flex items-center justify-between gap-2">
+                  <Button disabled size="lg" className="w-full rounded-full">
+                    <Loader2 className="h-4 w-4 animate-spin" />
+                    {primaryButtonLabel}...
+                  </Button>
+                  <Button
+                    onClick={() => {
+                      // Force-reset back to idle. The underlying WASM call
+                      // will continue in the background, but the user can
+                      // start fresh with a new file.
+                      setStatus("idle");
+                      setProgress(0);
+                      setProgressLabel("");
+                    }}
+                    variant="outline"
+                    size="lg"
+                    className="flex-shrink-0 rounded-full"
+                  >
+                    Cancel
+                  </Button>
                 </div>
-                <Progress value={progress} />
-                <p className="text-[11px] text-muted-foreground/80">
-                  All processing happens in your browser. Your file never leaves
-                  your device — fully private.
-                </p>
+                <div className="space-y-2">
+                  <div className="flex items-center justify-between text-xs text-muted-foreground">
+                    <span className="flex items-center gap-1.5">
+                      <Loader2 className="h-3.5 w-3.5 animate-spin" />
+                      {progressLabel || "Processing..."}
+                    </span>
+                    <span>{progress}%</span>
+                  </div>
+                  <Progress value={progress} />
+                  <p className="text-[11px] text-muted-foreground/80">
+                    All processing happens in your browser. Your file never
+                    leaves your device — fully private. Large files may take
+                    a few minutes.
+                  </p>
+                </div>
               </div>
             )}
 
