@@ -1,12 +1,14 @@
-# ReelAudio Studio
+# MP4toMP3.online
 
-A free, private, SEO-optimized online **MP4 to MP3 converter** and video-to-audio tool. Built with Next.js 16 + Tailwind CSS 4 + FFmpeg backend. No sign-up, no watermark, no software install.
+A free, private, SEO-optimized online **MP4 to MP3 converter** and video-to-audio tool. Built with Next.js 16 + Tailwind CSS 4 + FFmpeg.wasm. No sign-up, no watermark, no software install. Files are processed entirely in your browser — they never leave your device.
+
+**Live site:** https://www.mp4tomp3.online/
 
 ## Features
 
 - **Working audio extractor** — upload any video file, get a clean MP3 (or WAV / MP4) in seconds
 - **11 dedicated landing pages**, one per primary SEO keyword
-- **FFmpeg-powered backend** — `libmp3lame` VBR ~190 kbps (MP3), `pcm_s16le` (WAV), H.264+AAC (MP4)
+- **FFmpeg.wasm-powered conversion** — `libmp3lame` VBR ~190 kbps (MP3), `pcm_s16le` (WAV), H.264+AAC (MP4). All processing happens in the browser; nothing is uploaded to a server.
 - **Privacy-first** — files deleted automatically after processing, nothing stored
 - **Legal & AdSense-safe** — only processes user-uploaded files, no scraping
 - **Mobile-first responsive** with sticky footer
@@ -77,7 +79,7 @@ bun run start
 
 Accepts a `multipart/form-data` request with:
 
-- `file` — the video or audio file (max 100 MB)
+- `file` — the video or audio file (max 500 MB)
 - `output` (optional) — `mp3` (default), `wav`, or `mp4`
 
 Returns the converted file as a binary stream with these headers:
@@ -119,7 +121,7 @@ MIT — see [LICENSE](./LICENSE) (or use the project freely for personal or comm
 ```
 src/
 ├── app/
-│   ├── api/extract-audio/route.ts   # FFmpeg-powered backend
+│   ├── api/extract-audio/route.ts   # Deprecated endpoint (conversion is client-side)
 │   ├── page.tsx                     # Homepage (MP4 to MP3)
 │   ├── sitemap.ts                   # Dynamic sitemap from TOOL_PAGES registry
 │   ├── robots.ts

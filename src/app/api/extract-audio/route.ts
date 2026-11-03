@@ -15,7 +15,7 @@ export function GET() {
     status: "ok",
     message:
       "Audio extraction is performed client-side in your browser using FFmpeg.wasm. There is no server-side endpoint to call.",
-    documentation: "https://github.com/SharifulHasanRoky/reelaudio-studio-app",
+    documentation: "https://github.com/SharifulHasanRoky/Mp4-to-mp3",
   });
 }
 
