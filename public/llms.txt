@@ -77,6 +77,5 @@ MP4, MOV, WebM, MKV, AVI, M4V, FLV, 3GP (video); MP3, M4A, AAC, WAV, OGG, Opus, 
 
 ## Contact
 
-- General: hello@mp4tomp3.online
-- Privacy: privacy@mp4tomp3.online
-- DMCA / copyright takedown: dmca@mp4tomp3.online
+- General inquiries, privacy questions, and copyright / DMCA notices are all handled through the contact page: https://www.mp4tomp3.online/contact
+- We do not maintain a public email inbox — most questions are answered in our FAQ and policy pages.

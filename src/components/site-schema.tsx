@@ -20,7 +20,7 @@ const organizationSchema = {
     {
       "@type": "ContactPoint",
       contactType: "customer support",
-      email: "hello@mp4tomp3.online",
+      url: `${SITE_URL}/contact`,
       availableLanguage: ["English"],
     },
   ],

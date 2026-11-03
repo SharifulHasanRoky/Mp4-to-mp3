@@ -143,14 +143,15 @@ export default function Page() {
           satisfied by our default data handling.
         </p>
         <p className="mt-3 text-base leading-relaxed text-muted-foreground">
-          To exercise any data right, contact{" "}
+          To exercise any data right, please visit our{" "}
           <a
-            href="mailto:privacy@mp4tomp3.online"
+            href="/contact"
             className="font-medium text-primary underline-offset-4 hover:underline"
           >
-            privacy@mp4tomp3.online
-          </a>
-          . We respond to all valid requests within 30 days.
+            contact page
+          </a>{" "}
+          and use the appropriate channel. We respond to all valid requests
+          within 30 days.
         </p>
       </section>
 
@@ -182,12 +183,12 @@ export default function Page() {
       <section>
         <h2 className="text-2xl font-bold tracking-tight">8. Contact</h2>
         <p className="mt-3 text-base leading-relaxed text-muted-foreground">
-          For any privacy questions, email{" "}
+          For any privacy questions, please visit our{" "}
           <a
-            href="mailto:privacy@mp4tomp3.online"
+            href="/contact"
             className="font-medium text-primary underline-offset-4 hover:underline"
           >
-            privacy@mp4tomp3.online
+            contact page
           </a>
           .
         </p>

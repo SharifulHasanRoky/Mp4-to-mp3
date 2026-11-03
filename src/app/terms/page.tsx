@@ -173,12 +173,12 @@ export default function Page() {
       <section>
         <h2 className="text-2xl font-bold tracking-tight">9. Contact</h2>
         <p className="mt-3 text-base leading-relaxed text-muted-foreground">
-          For any questions about these Terms, email{" "}
+          For any questions about these Terms, please visit our{" "}
           <a
-            href="mailto:hello@mp4tomp3.online"
+            href="/contact"
             className="font-medium text-primary underline-offset-4 hover:underline"
           >
-            hello@mp4tomp3.online
+            contact page
           </a>
           .
         </p>

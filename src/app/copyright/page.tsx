@@ -43,13 +43,13 @@ export default function Page() {
           Under the Digital Millennium Copyright Act (17 U.S.C. §512), a
           copyright owner or their authorized agent may submit a takedown
           notice to a service provider to have allegedly infringing content
-          removed. To file a valid notice with us, please send a written
-          communication to{" "}
+          removed. To file a valid notice with us, please submit a written
+          communication through our{" "}
           <a
-            href="mailto:dmca@mp4tomp3.online"
+            href="/contact"
             className="font-medium text-primary underline-offset-4 hover:underline"
           >
-            dmca@mp4tomp3.online
+            contact page
           </a>{" "}
           that includes the following information:
         </p>
@@ -96,12 +96,12 @@ export default function Page() {
           If you believe that your use of the service has been wrongly
           restricted due to a takedown notice, you may file a
           counter-notification with the same information required under
-          17 U.S.C. §512(g)(3). Send counter-notices to{" "}
+          17 U.S.C. §512(g)(3). Submit counter-notices through our{" "}
           <a
-            href="mailto:dmca@mp4tomp3.online"
+            href="/contact"
             className="font-medium text-primary underline-offset-4 hover:underline"
           >
-            dmca@mp4tomp3.online
+            contact page
           </a>
           .
         </p>
@@ -157,15 +157,16 @@ export default function Page() {
         <p className="mt-3 text-base leading-relaxed text-muted-foreground">
           Designated DMCA Agent:
           <br />
-          MP4 to MP3 Copyright Team
+          MP4toMP3.online Copyright Team
           <br />
-          Email:{" "}
+          Submit notices through our{" "}
           <a
-            href="mailto:dmca@mp4tomp3.online"
+            href="/contact"
             className="font-medium text-primary underline-offset-4 hover:underline"
           >
-            dmca@mp4tomp3.online
-          </a>
+            contact page
+          </a>{" "}
+          using the &quot;Copyright / DMCA&quot; channel.
         </p>
       </section>
     </PageShell>
