@@ -188,11 +188,14 @@ export default function Home() {
                   Converter
                 </span>
               </h1>
-              <p className="mt-5 text-base text-muted-foreground sm:text-lg lg:text-xl">
-                Convert MP4 to MP3 online for free. Upload any video file and
-                extract a high-quality MP3 audio track in seconds — fast,
-                private, and powered by FFmpeg. No software install, no sign-up,
-                no watermark.
+              <p className="mt-4 text-base font-medium text-foreground/80 sm:text-lg lg:text-xl">
+                Convert MP4 to MP3 online — 100% free, 100% private.
+                No software install, no sign-up, no watermark.
+              </p>
+              <p className="mt-3 text-sm text-muted-foreground sm:text-base">
+                Upload any video file and extract a high-quality MP3 audio
+                track in seconds. Files are processed entirely in your
+                browser — they never leave your device.
               </p>
 
               <div className="mt-7 flex flex-wrap items-center justify-center gap-3 lg:justify-start">
@@ -250,7 +253,7 @@ export default function Home() {
       <section className="mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-20 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
           <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-            Why use MP4 to MP3?
+            Fast, Free, and Private MP4 to MP3 Converter
           </h2>
           <p className="mt-4 text-base text-muted-foreground sm:text-lg">
             The fastest, cleanest, and most private way to convert MP4 to MP3
