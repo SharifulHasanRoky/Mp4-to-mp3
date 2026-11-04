@@ -367,24 +367,79 @@ export function AudioExtractor({
 
   /**
    * Normalize Dropbox share URLs to direct-download URLs.
-   * Dropbox share URLs (https://www.dropbox.com/s/abc123/file.mp4?dl=0)
-   * need to be converted to ?dl=1 to serve the actual file instead of
-   * an HTML preview page.
+   *
+   * Accepts:
+   *   - https://www.dropbox.com/s/abc123/file.mp4?dl=0  → converts to dl=1
+   *   - https://www.dropbox.com/scl/fi/abc123/file.mp4?rlkey=xyz&dl=0  → dl=1
+   *   - https://www.dropbox.com/s/abc123/file.mp4  → adds dl=1
+   *   - https://dl.dropboxusercontent.com/s/abc123/file.mp4  → as-is (direct)
+   *
+   * REJECTS:
+   *   - https://www.dropbox.com/preview/filename.mp4  (preview page, NOT a
+   *     share link — requires login, can't be downloaded without auth)
+   *   - https://www.dropbox.com/home/...  (file browser URL)
+   *   - Any other Dropbox URL that doesn't contain /s/ or /scl/fi/
+   *
+   * Returns the normalized direct-download URL, OR null if the URL is
+   * not a valid Dropbox share link. Caller should treat null as
+   * "use the URL as-is and let the proxy try."
+   *
+   * If the URL is a /preview/ link, throws a special error so the user
+   * sees a clear, helpful message.
    */
-  const normalizeDropboxUrl = (input: string): string | null => {
+  const normalizeDropboxUrl = (
+    input: string
+  ): { url: string } | { error: string } | null => {
     let parsed: URL;
     try {
       parsed = new URL(input);
     } catch {
       return null;
     }
-    if (parsed.hostname.toLowerCase() !== "www.dropbox.com" &&
-        parsed.hostname.toLowerCase() !== "dropbox.com") {
+    const host = parsed.hostname.toLowerCase();
+    if (host !== "www.dropbox.com" && host !== "dropbox.com") {
       return null;
     }
-    // Set dl=1 for direct download
-    parsed.searchParams.set("dl", "1");
-    return parsed.toString();
+
+    // Detect the /preview/ path — this is a Dropbox web preview URL,
+    // not a share link. Users get this URL by copying from the browser
+    // address bar while previewing a file in their Dropbox account.
+    // These URLs require authentication and can't be downloaded by us.
+    if (parsed.pathname.startsWith("/preview/")) {
+      const filename = parsed.pathname.replace("/preview/", "");
+      return {
+        error: `This is a Dropbox preview URL, not a share link. To get a shareable link:
+
+1. Open Dropbox in your browser or app
+2. Find the file "${filename}"
+3. Right-click on it (or click ⋯ menu)
+4. Click "Copy link" or "Share" → "Copy link"
+5. Paste that URL here — it will look like https://www.dropbox.com/s/abc123/${filename}?dl=0
+
+The share link can be downloaded; the preview URL you used requires Dropbox login and can't be fetched by our tool.`,
+      };
+    }
+
+    // Detect /home/ path — this is the Dropbox file browser URL, also
+    // requires auth, also can't be downloaded directly.
+    if (parsed.pathname.startsWith("/home/")) {
+      return {
+        error: `This is a Dropbox home URL, not a share link. Please right-click the file in Dropbox and choose "Copy link" to get a shareable URL.`,
+      };
+    }
+
+    // For valid share URLs (containing /s/ or /scl/fi/), set dl=1 to
+    // force a direct download instead of an HTML preview page.
+    if (parsed.pathname.includes("/s/") || parsed.pathname.includes("/scl/fi/")) {
+      parsed.searchParams.set("dl", "1");
+      // Some Dropbox share URLs use rlkey for auth — keep it
+      return { url: parsed.toString() };
+    }
+
+    // For dl.dropboxusercontent.com (already a direct download URL)
+    // or any other Dropbox URL we don't recognize, return null to
+    // signal "try as-is via the proxy"
+    return null;
   };
 
   /**
@@ -611,9 +666,27 @@ export function AudioExtractor({
         }
         effectiveUrl = normalized;
       } else {
-        // Try Dropbox normalization (returns null if not a Dropbox URL)
-        const dropboxNormalized = normalizeDropboxUrl(parsed.href);
-        effectiveUrl = dropboxNormalized || parsed.href;
+        // Try Dropbox normalization.
+        // Returns:
+        //   - { url: "..." } — normalized direct-download URL (use it)
+        //   - { error: "..." } — invalid Dropbox URL (preview/home/etc.)
+        //     Show the error to the user and abort.
+        //   - null — not a Dropbox URL, use the input as-is.
+        const dropboxResult = normalizeDropboxUrl(parsed.href);
+        if (dropboxResult && "error" in dropboxResult) {
+          setUrlError(dropboxResult.error);
+          toast({
+            title: "Dropbox URL issue",
+            description: dropboxResult.error.substring(0, 200) + "...",
+            variant: "destructive",
+          });
+          track.conversionError(outputFormat, "url", "invalid_dropbox_url", page);
+          return;
+        }
+        effectiveUrl =
+          dropboxResult && "url" in dropboxResult
+            ? dropboxResult.url
+            : parsed.href;
       }
       setUrlError("");
     }
@@ -955,8 +1028,15 @@ export function AudioExtractor({
               <p className="mt-2 text-xs text-muted-foreground">
                 <strong>Cloud storage supported:</strong>{" "}
                 Google Drive (file must be shared as &quot;Anyone with the
-                link&quot;) and Dropbox (paste the share URL — we
-                automatically convert it to a direct download link).
+                link&quot;) and Dropbox (use the share link — right-click the
+                file → &quot;Copy link&quot;). We automatically convert share
+                URLs to direct download links.
+              </p>
+              <p className="mt-2 text-xs text-amber-600 dark:text-amber-400">
+                <strong>Dropbox tip:</strong> Don&apos;t paste the URL from
+                your browser&apos;s address bar (the &quot;/preview/&quot;
+                URL). Always use &quot;Copy link&quot; from the file menu —
+                that gives a &quot;/s/&quot; URL we can download.
               </p>
               <p className="mt-2 text-xs text-amber-600 dark:text-amber-400">
                 <strong>Does NOT work with:</strong> YouTube, TikTok, Instagram,
