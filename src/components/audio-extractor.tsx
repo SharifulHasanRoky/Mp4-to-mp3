@@ -16,6 +16,12 @@ import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { toast } from "@/hooks/use-toast";
 import { track } from "@/lib/analytics";
+import {
+  detectUnsupportedPlatform,
+  normalizeCloudStorageUrl,
+  detectCloudProvider,
+  type NormalizedUrl,
+} from "@/lib/cloud-storage";
 
 // Lazy-load FFmpeg WASM only on the client to avoid SSR issues.
 // The dynamic import also reduces initial bundle size.
@@ -236,211 +242,6 @@ export function AudioExtractor({
     return parsed;
   };
 
-  /**
-   * Detect if a URL points to a known streaming/social platform that
-   * we cannot convert (YouTube, TikTok, Instagram, Facebook, etc.).
-   * These platforms serve HTML pages, not direct video files, and
-   * downloading from them is also against their Terms of Service and
-   * copyright law.
-   *
-   * Returns a user-friendly explanation if blocked, or null if the URL
-   * appears to be a direct file link.
-   */
-  const detectUnsupportedPlatform = (input: string): string | null => {
-    const lower = input.toLowerCase();
-    const patterns: Array<{ hosts: string[]; name: string }> = [
-      {
-        hosts: ["youtube.com", "youtu.be", "m.youtube.com", "music.youtube.com"],
-        name: "YouTube",
-      },
-      { hosts: ["tiktok.com", "vm.tiktok.com"], name: "TikTok" },
-      {
-        hosts: ["instagram.com", "instagr.am"],
-        name: "Instagram",
-      },
-      {
-        hosts: ["facebook.com", "fb.watch", "fb.com", "m.facebook.com"],
-        name: "Facebook",
-      },
-      { hosts: ["twitter.com", "x.com", "t.co"], name: "Twitter/X" },
-      { hosts: ["vimeo.com"], name: "Vimeo" },
-      { hosts: ["twitch.tv"], name: "Twitch" },
-      { hosts: ["soundcloud.com"], name: "SoundCloud" },
-      { hosts: ["spotify.com", "open.spotify.com"], name: "Spotify" },
-      { hosts: ["netflix.com"], name: "Netflix" },
-      { hosts: ["dailymotion.com", "dai.ly"], name: "Dailymotion" },
-      { hosts: ["pinterest.com", "pin.it"], name: "Pinterest" },
-      { hosts: ["reddit.com", "redditmedia.com"], name: "Reddit" },
-      { hosts: ["bilibili.com", "b23.tv"], name: "Bilibili" },
-      { hosts: ["snapchat.com"], name: "Snapchat" },
-    ];
-
-    for (const pattern of patterns) {
-      for (const host of pattern.hosts) {
-        if (
-          lower.includes(`://${host}`) ||
-          lower.includes(`://${host}:`) ||
-          lower.includes(`//www.${host}`) ||
-          lower.includes(`//m.${host}`)
-        ) {
-          return `${pattern.name} links cannot be converted. ${pattern.name} serves video through its own player, not as a direct video file. Downloading from ${pattern.name} also violates their Terms of Service and copyright law. Please upload a video file you own instead.`;
-        }
-      }
-    }
-    return null;
-  };
-
-  /**
-   * Google Drive URLs come in many formats, none of which point directly
-   * to the file. We normalize them to the official "uc?export=download"
-   * endpoint which serves the actual file content.
-   *
-   * Supported input formats:
-   *   - https://drive.google.com/file/d/FILE_ID/view?usp=sharing
-   *   - https://drive.google.com/open?id=FILE_ID
-   *   - https://drive.google.com/uc?id=FILE_ID
-   *   - https://drive.google.com/uc?export=download&id=FILE_ID
-   *   - https://docs.google.com/uc?id=FILE_ID
-   *
-   * Returns the normalized direct-download URL, or null if the input is
-   * not a recognizable Google Drive URL.
-   *
-   * NOTE: The file MUST be shared publicly ("Anyone with the link"),
-   * otherwise the download will fail.
-   */
-  const normalizeGoogleDriveUrl = (input: string): string | null => {
-    let parsed: URL;
-    try {
-      parsed = new URL(input);
-    } catch {
-      return null;
-    }
-    const host = parsed.hostname.toLowerCase();
-    const isGDrive =
-      host === "drive.google.com" ||
-      host === "docs.google.com" ||
-      host === "drive.usercontent.google.com";
-    if (!isGDrive) return null;
-
-    let fileId: string | null = null;
-
-    // Format 1: https://drive.google.com/file/d/FILE_ID/view?usp=sharing
-    const pathMatch = parsed.pathname.match(/\/file\/d\/([^/?]+)/);
-    if (pathMatch && pathMatch[1]) {
-      fileId = pathMatch[1];
-    }
-
-    // Format 2: https://drive.google.com/open?id=FILE_ID
-    // Format 3: https://drive.google.com/uc?id=FILE_ID
-    // Format 4: https://drive.usercontent.google.com/download?id=FILE_ID
-    if (!fileId) {
-      const idParam = parsed.searchParams.get("id");
-      if (idParam) fileId = idParam;
-    }
-
-    if (!fileId) return null;
-
-    // Use the official direct-download endpoint with confirm=t to bypass
-    // the "This file is too large to scan for viruses" interstitial that
-    // Google shows for files over 100 MB.
-    return `https://drive.usercontent.google.com/download?id=${fileId}&export=download&confirm=t`;
-  };
-
-  /**
-   * Detect if a URL is a Google Drive link. Used to display a helpful
-   * loading hint ("Fetching from Google Drive...") and to validate
-   * before attempting the fetch.
-   */
-  const isGoogleDriveUrl = (input: string): boolean => {
-    try {
-      const u = new URL(input);
-      const h = u.hostname.toLowerCase();
-      return (
-        h === "drive.google.com" ||
-        h === "docs.google.com" ||
-        h === "drive.usercontent.google.com"
-      );
-    } catch {
-      return false;
-    }
-  };
-
-  /**
-   * Normalize Dropbox share URLs to direct-download URLs.
-   *
-   * Accepts:
-   *   - https://www.dropbox.com/s/abc123/file.mp4?dl=0  → converts to dl=1
-   *   - https://www.dropbox.com/scl/fi/abc123/file.mp4?rlkey=xyz&dl=0  → dl=1
-   *   - https://www.dropbox.com/s/abc123/file.mp4  → adds dl=1
-   *   - https://dl.dropboxusercontent.com/s/abc123/file.mp4  → as-is (direct)
-   *
-   * REJECTS:
-   *   - https://www.dropbox.com/preview/filename.mp4  (preview page, NOT a
-   *     share link — requires login, can't be downloaded without auth)
-   *   - https://www.dropbox.com/home/...  (file browser URL)
-   *   - Any other Dropbox URL that doesn't contain /s/ or /scl/fi/
-   *
-   * Returns the normalized direct-download URL, OR null if the URL is
-   * not a valid Dropbox share link. Caller should treat null as
-   * "use the URL as-is and let the proxy try."
-   *
-   * If the URL is a /preview/ link, throws a special error so the user
-   * sees a clear, helpful message.
-   */
-  const normalizeDropboxUrl = (
-    input: string
-  ): { url: string } | { error: string } | null => {
-    let parsed: URL;
-    try {
-      parsed = new URL(input);
-    } catch {
-      return null;
-    }
-    const host = parsed.hostname.toLowerCase();
-    if (host !== "www.dropbox.com" && host !== "dropbox.com") {
-      return null;
-    }
-
-    // Detect the /preview/ path — this is a Dropbox web preview URL,
-    // not a share link. Users get this URL by copying from the browser
-    // address bar while previewing a file in their Dropbox account.
-    // These URLs require authentication and can't be downloaded by us.
-    if (parsed.pathname.startsWith("/preview/")) {
-      const filename = parsed.pathname.replace("/preview/", "");
-      return {
-        error: `This is a Dropbox preview URL, not a share link. To get a shareable link:
-
-1. Open Dropbox in your browser or app
-2. Find the file "${filename}"
-3. Right-click on it (or click ⋯ menu)
-4. Click "Copy link" or "Share" → "Copy link"
-5. Paste that URL here — it will look like https://www.dropbox.com/s/abc123/${filename}?dl=0
-
-The share link can be downloaded; the preview URL you used requires Dropbox login and can't be fetched by our tool.`,
-      };
-    }
-
-    // Detect /home/ path — this is the Dropbox file browser URL, also
-    // requires auth, also can't be downloaded directly.
-    if (parsed.pathname.startsWith("/home/")) {
-      return {
-        error: `This is a Dropbox home URL, not a share link. Please right-click the file in Dropbox and choose "Copy link" to get a shareable URL.`,
-      };
-    }
-
-    // For valid share URLs (containing /s/ or /scl/fi/), set dl=1 to
-    // force a direct download instead of an HTML preview page.
-    if (parsed.pathname.includes("/s/") || parsed.pathname.includes("/scl/fi/")) {
-      parsed.searchParams.set("dl", "1");
-      // Some Dropbox share URLs use rlkey for auth — keep it
-      return { url: parsed.toString() };
-    }
-
-    // For dl.dropboxusercontent.com (already a direct download URL)
-    // or any other Dropbox URL we don't recognize, return null to
-    // signal "try as-is via the proxy"
-    return null;
-  };
 
   /**
    * Try to fetch a remote URL through several CORS-friendly strategies.
@@ -630,7 +431,7 @@ The share link can be downloaded; the preview URL you used requires Dropbox logi
   const startConversion = async () => {
     if (mode === "upload" && !file) return;
     let effectiveUrl: string | null = null;
-    let isGoogleDrive = false;
+    let cloudProvider: string | null = null;
 
     if (mode === "url") {
       // Validate URL first
@@ -652,41 +453,32 @@ The share link can be downloaded; the preview URL you used requires Dropbox logi
         return;
       }
 
-      // Special handling for cloud-storage URLs that need normalization
-      // before they can be fetched as direct file downloads.
-      isGoogleDrive = isGoogleDriveUrl(parsed.href);
-      if (isGoogleDrive) {
-        const normalized = normalizeGoogleDriveUrl(parsed.href);
-        if (!normalized) {
-          setUrlError(
-            "Could not parse this Google Drive URL. Please make sure the file is shared as 'Anyone with the link' and the URL looks like https://drive.google.com/file/d/FILE_ID/view"
-          );
-          track.conversionError(outputFormat, "url", "invalid_gdrive_url", page);
-          return;
-        }
-        effectiveUrl = normalized;
+      // Try all cloud storage normalizers in order (Google Drive,
+      // Dropbox, OneDrive, MediaFire, Mega, Box, pCloud, WeTransfer,
+      // TeraBox, Send.cm, GoFile, AnonFiles, Catbox).
+      // Each returns {url}, {error}, or null.
+      const cloudResult: NormalizedUrl = normalizeCloudStorageUrl(parsed.href);
+      if (cloudResult && "error" in cloudResult) {
+        // Invalid URL for a known cloud provider (e.g. Dropbox preview URL)
+        setUrlError(cloudResult.error);
+        toast({
+          title: "URL issue",
+          description:
+            cloudResult.error.length > 200
+              ? cloudResult.error.substring(0, 200) + "..."
+              : cloudResult.error,
+          variant: "destructive",
+        });
+        track.conversionError(outputFormat, "url", "invalid_cloud_url", page);
+        return;
+      }
+      if (cloudResult && "url" in cloudResult) {
+        effectiveUrl = cloudResult.url;
+        // Detect provider name for the "Fetching from X..." progress label
+        cloudProvider = detectCloudProvider(parsed.href);
       } else {
-        // Try Dropbox normalization.
-        // Returns:
-        //   - { url: "..." } — normalized direct-download URL (use it)
-        //   - { error: "..." } — invalid Dropbox URL (preview/home/etc.)
-        //     Show the error to the user and abort.
-        //   - null — not a Dropbox URL, use the input as-is.
-        const dropboxResult = normalizeDropboxUrl(parsed.href);
-        if (dropboxResult && "error" in dropboxResult) {
-          setUrlError(dropboxResult.error);
-          toast({
-            title: "Dropbox URL issue",
-            description: dropboxResult.error.substring(0, 200) + "...",
-            variant: "destructive",
-          });
-          track.conversionError(outputFormat, "url", "invalid_dropbox_url", page);
-          return;
-        }
-        effectiveUrl =
-          dropboxResult && "url" in dropboxResult
-            ? dropboxResult.url
-            : parsed.href;
+        // No cloud provider matched — try the URL as-is via the proxy.
+        effectiveUrl = parsed.href;
       }
       setUrlError("");
     }
@@ -712,8 +504,8 @@ The share link can be downloaded; the preview URL you used requires Dropbox logi
         setProgress(20);
         setStatus("uploading");
         setProgressLabel(
-          isGoogleDrive
-            ? "Fetching file from Google Drive..."
+          cloudProvider
+            ? `Fetching file from ${cloudProvider}...`
             : "Fetching file from URL..."
         );
         const fetchedBlob = await fetchUrlWithCorsFallback(effectiveUrl);
@@ -743,8 +535,10 @@ The share link can be downloaded; the preview URL you used requires Dropbox logi
         const lastSegment = urlPath.split("/").filter(Boolean).pop() || "";
         sourceName = lastSegment.includes(".")
           ? lastSegment
-          : isGoogleDrive
-          ? `google-drive-file.${outputFormat === "mp4" ? "mp4" : "mp3"}`
+          : cloudProvider
+          ? `${cloudProvider.toLowerCase().replace(/[^a-z0-9]/g, "-")}-file.${
+              outputFormat === "mp4" ? "mp4" : "mp3"
+            }`
           : `input-from-url.${outputFormat === "mp4" ? "mp4" : "mp3"}`;
       } else {
         sourceBlob = file!;
@@ -1027,16 +821,16 @@ The share link can be downloaded; the preview URL you used requires Dropbox logi
               </p>
               <p className="mt-2 text-xs text-muted-foreground">
                 <strong>Cloud storage supported:</strong>{" "}
-                Google Drive (file must be shared as &quot;Anyone with the
-                link&quot;) and Dropbox (use the share link — right-click the
-                file → &quot;Copy link&quot;). We automatically convert share
-                URLs to direct download links.
+                Google Drive, Dropbox, OneDrive, MediaFire, Box, pCloud,
+                WeTransfer, TeraBox, Send.cm, GoFile, AnonFiles, Catbox,
+                Mega, GitHub raw, archive.org, AWS S3. Use the share link
+                for each — right-click the file and choose &quot;Copy link.&quot;
               </p>
               <p className="mt-2 text-xs text-amber-600 dark:text-amber-400">
-                <strong>Dropbox tip:</strong> Don&apos;t paste the URL from
-                your browser&apos;s address bar (the &quot;/preview/&quot;
-                URL). Always use &quot;Copy link&quot; from the file menu —
-                that gives a &quot;/s/&quot; URL we can download.
+                <strong>Tip:</strong> Don&apos;t paste URLs from your
+                browser&apos;s address bar (like Dropbox /preview/ links).
+                Always use the &quot;Copy link&quot; / &quot;Share&quot;
+                button — that gives a direct-download URL we can fetch.
               </p>
               <p className="mt-2 text-xs text-amber-600 dark:text-amber-400">
                 <strong>Does NOT work with:</strong> YouTube, TikTok, Instagram,
