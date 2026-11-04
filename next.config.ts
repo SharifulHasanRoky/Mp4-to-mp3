@@ -16,6 +16,11 @@ const nextConfig: NextConfig = {
   httpAgentOptions: {
     keepAlive: true,
   },
+  // Allow next/image to optimize our local logo + any remote images
+  // the user might paste via URL (Google Drive thumbnails, etc.)
+  images: {
+    formats: ["image/avif", "image/webp"],
+  },
 };
 
 export default nextConfig;

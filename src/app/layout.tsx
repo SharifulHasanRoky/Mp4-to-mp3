@@ -58,9 +58,9 @@ export const metadata: Metadata = {
     locale: "en_US",
     images: [
       {
-        url: "/og-image.svg",
-        width: 1200,
-        height: 630,
+        url: "/logo.png",
+        width: 1254,
+        height: 1254,
         alt: "MP4 to MP3 Converter — Free Online Tool",
       },
     ],
@@ -70,7 +70,7 @@ export const metadata: Metadata = {
     title: "MP4 to MP3 Converter Online – Free & Fast",
     description:
       "Convert MP4 to MP3 audio online for free. Fast, private, no sign-up required.",
-    images: ["/og-image.svg"],
+    images: ["/logo.png"],
   },
   robots: {
     index: true,
@@ -86,6 +86,17 @@ export const metadata: Metadata = {
   verification: {
     // Add Google Search Console verification token here when ready
     // google: "your-verification-token",
+  },
+  icons: {
+    icon: [
+      { url: "/logo.png", type: "image/png" },
+      { url: "/logo.png", type: "image/png", sizes: "32x32" },
+      { url: "/logo.png", type: "image/png", sizes: "192x192" },
+    ],
+    apple: [
+      { url: "/logo.png", sizes: "180x180", type: "image/png" },
+    ],
+    shortcut: "/logo.png",
   },
 };
 

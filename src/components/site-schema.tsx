@@ -12,7 +12,7 @@ const organizationSchema = {
   "@type": "Organization",
   name: "MP4toMP3.online",
   url: SITE_URL,
-  logo: `${SITE_URL}/og-image.svg`,
+  logo: `${SITE_URL}/logo.png`,
   description:
     "Free online MP4 to MP3 converter. Convert video files to MP3, WAV, or MP4 entirely in the browser. No sign-up, no watermark, no server-side upload.",
   sameAs: [],

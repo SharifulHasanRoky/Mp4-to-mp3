@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { AudioWaveform, ChevronDown } from "lucide-react";
+import Image from "next/image";
+import { ChevronDown } from "lucide-react";
 import { TOOL_PAGES } from "@/lib/tool-pages";
 import {
   DropdownMenu,
@@ -30,9 +31,14 @@ export function SiteHeader() {
     <header className="sticky top-0 z-40 w-full border-b border-border/60 bg-background/80 backdrop-blur-md">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         <Link href="/" className="flex items-center gap-2 font-bold">
-          <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-primary text-primary-foreground shadow-sm">
-            <AudioWaveform className="h-5 w-5" />
-          </span>
+          <Image
+            src="/logo.png"
+            alt="MP4 to MP3 Converter logo"
+            width={36}
+            height={36}
+            priority
+            className="rounded-lg shadow-sm"
+          />
           <span className="text-lg tracking-tight">
             MP4 to <span className="text-primary">MP3</span>
           </span>

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { TOOL_PAGES } from "@/lib/tool-pages";
 
 const resourceLinks = [
@@ -27,6 +28,13 @@ export function SiteFooter() {
         <div className="grid grid-cols-2 gap-8 md:grid-cols-5">
           <div className="col-span-2 md:col-span-1">
             <div className="flex items-center gap-2 font-bold">
+              <Image
+                src="/logo.png"
+                alt="MP4 to MP3 Converter logo"
+                width={32}
+                height={32}
+                className="rounded-md"
+              />
               <span className="text-lg">
                 MP4 to <span className="text-primary">MP3</span>
               </span>
