@@ -1,0 +1,10 @@
+{
+  "lastBatchCompleted": 0,
+  "nextBatch": 1,
+  "totalBatches": 30,
+  "pagesPerBatch": 3,
+  "completedPages": [],
+  "createdAt": "2026-11-04",
+  "lastRunAt": null,
+  "status": "ready"
+}
