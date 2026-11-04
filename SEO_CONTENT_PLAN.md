@@ -34,40 +34,48 @@ Each page MUST follow these rules:
 
 ---
 
-## Batch 1 — Device guides (mobile)
-1. `/how-to-convert-mp4-to-mp3-on-iphone` — How to Convert MP4 to MP3 on iPhone (Safari, Files app, step-by-step)
-2. `/how-to-convert-mp4-to-mp3-on-android` — How to Convert MP4 to MP3 on Android (Chrome, Files, step-by-step)
-3. `/how-to-convert-mp4-to-mp3-on-mac` — How to Convert MP4 to MP3 on Mac (Safari/Chrome, drag-drop)
+## Batch 1 — PRIMARY KEYWORDS (user's original list — highest priority)
+1. `/video-to-audio-converter` — Video to Audio Converter (already exists — skip)
+2. `/convert-video-to-audio` — Convert Video to Audio File (already exists — skip)
+3. `/video-to-mp3-converter` — Video to MP3 Converter (already exists — skip)
 
-## Batch 2 — Device guides (desktop + other)
-4. `/how-to-convert-mp4-to-mp3-on-windows` — How to Convert MP4 to MP3 on Windows 10/11 (Edge/Chrome)
-5. `/how-to-convert-mp4-to-mp3-on-linux` — How to Convert MP4 to MP3 on Linux (Firefox/Chrome)
-6. `/how-to-convert-mp4-to-mp3-on-chromebook` — How to Convert MP4 to MP3 on Chromebook (browser-only)
+NOTE: The above 3 pages already exist from initial build. Cron agent should
+check for existence and SKIP them. Move directly to Batch 1's REAL new pages:
 
-## Batch 3 — Format comparisons (video containers)
-7. `/mov-vs-mp3` — MOV vs MP3: What's the Difference and How to Convert
-8. `/mkv-vs-mp3` — MKV vs MP3: What's the Difference and How to Convert
-9. `/avi-vs-mp3` — AVI vs MP3: What's the Difference and How to Convert
+## Batch 1 (real) — PRIMARY KEYWORDS (user's original list — new pages)
+1. `/mp4-to-mp3-converter-online-free` — MP4 to MP3 Converter Online Free (targeting: mp4 to mp3 converter online free, mp4 to mp3 online free, mp4 to mp3 converter online)
+2. `/best-mp4-to-mp3-converter` — Best MP4 to MP3 Converter (targeting: best mp4 to mp3 converter, best free mp4 to mp3 converter)
+3. `/mp4-to-mp3-online` — MP4 to MP3 Online (targeting: mp4 to mp3 online, mp4 to mp3 online free, convert mp4 to mp3 online)
 
-## Batch 4 — Format comparisons (audio formats)
-10. `/wav-vs-mp3` — WAV vs MP3: Quality, Size, and When to Use Each
-11. `/m4a-vs-mp3` — M4A vs MP3: Which Audio Format Is Better?
-12. `/flac-vs-mp3` — FLAC vs MP3: Lossless vs Lossy Audio Explained
+## Batch 2 — PRIMARY KEYWORDS (continued)
+4. `/change-video-to-audio` — Change Video to Audio (targeting: change video to audio, change video to mp3)
+5. `/video-into-audio` — Video Into Audio (targeting: video into audio, video into audio file, convert video into audio)
+6. `/mp4-mp3` — MP4 MP3 (targeting: mp4 mp3, mp4 to mp3, convert mp4 mp3)
 
-## Batch 5 — Use cases (content creation)
-13. `/convert-mp4-to-mp3-for-podcast` — How to Convert MP4 to MP3 for Podcast Editing
-14. `/convert-mp4-to-mp3-for-lecture` — Convert Lecture Recordings to MP3 for Offline Listening
-15. `/convert-mp4-to-mp3-for-interview` — Extract Audio from Interview Recordings as MP3
+## Batch 3 — PRIMARY KEYWORDS (continued)
+7. `/video-to-audio-converter-online` — Video to Audio Converter Online (targeting: video to audio converter online, video to audio converter online free)
+8. `/video-to-audio-converter-for-pc` — Video to Audio Converter for PC (targeting: video to audio converter for pc, video to audio converter for windows)
+9. `/mp4-to-mp3-software` — MP4 to MP3 Software (targeting: mp4 to mp3 software, best mp4 to mp3 software, mp4 to mp3 converter software)
 
-## Batch 6 — Use cases (video conferencing)
-16. `/convert-zoom-recording-to-mp3` — How to Convert Zoom Recording to MP3
-17. `/convert-google-meet-recording-to-mp3` — Convert Google Meet Recording to MP3
-18. `/convert-teams-recording-to-mp3` — Convert Microsoft Teams Recording to MP3
+## Batch 4 — PRIMARY KEYWORDS (continued)
+10. `/video-into-audio-file` — Video Into Audio File (targeting: video into audio file, convert video into audio file)
+11. `/video-to-audio-file-converter` — Video to Audio File Converter (targeting: video to audio file converter, video to audio converter)
+12. `/video-to-audio-converter-online-free` — Video to Audio Converter Online Free (targeting: video to audio converter online free, free video to audio converter online)
 
-## Batch 7 — Use cases (screen recordings + voice memos)
-19. `/convert-screen-recording-to-mp3` — Extract Audio from Screen Recordings as MP3
-20. `/convert-voice-memo-to-mp3` — Convert iPhone/Android Voice Memos to MP3
-21. `/convert-quicktime-to-mp3` — Convert QuickTime .mov Recordings to MP3
+## Batch 5 — FORMAT CONVERSION (user's original keywords)
+13. `/convert-mov-to-mp3` — Convert MOV to MP3 (targeting: convert mov to mp3, mov to mp3 converter)
+14. `/mov-to-mp3-converter` — MOV to MP3 Converter (already exists at /mov-to-mp3 — skip or merge)
+15. `/convert-wav-to-mp4` — Convert WAV to MP4 (targeting: convert wav to mp4, wav to mp4 converter)
+
+## Batch 6 — FORMAT CONVERSION (continued)
+16. `/convert-m4a-to-mp4` — Convert M4A to MP4 (targeting: convert m4a to mp4, m4a to mp4 converter)
+17. `/change-video-to-mp3` — Change Video to MP3 (targeting: change video to mp3, convert video to mp3)
+18. `/mp4-to-wav-converter` — MP4 to WAV Converter (targeting: mp4 to wav, mp4 to wav converter, convert mp4 to wav)
+
+## Batch 7 — EXTRACT KEYWORDS (user's original)
+19. `/get-audio-from-video` — Get Audio from Video (targeting: get audio from video, extract audio from video, get audio from mp4)
+20. `/extracting-audio-from-video` — Extracting Audio from Video (targeting: extracting audio from video, extract audio from video)
+21. `/extract-audio-from-mp4` — Extract Audio from MP4 (targeting: extract audio from mp4, get audio from mp4, extract mp3 from mp4)
 
 ## Batch 8 — Quality guides (bitrate + encoding)
 22. `/mp4-to-mp3-320kbps` — How to Convert MP4 to MP3 at 320 kbps (High Quality)
