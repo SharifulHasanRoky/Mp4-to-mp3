@@ -322,20 +322,28 @@ export function AudioExtractor({
       host === "drive.usercontent.google.com";
     if (!isGDrive) return null;
 
-    // Try to extract FILE_ID from the /file/d/FILE_ID/... path
-    const pathMatch = parsed.pathname.match(/\/file\/d\/([^/]+)/);
+    let fileId: string | null = null;
+
+    // Format 1: https://drive.google.com/file/d/FILE_ID/view?usp=sharing
+    const pathMatch = parsed.pathname.match(/\/file\/d\/([^/?]+)/);
     if (pathMatch && pathMatch[1]) {
-      const fileId = pathMatch[1];
-      return `https://drive.usercontent.google.com/download?id=${fileId}&export=download&confirm=t`;
+      fileId = pathMatch[1];
     }
 
-    // Try to extract FILE_ID from ?id=... query param
-    const idParam = parsed.searchParams.get("id");
-    if (idParam) {
-      return `https://drive.usercontent.google.com/download?id=${idParam}&export=download&confirm=t`;
+    // Format 2: https://drive.google.com/open?id=FILE_ID
+    // Format 3: https://drive.google.com/uc?id=FILE_ID
+    // Format 4: https://drive.usercontent.google.com/download?id=FILE_ID
+    if (!fileId) {
+      const idParam = parsed.searchParams.get("id");
+      if (idParam) fileId = idParam;
     }
 
-    return null;
+    if (!fileId) return null;
+
+    // Use the official direct-download endpoint with confirm=t to bypass
+    // the "This file is too large to scan for viruses" interstitial that
+    // Google shows for files over 100 MB.
+    return `https://drive.usercontent.google.com/download?id=${fileId}&export=download&confirm=t`;
   };
 
   /**
@@ -381,21 +389,31 @@ export function AudioExtractor({
 
   /**
    * Try to fetch a remote URL through several CORS-friendly strategies.
-   * Browser CORS rules block direct fetches from cross-origin URLs that
-   * don't send `Access-Control-Allow-Origin`. We try, in order:
-   *   1. Direct fetch (works for CORS-enabled sources like GitHub raw,
-   *      Google Cloud Storage, AWS S3 with CORS, etc.)
-   *   2. allorigins.win (public CORS proxy, free, no auth needed)
-   *   3. corsproxy.io (public CORS proxy, fallback)
-   *   4. codetabs proxy (last resort)
-   * Returns the fetched Blob, or throws on failure.
+   * Browser CORS rules block client-side fetch() from cross-origin URLs
+   * that don't send Access-Control-Allow-Origin. We try, in order:
+   *
+   *   1. Direct fetch (works for CORS-enabled sources: GitHub raw, AWS S3
+   *      with CORS, archive.org, etc.)
+   *   2. OUR OWN proxy at /api/proxy (most reliable — runs on Vercel,
+   *      no rate limit, no API key, handles Google Drive + Dropbox)
+   *   3. allorigins.win (public CORS proxy fallback)
+   *   4. corsproxy.io (public CORS proxy fallback)
+   *
+   * Returns the fetched Blob, or throws on failure with a clear message.
    */
   async function fetchUrlWithCorsFallback(url: string): Promise<Blob> {
     const strategies: Array<{ name: string; url: string }> = [
       { name: "direct", url },
+      // Our own proxy — FIRST fallback. Server-side fetch has no CORS
+      // restrictions, so this works for Google Drive, Dropbox, and any
+      // other URL the user might paste.
+      {
+        name: "own-proxy",
+        url: `/api/proxy?url=${encodeURIComponent(url)}`,
+      },
+      // Public proxies as last-resort fallbacks
       { name: "allorigins", url: `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}` },
       { name: "corsproxy.io", url: `https://corsproxy.io/?url=${encodeURIComponent(url)}` },
-      { name: "codetabs", url: `https://api.codetabs.com/v1/proxy/?quest=${encodeURIComponent(url)}` },
     ];
 
     let lastError: Error | null = null;
@@ -405,10 +423,24 @@ export function AudioExtractor({
           method: "GET",
           redirect: "follow",
         });
+
         if (!res.ok) {
-          lastError = new Error(`${strategy.name} returned HTTP ${res.status}`);
+          // Try to extract a JSON error message from our own proxy
+          let detail = "";
+          if (strategy.name === "own-proxy") {
+            try {
+              const errBody = await res.json();
+              detail = errBody?.error ? `: ${errBody.error}` : "";
+            } catch {
+              // not JSON, ignore
+            }
+          }
+          lastError = new Error(
+            `${strategy.name} returned HTTP ${res.status}${detail}`
+          );
           continue;
         }
+
         const blob = await res.blob();
         if (blob.size === 0) {
           lastError = new Error(`${strategy.name} returned empty response`);
@@ -416,7 +448,9 @@ export function AudioExtractor({
         }
         // Sanity check: a video/audio file should be at least 1 KB
         if (blob.size < 1024) {
-          lastError = new Error(`${strategy.name} returned suspiciously small response (${blob.size} bytes)`);
+          lastError = new Error(
+            `${strategy.name} returned suspiciously small response (${blob.size} bytes)`
+          );
           continue;
         }
         return blob;
