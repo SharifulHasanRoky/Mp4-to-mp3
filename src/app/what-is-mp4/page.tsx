@@ -3,6 +3,7 @@ import Link from "next/link";
 import { PageShell } from "@/components/page-shell";
 import { JsonLd } from "@/components/json-ld";
 import { QuickAnswer } from "@/components/quick-answer";
+import { Citations, type Citation } from "@/components/citations";
 import {
   FileAudio,
   Film,
@@ -37,6 +38,12 @@ export default function Page() {
     mainEntityOfPage: "https://www.mp4tomp3.online/what-is-mp4",
     datePublished: "2026-11-16",
     dateModified: "2026-11-16",
+    citation: [
+      "https://en.wikipedia.org/wiki/MPEG-4",
+      "https://www.iso.org/standard/53943.html",
+      "https://developer.mozilla.org/en-US/docs/Web/Media/Formats/Containers",
+      "https://en.wikipedia.org/wiki/H.264/MPEG-4_AVC",
+    ],
   };
 
   return (
@@ -254,6 +261,15 @@ export default function Page() {
             walks through the steps.
           </p>
         </section>
+
+        <Citations
+          sources={[
+            { title: "MP4 \u2014 Wikipedia", url: "https://en.wikipedia.org/wiki/MPEG-4", publisher: "Wikipedia", note: "History and structure of the MPEG-4 Part 14 container." },
+            { title: "MPEG-4 Part 14 file format \u2014 ISO", url: "https://www.iso.org/standard/53943.html", publisher: "ISO", note: "Official ISO/IEC 14496-14:2003 specification for the MP4 file format." },
+            { title: "Container formats \u2014 MDN", url: "https://developer.mozilla.org/en-US/docs/Web/Media/Formats/Containers", publisher: "Mozilla MDN", note: "How containers like MP4 bundle video, audio, subtitles and metadata." },
+            { title: "H.264/MPEG-4 AVC \u2014 Wikipedia", url: "https://en.wikipedia.org/wiki/H.264/MPEG-4_AVC", publisher: "Wikipedia", note: "The default video codec carried inside most MP4 files." },
+          ]}
+        />
 
         <section className="rounded-2xl border border-primary/30 bg-primary/5 p-6 text-center">
           <h2 className="text-xl font-bold">Extract audio from an MP4 now</h2>

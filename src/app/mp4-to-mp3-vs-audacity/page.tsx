@@ -3,6 +3,7 @@ import Link from "next/link";
 import { PageShell } from "@/components/page-shell";
 import { JsonLd } from "@/components/json-ld";
 import { QuickAnswer } from "@/components/quick-answer";
+import { Citations, type Citation } from "@/components/citations";
 import {
   FileAudio,
   Wand2,
@@ -39,6 +40,11 @@ export default function Page() {
     mainEntityOfPage: "https://www.mp4tomp3.online/mp4-to-mp3-vs-audacity",
     datePublished: "2026-11-16",
     dateModified: "2026-11-16",
+    citation: [
+      "https://en.wikipedia.org/wiki/FFmpeg",
+      "https://en.wikipedia.org/wiki/LAME",
+      "https://ffmpeg.org/ffmpeg-codecs.html",
+    ],
   };
 
   return (
@@ -277,6 +283,14 @@ export default function Page() {
             roundup places both tools in the wider landscape.
           </p>
         </section>
+
+        <Citations
+          sources={[
+            { title: "Audacity / FFmpeg \u2014 Wikipedia", url: "https://en.wikipedia.org/wiki/FFmpeg", publisher: "Wikipedia", note: "FFmpeg, the codec library both Audacity and browser converters rely on." },
+            { title: "LAME MP3 encoder \u2014 Wikipedia", url: "https://en.wikipedia.org/wiki/LAME", publisher: "Wikipedia", note: "The LAME library used by Audacity to export MP3." },
+            { title: "FFmpeg codecs documentation", url: "https://ffmpeg.org/ffmpeg-codecs.html", publisher: "FFmpeg", note: "The libmp3lame encoder shared by both workflows." },
+          ]}
+        />
 
         <section className="rounded-2xl border border-primary/30 bg-primary/5 p-6 text-center">
           <h2 className="text-xl font-bold">Convert without installing</h2>

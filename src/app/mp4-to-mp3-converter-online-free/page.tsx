@@ -3,6 +3,7 @@ import Link from "next/link";
 import { PageShell } from "@/components/page-shell";
 import { JsonLd } from "@/components/json-ld";
 import { QuickAnswer } from "@/components/quick-answer";
+import { Citations, type Citation } from "@/components/citations";
 import {
   FileAudio,
   Check,
@@ -41,6 +42,11 @@ export default function Page() {
       "https://www.mp4tomp3.online/mp4-to-mp3-converter-online-free",
     datePublished: "2025-01-15",
     dateModified: "2026-01-15",
+    citation: [
+      "https://ffmpeg.org/ffmpeg.html",
+      "https://en.wikipedia.org/wiki/LAME",
+      "https://en.wikipedia.org/wiki/WebAssembly",
+    ],
   };
 
   return (
@@ -343,6 +349,14 @@ export default function Page() {
             streaming platforms and will reject URLs that point to them.
           </p>
         </section>
+
+        <Citations
+          sources={[
+            { title: "FFmpeg documentation", url: "https://ffmpeg.org/ffmpeg.html", publisher: "FFmpeg", note: "Official FFmpeg manual for the demux/decode/encode pipeline used here." },
+            { title: "LAME \u2014 Wikipedia", url: "https://en.wikipedia.org/wiki/LAME", publisher: "Wikipedia", note: "The libmp3lame encoder used to write the MP3 output stream." },
+            { title: "WebAssembly \u2014 Wikipedia", url: "https://en.wikipedia.org/wiki/WebAssembly", publisher: "Wikipedia", note: "How the browser-based converter runs FFmpeg without install." },
+          ]}
+        />
 
         <section className="rounded-2xl border border-primary/30 bg-primary/5 p-6 text-center">
           <h2 className="text-xl font-bold">Ready to convert?</h2>

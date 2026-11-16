@@ -3,6 +3,7 @@ import Link from "next/link";
 import { PageShell } from "@/components/page-shell";
 import { JsonLd } from "@/components/json-ld";
 import { QuickAnswer } from "@/components/quick-answer";
+import { Citations, type Citation } from "@/components/citations";
 import {
   FileAudio,
   Smartphone,
@@ -12,6 +13,33 @@ import {
   Volume2,
   Wifi,
 } from "lucide-react";
+
+const sources: Citation[] = [
+  {
+    title: "MP3 — Wikipedia",
+    url: "https://en.wikipedia.org/wiki/MP3",
+    publisher: "Wikipedia",
+    note: "Documents the MP3 format and why it is supported natively by both iOS and Android music players.",
+  },
+  {
+    title: "ID3 — Wikipedia",
+    url: "https://en.wikipedia.org/wiki/ID3",
+    publisher: "Wikipedia",
+    note: "Describes ID3 tags that phone music apps read to display track titles, artists and album art.",
+  },
+  {
+    title: "MPEG-4 — Wikipedia",
+    url: "https://en.wikipedia.org/wiki/MPEG-4",
+    publisher: "Wikipedia",
+    note: "Defines the MP4 container the typical phone-recorded video arrives in before extraction.",
+  },
+  {
+    title: "FFmpeg — Wikipedia",
+    url: "https://en.wikipedia.org/wiki/FFmpeg",
+    publisher: "Wikipedia",
+    note: "Background on FFmpeg, the framework that performs the in-browser demux and re-encode described for phone use.",
+  },
+];
 
 export const metadata: Metadata = {
   title: "Convert MP4 to MP3 Free for Your Phone Music Library",
@@ -39,6 +67,12 @@ export default function Page() {
     mainEntityOfPage: "https://www.mp4tomp3.online/mp4-to-mp3-for-phone",
     datePublished: "2026-11-16",
     dateModified: "2026-11-16",
+    citation: [
+      "https://en.wikipedia.org/wiki/MP3",
+      "https://en.wikipedia.org/wiki/ID3",
+      "https://en.wikipedia.org/wiki/MPEG-4",
+      "https://en.wikipedia.org/wiki/FFmpeg",
+    ],
   };
 
   return (
@@ -297,6 +331,8 @@ export default function Page() {
             come back the next day, and pick up exactly where you stopped.
           </p>
         </section>
+
+        <Citations sources={sources} />
 
         <section className="rounded-2xl border border-primary/30 bg-primary/5 p-6 text-center">
           <h2 className="text-xl font-bold">

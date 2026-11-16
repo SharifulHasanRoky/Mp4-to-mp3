@@ -3,6 +3,7 @@ import Link from "next/link";
 import { PageShell } from "@/components/page-shell";
 import { JsonLd } from "@/components/json-ld";
 import { QuickAnswer } from "@/components/quick-answer";
+import { Citations, type Citation } from "@/components/citations";
 import {
   FileAudio,
   ShieldCheck,
@@ -37,6 +38,12 @@ export default function Page() {
     mainEntityOfPage: "https://www.mp4tomp3.online/what-is-ffmpeg",
     datePublished: "2026-11-16",
     dateModified: "2026-11-16",
+    citation: [
+      "https://en.wikipedia.org/wiki/FFmpeg",
+      "https://ffmpeg.org/ffmpeg.html",
+      "https://ffmpeg.org/ffmpeg-codecs.html",
+      "https://github.com/ffmpegwasm/ffmpeg.wasm",
+    ],
   };
 
   return (
@@ -309,6 +316,15 @@ export default function Page() {
             article compares the options.
           </p>
         </section>
+
+        <Citations
+          sources={[
+            { title: "FFmpeg \u2014 Wikipedia", url: "https://en.wikipedia.org/wiki/FFmpeg", publisher: "Wikipedia", note: "Overview of the FFmpeg project and its role in media processing." },
+            { title: "FFmpeg documentation", url: "https://ffmpeg.org/ffmpeg.html", publisher: "FFmpeg", note: "Official FFmpeg command-line reference, including audio extraction and encoding." },
+            { title: "FFmpeg codecs documentation", url: "https://ffmpeg.org/ffmpeg-codecs.html", publisher: "FFmpeg", note: "Reference for the libmp3lame encoder and supported audio codecs." },
+            { title: "ffmpeg.wasm \u2014 GitHub", url: "https://github.com/ffmpegwasm/ffmpeg.wasm", publisher: "GitHub", note: "WebAssembly port of FFmpeg used by browser-based converters." },
+          ]}
+        />
 
         <section className="rounded-2xl border border-primary/30 bg-primary/5 p-6 text-center">
           <h2 className="text-xl font-bold">Run FFmpeg in your browser now</h2>

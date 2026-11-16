@@ -3,6 +3,7 @@ import Link from "next/link";
 import { PageShell } from "@/components/page-shell";
 import { JsonLd } from "@/components/json-ld";
 import { QuickAnswer } from "@/components/quick-answer";
+import { Citations, type Citation } from "@/components/citations";
 import {
   FileAudio,
   ShieldCheck,
@@ -38,6 +39,11 @@ export default function Page() {
     mainEntityOfPage: "https://www.mp4tomp3.online/mp4-mp3",
     datePublished: "2026-11-16",
     dateModified: "2026-11-16",
+    citation: [
+      "https://en.wikipedia.org/wiki/MPEG-4",
+      "https://en.wikipedia.org/wiki/MP3",
+      "https://en.wikipedia.org/wiki/FFmpeg",
+    ],
   };
 
   return (
@@ -308,6 +314,14 @@ export default function Page() {
             roundup weighs the alternatives against each other.
           </p>
         </section>
+
+        <Citations
+          sources={[
+            { title: "MPEG-4 \u2014 Wikipedia", url: "https://en.wikipedia.org/wiki/MPEG-4", publisher: "Wikipedia", note: "The MP4 container format that holds the input video and audio." },
+            { title: "MP3 \u2014 Wikipedia", url: "https://en.wikipedia.org/wiki/MP3", publisher: "Wikipedia", note: "The MP3 audio format produced by the conversion." },
+            { title: "FFmpeg \u2014 Wikipedia", url: "https://en.wikipedia.org/wiki/FFmpeg", publisher: "Wikipedia", note: "The engine that converts the MP4 container into an MP3 stream." },
+          ]}
+        />
 
         <section className="rounded-2xl border border-primary/30 bg-primary/5 p-6 text-center">
           <h2 className="text-xl font-bold">Convert MP4 to MP3 now</h2>

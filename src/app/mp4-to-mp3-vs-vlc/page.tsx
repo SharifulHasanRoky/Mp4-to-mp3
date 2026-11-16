@@ -3,6 +3,7 @@ import Link from "next/link";
 import { PageShell } from "@/components/page-shell";
 import { JsonLd } from "@/components/json-ld";
 import { QuickAnswer } from "@/components/quick-answer";
+import { Citations, type Citation } from "@/components/citations";
 import {
   FileAudio,
   Play,
@@ -39,6 +40,11 @@ export default function Page() {
     mainEntityOfPage: "https://www.mp4tomp3.online/mp4-to-mp3-vs-vlc",
     datePublished: "2026-11-16",
     dateModified: "2026-11-16",
+    citation: [
+      "https://en.wikipedia.org/wiki/FFmpeg",
+      "https://ffmpeg.org/ffmpeg.html",
+      "https://developer.mozilla.org/en-US/docs/Web/Media/Formats/Containers",
+    ],
   };
 
   return (
@@ -275,6 +281,14 @@ export default function Page() {
             roundup places both options in context.
           </p>
         </section>
+
+        <Citations
+          sources={[
+            { title: "FFmpeg \u2014 Wikipedia", url: "https://en.wikipedia.org/wiki/FFmpeg", publisher: "Wikipedia", note: "FFmpeg, the media engine that powers VLC's playback and conversion." },
+            { title: "FFmpeg documentation", url: "https://ffmpeg.org/ffmpeg.html", publisher: "FFmpeg", note: "The FFmpeg pipeline both VLC and browser converters are built on." },
+            { title: "Container formats \u2014 MDN", url: "https://developer.mozilla.org/en-US/docs/Web/Media/Formats/Containers", publisher: "Mozilla MDN", note: "Container handling common to VLC and WebAssembly-based converters." },
+          ]}
+        />
 
         <section className="rounded-2xl border border-primary/30 bg-primary/5 p-6 text-center">
           <h2 className="text-xl font-bold">Convert without the dialog</h2>

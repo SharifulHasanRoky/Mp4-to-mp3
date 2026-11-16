@@ -3,6 +3,7 @@ import Link from "next/link";
 import { PageShell } from "@/components/page-shell";
 import { JsonLd } from "@/components/json-ld";
 import { QuickAnswer } from "@/components/quick-answer";
+import { Citations, type Citation } from "@/components/citations";
 import {
   FileAudio,
   Gauge,
@@ -39,6 +40,11 @@ export default function Page() {
       "https://www.mp4tomp3.online/mp4-to-mp3-vbr-vs-cbr",
     datePublished: "2026-11-16",
     dateModified: "2026-11-16",
+    citation: [
+      "https://wiki.hydrogenaud.io/index.php?title=LAME",
+      "https://en.wikipedia.org/wiki/MP3",
+      "https://ffmpeg.org/ffmpeg-codecs.html",
+    ],
   };
 
   return (
@@ -392,6 +398,14 @@ export default function Page() {
             </li>
           </ul>
         </section>
+
+        <Citations
+          sources={[
+            { title: "LAME recommended settings \u2014 Hydrogenaudio", url: "https://wiki.hydrogenaud.io/index.php?title=LAME", publisher: "Hydrogenaudio Wiki", note: "Reference comparison of VBR and CBR modes for the LAME MP3 encoder." },
+            { title: "MP3 \u2014 Wikipedia", url: "https://en.wikipedia.org/wiki/MP3", publisher: "Wikipedia", note: "Variable and constant bitrate modes in the MP3 specification." },
+            { title: "FFmpeg codecs documentation", url: "https://ffmpeg.org/ffmpeg-codecs.html", publisher: "FFmpeg", note: "libmp3lame VBR and CBR flags (-qscale, -b:a) used during conversion." },
+          ]}
+        />
 
         <section className="rounded-2xl border border-primary/30 bg-primary/5 p-6 text-center">
           <h2 className="text-xl font-bold">

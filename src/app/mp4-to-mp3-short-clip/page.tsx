@@ -3,6 +3,7 @@ import Link from "next/link";
 import { PageShell } from "@/components/page-shell";
 import { JsonLd } from "@/components/json-ld";
 import { QuickAnswer } from "@/components/quick-answer";
+import { Citations, type Citation } from "@/components/citations";
 import {
   FileAudio,
   Check,
@@ -12,6 +13,33 @@ import {
   Smartphone,
   Gauge,
 } from "lucide-react";
+
+const sources: Citation[] = [
+  {
+    title: "MP3 — Wikipedia",
+    url: "https://en.wikipedia.org/wiki/MP3",
+    publisher: "Wikipedia",
+    note: "Documents the MP3 format and why it is the convenient output for short clips and ringtones.",
+  },
+  {
+    title: "FFmpeg — Wikipedia",
+    url: "https://en.wikipedia.org/wiki/FFmpeg",
+    publisher: "Wikipedia",
+    note: "Background on FFmpeg, whose -ss/-t flags perform the trim-then-encode step described for short clips.",
+  },
+  {
+    title: "MPEG-4 — Wikipedia",
+    url: "https://en.wikipedia.org/wiki/MPEG-4",
+    publisher: "Wikipedia",
+    note: "Defines the MP4 container that short clip sources typically arrive in before extraction.",
+  },
+  {
+    title: "Bit rate — Wikipedia",
+    url: "https://en.wikipedia.org/wiki/Bit_rate",
+    publisher: "Wikipedia",
+    note: "Supports the higher bitrate recommendations given for short, quality-critical clips.",
+  },
+];
 
 export const metadata: Metadata = {
   title: "Convert Short MP4 Clips to MP3 Quickly — Under 30s",
@@ -39,6 +67,12 @@ export default function Page() {
     mainEntityOfPage: "https://www.mp4tomp3.online/mp4-to-mp3-short-clip",
     datePublished: "2026-11-16",
     dateModified: "2026-11-16",
+    citation: [
+      "https://en.wikipedia.org/wiki/MP3",
+      "https://en.wikipedia.org/wiki/FFmpeg",
+      "https://en.wikipedia.org/wiki/MPEG-4",
+      "https://en.wikipedia.org/wiki/Bit_rate",
+    ],
   };
 
   return (
@@ -286,6 +320,8 @@ export default function Page() {
             overview lays out the options.
           </p>
         </section>
+
+        <Citations sources={sources} />
 
         <section className="rounded-2xl border border-primary/30 bg-primary/5 p-6 text-center">
           <h2 className="text-xl font-bold">Convert your short MP4 clip now</h2>

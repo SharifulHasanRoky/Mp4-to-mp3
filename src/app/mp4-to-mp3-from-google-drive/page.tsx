@@ -3,6 +3,7 @@ import Link from "next/link";
 import { PageShell } from "@/components/page-shell";
 import { JsonLd } from "@/components/json-ld";
 import { QuickAnswer } from "@/components/quick-answer";
+import { Citations, type Citation } from "@/components/citations";
 import {
   FileAudio,
   Check,
@@ -13,6 +14,33 @@ import {
   AlertTriangle,
   ExternalLink,
 } from "lucide-react";
+
+const sources: Citation[] = [
+  {
+    title: "Google Drive — Wikipedia",
+    url: "https://en.wikipedia.org/wiki/Google_Drive",
+    publisher: "Wikipedia",
+    note: "Background on Google Drive, the source the share-link workflow described in this article depends on.",
+  },
+  {
+    title: "Share files from Google Drive — Google Drive Help",
+    url: "https://support.google.com/drive/answer/2424384",
+    publisher: "Google",
+    note: "Official Google Drive guidance on creating share links and setting 'Anyone with the link' access.",
+  },
+  {
+    title: "MP3 — Wikipedia",
+    url: "https://en.wikipedia.org/wiki/MP3",
+    publisher: "Wikipedia",
+    note: "Documents the MP3 output format produced from the Drive-hosted source file.",
+  },
+  {
+    title: "FFmpeg — Wikipedia",
+    url: "https://en.wikipedia.org/wiki/FFmpeg",
+    publisher: "Wikipedia",
+    note: "Background on FFmpeg, the framework that performs the in-browser demux and re-encode after the Drive file is fetched.",
+  },
+];
 
 export const metadata: Metadata = {
   title: "How to Convert MP4 to MP3 From Google Drive Online",
@@ -40,6 +68,12 @@ export default function Page() {
     mainEntityOfPage: "https://www.mp4tomp3.online/mp4-to-mp3-from-google-drive",
     datePublished: "2026-11-16",
     dateModified: "2026-11-16",
+    citation: [
+      "https://en.wikipedia.org/wiki/Google_Drive",
+      "https://support.google.com/drive/answer/2424384",
+      "https://en.wikipedia.org/wiki/MP3",
+      "https://en.wikipedia.org/wiki/FFmpeg",
+    ],
   };
 
   return (
@@ -314,6 +348,8 @@ export default function Page() {
             of how they are wrapped.
           </p>
         </section>
+
+        <Citations sources={sources} />
 
         <section className="rounded-2xl border border-primary/30 bg-primary/5 p-6 text-center">
           <h2 className="text-xl font-bold">Convert MP4 from Google Drive now</h2>

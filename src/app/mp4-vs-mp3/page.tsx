@@ -3,6 +3,7 @@ import Link from "next/link";
 import { PageShell } from "@/components/page-shell";
 import { JsonLd } from "@/components/json-ld";
 import { QuickAnswer } from "@/components/quick-answer";
+import { Citations, type Citation } from "@/components/citations";
 import { FileAudio, Check } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -29,6 +30,11 @@ export default function Page() {
     author: { "@type": "Organization", name: "MP4toMP3.online" },
     publisher: { "@type": "Organization", name: "MP4toMP3.online" },
     mainEntityOfPage: "https://www.mp4tomp3.online/mp4-vs-mp3",
+    citation: [
+      "https://en.wikipedia.org/wiki/MPEG-4",
+      "https://en.wikipedia.org/wiki/MP3",
+      "https://developer.mozilla.org/en-US/docs/Web/Media/Formats/Containers",
+    ],
   };
 
   return (
@@ -227,6 +233,14 @@ export default function Page() {
             instead.
           </p>
         </section>
+
+        <Citations
+          sources={[
+            { title: "MP4 \u2014 Wikipedia", url: "https://en.wikipedia.org/wiki/MPEG-4", publisher: "Wikipedia", note: "Definition of the MP4 multimedia container that holds video and audio." },
+            { title: "MP3 \u2014 Wikipedia", url: "https://en.wikipedia.org/wiki/MP3", publisher: "Wikipedia", note: "Definition of the MP3 audio-only format produced by extraction." },
+            { title: "Container formats \u2014 MDN", url: "https://developer.mozilla.org/en-US/docs/Web/Media/Formats/Containers", publisher: "Mozilla MDN", note: "Why MP4 is a container while MP3 is an audio stream codec." },
+          ]}
+        />
 
         <section className="rounded-2xl border border-primary/30 bg-primary/5 p-6 text-center">
           <h2 className="text-xl font-bold">Ready to convert?</h2>

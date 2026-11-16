@@ -3,6 +3,7 @@ import Link from "next/link";
 import { PageShell } from "@/components/page-shell";
 import { JsonLd } from "@/components/json-ld";
 import { QuickAnswer } from "@/components/quick-answer";
+import { Citations, type Citation } from "@/components/citations";
 import {
   FileAudio,
   Mic,
@@ -11,6 +12,33 @@ import {
   Volume2,
   Languages,
 } from "lucide-react";
+
+const sources: Citation[] = [
+  {
+    title: "MP3 — Wikipedia",
+    url: "https://en.wikipedia.org/wiki/MP3",
+    publisher: "Wikipedia",
+    note: "Documents the MP3 format and the lower bitrates (64-128 kbps mono) recommended for transcription input.",
+  },
+  {
+    title: "Psychoacoustics — Wikipedia",
+    url: "https://en.wikipedia.org/wiki/Psychoacoustics",
+    publisher: "Wikipedia",
+    note: "Explains the psychoacoustic model behind MP3, supporting the choice of speech-friendly encoding settings for transcription.",
+  },
+  {
+    title: "FFmpeg — Wikipedia",
+    url: "https://en.wikipedia.org/wiki/FFmpeg",
+    publisher: "Wikipedia",
+    note: "Background on FFmpeg, which performs the in-browser demux and re-encode to produce the transcription-ready MP3.",
+  },
+  {
+    title: "MPEG-4 — Wikipedia",
+    url: "https://en.wikipedia.org/wiki/MPEG-4",
+    publisher: "Wikipedia",
+    note: "Defines the MP4 container that interview and lecture videos typically arrive in before transcription prep.",
+  },
+];
 
 export const metadata: Metadata = {
   title: "MP4 to MP3 for Transcription: Speech-Optimized Settings",
@@ -39,6 +67,12 @@ export default function Page() {
       "https://www.mp4tomp3.online/mp4-to-mp3-for-transcription",
     datePublished: "2026-11-16",
     dateModified: "2026-11-16",
+    citation: [
+      "https://en.wikipedia.org/wiki/MP3",
+      "https://en.wikipedia.org/wiki/Psychoacoustics",
+      "https://en.wikipedia.org/wiki/FFmpeg",
+      "https://en.wikipedia.org/wiki/MPEG-4",
+    ],
   };
 
   return (
@@ -286,6 +320,8 @@ export default function Page() {
             guide covers the broader workflow.
           </p>
         </section>
+
+        <Citations sources={sources} />
 
         <section className="rounded-2xl border border-primary/30 bg-primary/5 p-6 text-center">
           <h2 className="text-xl font-bold">

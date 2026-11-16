@@ -3,6 +3,7 @@ import Link from "next/link";
 import { PageShell } from "@/components/page-shell";
 import { JsonLd } from "@/components/json-ld";
 import { QuickAnswer } from "@/components/quick-answer";
+import { Citations, type Citation } from "@/components/citations";
 import {
   FileAudio,
   Check,
@@ -13,6 +14,33 @@ import {
   Gauge,
   Chrome,
 } from "lucide-react";
+
+const sources: Citation[] = [
+  {
+    title: "WebAssembly — Wikipedia",
+    url: "https://en.wikipedia.org/wiki/WebAssembly",
+    publisher: "Wikipedia",
+    note: "Explains the WebAssembly memory model and per-tab heap caps that determine whether large MP4 files can be converted without crashing.",
+  },
+  {
+    title: "WebAssembly — MDN Web Docs",
+    url: "https://developer.mozilla.org/en-US/docs/WebAssembly",
+    publisher: "Mozilla MDN",
+    note: "Documents WebAssembly memory limits across browsers, which set the practical ceiling for in-browser FFmpeg jobs on large MP4s.",
+  },
+  {
+    title: "FFmpeg — Wikipedia",
+    url: "https://en.wikipedia.org/wiki/FFmpeg",
+    publisher: "Wikipedia",
+    note: "Background on the FFmpeg framework whose WebAssembly build performs the streaming demux and re-encode on oversized files.",
+  },
+  {
+    title: "Bit rate — Wikipedia",
+    url: "https://en.wikipedia.org/wiki/Bit_rate",
+    publisher: "Wikipedia",
+    note: "Supports the relationship between file size, bit rate and duration that determines whether a large MP4 can be processed.",
+  },
+];
 
 export const metadata: Metadata = {
   title: "Convert Large MP4 Files to MP3 (Up to 500MB) in Browser",
@@ -40,6 +68,12 @@ export default function Page() {
     mainEntityOfPage: "https://www.mp4tomp3.online/mp4-to-mp3-large-file",
     datePublished: "2026-11-16",
     dateModified: "2026-11-16",
+    citation: [
+      "https://en.wikipedia.org/wiki/WebAssembly",
+      "https://developer.mozilla.org/en-US/docs/WebAssembly",
+      "https://en.wikipedia.org/wiki/FFmpeg",
+      "https://en.wikipedia.org/wiki/Bit_rate",
+    ],
   };
 
   return (
@@ -305,6 +339,8 @@ export default function Page() {
             covers that case directly.
           </p>
         </section>
+
+        <Citations sources={sources} />
 
         <section className="rounded-2xl border border-primary/30 bg-primary/5 p-6 text-center">
           <h2 className="text-xl font-bold">Convert your large MP4 to MP3 now</h2>

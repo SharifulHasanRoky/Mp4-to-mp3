@@ -3,6 +3,7 @@ import Link from "next/link";
 import { PageShell } from "@/components/page-shell";
 import { JsonLd } from "@/components/json-ld";
 import { QuickAnswer } from "@/components/quick-answer";
+import { Citations, type Citation } from "@/components/citations";
 import {
   FileAudio,
   Check,
@@ -12,6 +13,33 @@ import {
   Gauge,
   MemoryStick,
 } from "lucide-react";
+
+const sources: Citation[] = [
+  {
+    title: "WebAssembly — Wikipedia",
+    url: "https://en.wikipedia.org/wiki/WebAssembly",
+    publisher: "Wikipedia",
+    note: "Explains the WebAssembly memory model that determines whether hour-long MP4s can be converted without decoder memory spikes.",
+  },
+  {
+    title: "FFmpeg — Wikipedia",
+    url: "https://en.wikipedia.org/wiki/FFmpeg",
+    publisher: "Wikipedia",
+    note: "Background on the FFmpeg streaming pipeline that walks through long audio streams sample by sample.",
+  },
+  {
+    title: "MP3 — Wikipedia",
+    url: "https://en.wikipedia.org/wiki/MP3",
+    publisher: "Wikipedia",
+    note: "Documents the MP3 format and the bitrate choices (128/192 kbps) recommended for long-form content.",
+  },
+  {
+    title: "Bit rate — Wikipedia",
+    url: "https://en.wikipedia.org/wiki/Bit_rate",
+    publisher: "Wikipedia",
+    note: "Supports the relationship between duration, bit rate and output file size discussed for long videos.",
+  },
+];
 
 export const metadata: Metadata = {
   title: "Convert Long MP4 Videos (1+ Hour) to MP3 — Full Guide",
@@ -39,6 +67,12 @@ export default function Page() {
     mainEntityOfPage: "https://www.mp4tomp3.online/mp4-to-mp3-long-video",
     datePublished: "2026-11-16",
     dateModified: "2026-11-16",
+    citation: [
+      "https://en.wikipedia.org/wiki/WebAssembly",
+      "https://en.wikipedia.org/wiki/FFmpeg",
+      "https://en.wikipedia.org/wiki/MP3",
+      "https://en.wikipedia.org/wiki/Bit_rate",
+    ],
   };
 
   return (
@@ -326,6 +360,8 @@ export default function Page() {
             is the right starting point.
           </p>
         </section>
+
+        <Citations sources={sources} />
 
         <section className="rounded-2xl border border-primary/30 bg-primary/5 p-6 text-center">
           <h2 className="text-xl font-bold">Convert your long MP4 to MP3 now</h2>

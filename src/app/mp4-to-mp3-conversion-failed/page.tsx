@@ -3,6 +3,7 @@ import Link from "next/link";
 import { PageShell } from "@/components/page-shell";
 import { JsonLd } from "@/components/json-ld";
 import { QuickAnswer } from "@/components/quick-answer";
+import { Citations, type Citation } from "@/components/citations";
 import {
   FileAudio,
   AlertTriangle,
@@ -12,6 +13,33 @@ import {
   ListChecks,
   Check,
 } from "lucide-react";
+
+const sources: Citation[] = [
+  {
+    title: "WebAssembly — Wikipedia",
+    url: "https://en.wikipedia.org/wiki/WebAssembly",
+    publisher: "Wikipedia",
+    note: "Explains the WebAssembly runtime that powers the in-browser FFmpeg build, including the memory limits relevant to Safari conversion failures.",
+  },
+  {
+    title: "FFmpeg — Wikipedia",
+    url: "https://en.wikipedia.org/wiki/FFmpeg",
+    publisher: "Wikipedia",
+    note: "Documents the FFmpeg command surface and the codec support model that underlies the error messages surfaced during conversion.",
+  },
+  {
+    title: "WebAssembly — MDN Web Docs",
+    url: "https://developer.mozilla.org/en-US/docs/WebAssembly",
+    publisher: "Mozilla MDN",
+    note: "Covers browser-side WebAssembly memory limits, which directly explain the 'engine took too long to load' and memory errors on Safari and iOS.",
+  },
+  {
+    title: "Audio codecs — MDN Web Docs",
+    url: "https://developer.mozilla.org/en-US/docs/Web/Media/Formats/Audio_codecs",
+    publisher: "Mozilla MDN",
+    note: "Lists the audio codecs each browser can decode, used to diagnose unsupported-codec conversion failures.",
+  },
+];
 
 export const metadata: Metadata = {
   title: "Fix: MP4 to MP3 Conversion Failed (Common Errors Explained)",
@@ -41,6 +69,12 @@ export default function Page() {
       "https://www.mp4tomp3.online/mp4-to-mp3-conversion-failed",
     datePublished: "2026-11-16",
     dateModified: "2026-11-16",
+    citation: [
+      "https://en.wikipedia.org/wiki/WebAssembly",
+      "https://en.wikipedia.org/wiki/FFmpeg",
+      "https://developer.mozilla.org/en-US/docs/WebAssembly",
+      "https://developer.mozilla.org/en-US/docs/Web/Media/Formats/Audio_codecs",
+    ],
   };
 
   return (
@@ -295,6 +329,8 @@ export default function Page() {
             always know which step to take next.
           </p>
         </section>
+
+        <Citations sources={sources} />
 
         <section className="rounded-2xl border border-primary/30 bg-primary/5 p-6 text-center">
           <h2 className="text-xl font-bold">Try the conversion again</h2>

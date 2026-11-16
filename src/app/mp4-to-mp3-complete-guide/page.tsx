@@ -3,6 +3,7 @@ import Link from "next/link";
 import { PageShell } from "@/components/page-shell";
 import { JsonLd } from "@/components/json-ld";
 import { QuickAnswer } from "@/components/quick-answer";
+import { Citations, type Citation } from "@/components/citations";
 import {
   FileAudio,
   Check,
@@ -42,6 +43,13 @@ export default function Page() {
     mainEntityOfPage: "https://www.mp4tomp3.online/mp4-to-mp3-complete-guide",
     datePublished: "2026-11-16",
     dateModified: "2026-11-16",
+    citation: [
+      "https://en.wikipedia.org/wiki/MPEG-4",
+      "https://en.wikipedia.org/wiki/MP3",
+      "https://en.wikipedia.org/wiki/FFmpeg",
+      "https://en.wikipedia.org/wiki/LAME",
+      "https://en.wikipedia.org/wiki/Advanced_Audio_Coding",
+    ],
   };
 
   return (
@@ -509,6 +517,16 @@ export default function Page() {
             page.
           </p>
         </section>
+
+        <Citations
+          sources={[
+            { title: "MPEG-4 \u2014 Wikipedia", url: "https://en.wikipedia.org/wiki/MPEG-4", publisher: "Wikipedia", note: "The MP4 container format at the start of the conversion pipeline." },
+            { title: "MP3 \u2014 Wikipedia", url: "https://en.wikipedia.org/wiki/MP3", publisher: "Wikipedia", note: "The MP3 output format produced by the complete guide workflow." },
+            { title: "FFmpeg \u2014 Wikipedia", url: "https://en.wikipedia.org/wiki/FFmpeg", publisher: "Wikipedia", note: "The engine that powers every step of the complete conversion guide." },
+            { title: "LAME \u2014 Wikipedia", url: "https://en.wikipedia.org/wiki/LAME", publisher: "Wikipedia", note: "The libmp3lame encoder that writes the final MP3 stream." },
+            { title: "Advanced Audio Coding \u2014 Wikipedia", url: "https://en.wikipedia.org/wiki/Advanced_Audio_Coding", publisher: "Wikipedia", note: "AAC, the typical source audio codec decoded during conversion." },
+          ]}
+        />
 
         <section className="rounded-2xl border border-primary/30 bg-primary/5 p-6 text-center">
           <h2 className="text-xl font-bold">Convert MP4 to MP3 now</h2>

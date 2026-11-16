@@ -3,6 +3,7 @@ import Link from "next/link";
 import { PageShell } from "@/components/page-shell";
 import { JsonLd } from "@/components/json-ld";
 import { QuickAnswer } from "@/components/quick-answer";
+import { Citations, type Citation } from "@/components/citations";
 import {
   FileAudio,
   Check,
@@ -13,6 +14,33 @@ import {
   AlertTriangle,
   ExternalLink,
 } from "lucide-react";
+
+const sources: Citation[] = [
+  {
+    title: "Dropbox — Wikipedia",
+    url: "https://en.wikipedia.org/wiki/Dropbox",
+    publisher: "Wikipedia",
+    note: "Background on Dropbox, the file-hosting service the share-link workflow described in this article depends on.",
+  },
+  {
+    title: "Create a share link in Dropbox — Dropbox Help",
+    url: "https://www.dropbox.com/help/sharing/create-share-link",
+    publisher: "Dropbox",
+    note: "Official Dropbox guidance on creating share links that can be rewritten to direct-download URLs.",
+  },
+  {
+    title: "MP3 — Wikipedia",
+    url: "https://en.wikipedia.org/wiki/MP3",
+    publisher: "Wikipedia",
+    note: "Documents the MP3 output format produced from the Dropbox-hosted source file.",
+  },
+  {
+    title: "FFmpeg — Wikipedia",
+    url: "https://en.wikipedia.org/wiki/FFmpeg",
+    publisher: "Wikipedia",
+    note: "Background on FFmpeg, the framework that performs the in-browser demux and re-encode after the Dropbox file is fetched.",
+  },
+];
 
 export const metadata: Metadata = {
   title: "How to Convert MP4 to MP3 From Dropbox — Free Online",
@@ -40,6 +68,12 @@ export default function Page() {
     mainEntityOfPage: "https://www.mp4tomp3.online/mp4-to-mp3-from-dropbox",
     datePublished: "2026-11-16",
     dateModified: "2026-11-16",
+    citation: [
+      "https://en.wikipedia.org/wiki/Dropbox",
+      "https://www.dropbox.com/help/sharing/create-share-link",
+      "https://en.wikipedia.org/wiki/MP3",
+      "https://en.wikipedia.org/wiki/FFmpeg",
+    ],
   };
 
   return (
@@ -305,6 +339,8 @@ export default function Page() {
             on) regardless of how they are wrapped.
           </p>
         </section>
+
+        <Citations sources={sources} />
 
         <section className="rounded-2xl border border-primary/30 bg-primary/5 p-6 text-center">
           <h2 className="text-xl font-bold">Convert MP4 from Dropbox now</h2>

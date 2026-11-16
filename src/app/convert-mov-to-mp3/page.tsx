@@ -3,6 +3,7 @@ import Link from "next/link";
 import { PageShell } from "@/components/page-shell";
 import { JsonLd } from "@/components/json-ld";
 import { QuickAnswer } from "@/components/quick-answer";
+import { Citations, type Citation } from "@/components/citations";
 import {
   FileAudio,
   Check,
@@ -41,6 +42,11 @@ export default function Page() {
     mainEntityOfPage: "https://www.mp4tomp3.online/convert-mov-to-mp3",
     datePublished: "2026-11-16",
     dateModified: "2026-11-16",
+    citation: [
+      "https://en.wikipedia.org/wiki/Comparison_of_video_container_formats",
+      "https://en.wikipedia.org/wiki/Advanced_Audio_Coding",
+      "https://en.wikipedia.org/wiki/MP3",
+    ],
   };
 
   return (
@@ -334,6 +340,14 @@ export default function Page() {
             point to them.
           </p>
         </section>
+
+        <Citations
+          sources={[
+            { title: "Comparison of video container formats \u2014 Wikipedia", url: "https://en.wikipedia.org/wiki/Comparison_of_video_container_formats", publisher: "Wikipedia", note: "How MOV and MP4 containers relate to each other." },
+            { title: "Advanced Audio Coding \u2014 Wikipedia", url: "https://en.wikipedia.org/wiki/Advanced_Audio_Coding", publisher: "Wikipedia", note: "AAC, the usual audio codec inside QuickTime MOV files." },
+            { title: "MP3 \u2014 Wikipedia", url: "https://en.wikipedia.org/wiki/MP3", publisher: "Wikipedia", note: "The MP3 output format for converted MOV audio." },
+          ]}
+        />
 
         <section className="rounded-2xl border border-primary/30 bg-primary/5 p-6 text-center">
           <h2 className="text-xl font-bold">Convert MOV to MP3 now</h2>

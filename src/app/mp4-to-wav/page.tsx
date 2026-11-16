@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { LandingPage } from "@/components/landing-page";
+import { Citations, type Citation } from "@/components/citations";
+import { JsonLd } from "@/components/json-ld";
 
 export const metadata: Metadata = {
   title: "MP4 to WAV Converter – Free Online Lossless Audio Extractor",
@@ -15,8 +17,27 @@ export const metadata: Metadata = {
   alternates: { canonical: "/mp4-to-wav" },
 };
 
+  const citationJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: "MP4 to WAV Converter",
+    description: "Convert MP4 video files to WAV audio (lossless, uncompressed PCM) online for free. Perfect for audio editing, mixing, and professional workflows. FFmpeg-powered, no sign-up.",
+    author: { "@type": "Organization", name: "MP4toMP3.online" },
+    publisher: { "@type": "Organization", name: "MP4toMP3.online" },
+    mainEntityOfPage: "https://www.mp4tomp3.online/mp4-to-wav",
+    datePublished: "2026-11-16",
+    dateModified: "2026-11-16",
+    citation: [
+      "https://en.wikipedia.org/wiki/FLAC",
+      "https://en.wikipedia.org/wiki/Advanced_Audio_Coding",
+      "https://developer.mozilla.org/en-US/docs/Web/Media/Formats/Audio_codecs",
+    ],
+  };
+
 export default function Page() {
   return (
+    <>
+      <JsonLd data={citationJsonLd} />
     <LandingPage
       currentPath="/mp4-to-wav"
       h1="MP4 to WAV Converter"
@@ -110,5 +131,14 @@ export default function Page() {
         },
       ]}
     />
+
+      <Citations
+        sources={[
+          { title: "FLAC \u2014 Wikipedia", url: "https://en.wikipedia.org/wiki/FLAC", publisher: "Wikipedia", note: "Lossless audio context for the WAV output of an MP4 file." },
+          { title: "Advanced Audio Coding \u2014 Wikipedia", url: "https://en.wikipedia.org/wiki/Advanced_Audio_Coding", publisher: "Wikipedia", note: "AAC, the typical source audio codec inside the MP4 input." },
+          { title: "Web audio codec guide \u2014 MDN", url: "https://developer.mozilla.org/en-US/docs/Web/Media/Formats/Audio_codecs", publisher: "Mozilla MDN", note: "Lossless PCM/WAV versus lossy AAC codec comparison." },
+        ]}
+      />
+    </>
   );
 }

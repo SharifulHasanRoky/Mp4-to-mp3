@@ -3,6 +3,7 @@ import Link from "next/link";
 import { PageShell } from "@/components/page-shell";
 import { JsonLd } from "@/components/json-ld";
 import { QuickAnswer } from "@/components/quick-answer";
+import { Citations, type Citation } from "@/components/citations";
 import {
   FileAudio,
   ShieldCheck,
@@ -39,6 +40,11 @@ export default function Page() {
     mainEntityOfPage: "https://www.mp4tomp3.online/mp4-to-mp3-gdpr",
     datePublished: "2026-11-16",
     dateModified: "2026-11-16",
+    citation: [
+      "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
+      "https://gdpr.eu/",
+      "https://en.wikipedia.org/wiki/WebAssembly",
+    ],
   };
 
   return (
@@ -381,6 +387,14 @@ export default function Page() {
             believe our handling of your data has been inadequate.
           </p>
         </section>
+
+        <Citations
+          sources={[
+            { title: "General Data Protection Regulation (official text)", url: "https://eur-lex.europa.eu/eli/reg/2016/679/oj", publisher: "EUR-Lex", note: "The official consolidated text of Regulation (EU) 2016/679 (GDPR)." },
+            { title: "GDPR.eu", url: "https://gdpr.eu/", publisher: "gdpr.eu", note: "Plain-language overview of GDPR rights and obligations for controllers and processors." },
+            { title: "WebAssembly \u2014 Wikipedia", url: "https://en.wikipedia.org/wiki/WebAssembly", publisher: "Wikipedia", note: "The sandboxed runtime that keeps personal data on the user's device." },
+          ]}
+        />
 
         <section className="rounded-2xl border border-primary/30 bg-primary/5 p-6 text-center">
           <h2 className="text-xl font-bold">

@@ -3,6 +3,7 @@ import Link from "next/link";
 import { PageShell } from "@/components/page-shell";
 import { JsonLd } from "@/components/json-ld";
 import { QuickAnswer } from "@/components/quick-answer";
+import { Citations, type Citation } from "@/components/citations";
 import {
   FileAudio,
   Gauge,
@@ -39,6 +40,12 @@ export default function Page() {
     mainEntityOfPage: "https://www.mp4tomp3.online/bitrate-explained",
     datePublished: "2026-11-16",
     dateModified: "2026-11-16",
+    citation: [
+      "https://en.wikipedia.org/wiki/Bit_rate",
+      "https://en.wikipedia.org/wiki/MP3",
+      "https://wiki.hydrogenaud.io/index.php?title=LAME",
+      "https://developer.mozilla.org/en-US/docs/Web/Media/Formats/Audio_codecs",
+    ],
   };
 
   return (
@@ -310,6 +317,15 @@ export default function Page() {
             walks through picking a bitrate in the extractor.
           </p>
         </section>
+
+        <Citations
+          sources={[
+            { title: "Bit rate \u2014 Wikipedia", url: "https://en.wikipedia.org/wiki/Bit_rate", publisher: "Wikipedia", note: "Definition of bit rate and how it relates to audio file size and quality." },
+            { title: "MP3 \u2014 Wikipedia", url: "https://en.wikipedia.org/wiki/MP3", publisher: "Wikipedia", note: "Common MP3 bitrate tiers (128, 192, 320 kbps) and their quality implications." },
+            { title: "LAME recommended settings \u2014 Hydrogenaudio", url: "https://wiki.hydrogenaud.io/index.php?title=LAME", publisher: "Hydrogenaudio Wiki", note: "Community-verified recommended LAME bitrate and VBR settings." },
+            { title: "Audio codecs \u2014 MDN", url: "https://developer.mozilla.org/en-US/docs/Web/Media/Formats/Audio_codecs", publisher: "Mozilla MDN", note: "Typical bitrate ranges for MP3 and other web audio codecs." },
+          ]}
+        />
 
         <section className="rounded-2xl border border-primary/30 bg-primary/5 p-6 text-center">
           <h2 className="text-xl font-bold">

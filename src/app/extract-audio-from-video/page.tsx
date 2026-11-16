@@ -1,5 +1,60 @@
 import type { Metadata } from "next";
 import { LandingPage } from "@/components/landing-page";
+import { JsonLd } from "@/components/json-ld";
+import { Citations, type Citation } from "@/components/citations";
+
+const sources: Citation[] = [
+  {
+    title: "MPEG-4 — Wikipedia",
+    url: "https://en.wikipedia.org/wiki/MPEG-4",
+    publisher: "Wikipedia",
+    note: "Documents the MP4 container and how its audio stream is demuxed during extraction.",
+  },
+  {
+    title: "MP3 — Wikipedia",
+    url: "https://en.wikipedia.org/wiki/MP3",
+    publisher: "Wikipedia",
+    note: "Confirms MP3 as the universally compatible output format produced by the extractor.",
+  },
+  {
+    title: "FFmpeg — Wikipedia",
+    url: "https://en.wikipedia.org/wiki/FFmpeg",
+    publisher: "Wikipedia",
+    note: "Background on the FFmpeg framework that performs the demux and re-encode step described in the article.",
+  },
+  {
+    title: "LAME — Wikipedia",
+    url: "https://en.wikipedia.org/wiki/LAME",
+    publisher: "Wikipedia",
+    note: "Documents libmp3lame, the encoder invoked at VBR ~190 kbps during extraction.",
+  },
+  {
+    title: "Container formats — MDN Web Docs",
+    url: "https://developer.mozilla.org/en-US/docs/Web/Media/Formats/Containers",
+    publisher: "Mozilla MDN",
+    note: "Lists common multimedia containers, including MP4, MOV, WebM and MKV, that the extractor accepts as input.",
+  },
+];
+
+const articleJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: "Extract Audio from Video – Free Online Audio Extractor",
+  description:
+    "A guide to extracting audio from any video file using a browser-based, FFmpeg-powered extractor. Covers supported containers, output formats, and quality.",
+  author: { "@type": "Organization", name: "MP4toMP3.online" },
+  publisher: { "@type": "Organization", name: "MP4toMP3.online" },
+  mainEntityOfPage: "https://www.mp4tomp3.online/extract-audio-from-video",
+  datePublished: "2026-11-16",
+  dateModified: "2026-11-16",
+  citation: [
+    "https://en.wikipedia.org/wiki/MPEG-4",
+    "https://en.wikipedia.org/wiki/MP3",
+    "https://en.wikipedia.org/wiki/FFmpeg",
+    "https://en.wikipedia.org/wiki/LAME",
+    "https://developer.mozilla.org/en-US/docs/Web/Media/Formats/Containers",
+  ],
+};
 
 export const metadata: Metadata = {
   title: "Extract Audio from Video – Free Online Audio Extractor",
@@ -18,8 +73,10 @@ export const metadata: Metadata = {
 
 export default function Page() {
   return (
-    <LandingPage
-      currentPath="/extract-audio-from-video"
+    <>
+      <JsonLd data={articleJsonLd} />
+      <LandingPage
+        currentPath="/extract-audio-from-video"
       h1="Extract Audio from Video"
       keyword="extract audio from video"
       subtitle="Get audio from any video file you own — MP4, MOV, WebM, MKV, AVI — and save it as a clean MP3. Powered by FFmpeg, processed privately, deleted automatically. No sign-up required."
@@ -90,5 +147,9 @@ export default function Page() {
         },
       ]}
     />
+      <section className="mx-auto max-w-3xl px-4 py-12 sm:px-6 lg:px-8">
+        <Citations sources={sources} />
+      </section>
+    </>
   );
 }

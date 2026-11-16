@@ -3,6 +3,7 @@ import Link from "next/link";
 import { PageShell } from "@/components/page-shell";
 import { JsonLd } from "@/components/json-ld";
 import { QuickAnswer } from "@/components/quick-answer";
+import { Citations, type Citation } from "@/components/citations";
 import {
   FileAudio,
   Check,
@@ -41,6 +42,11 @@ export default function Page() {
     mainEntityOfPage: "https://www.mp4tomp3.online/mp4-to-mp3-online",
     datePublished: "2025-03-10",
     dateModified: "2026-01-15",
+    citation: [
+      "https://en.wikipedia.org/wiki/MP3",
+      "https://en.wikipedia.org/wiki/FFmpeg",
+      "https://github.com/ffmpegwasm/ffmpeg.wasm",
+    ],
   };
 
   return (
@@ -343,6 +349,14 @@ export default function Page() {
             point to them.
           </p>
         </section>
+
+        <Citations
+          sources={[
+            { title: "MP3 \u2014 Wikipedia", url: "https://en.wikipedia.org/wiki/MP3", publisher: "Wikipedia", note: "MPEG-1 Audio Layer III format spec and history underpinning the output." },
+            { title: "FFmpeg \u2014 Wikipedia", url: "https://en.wikipedia.org/wiki/FFmpeg", publisher: "Wikipedia", note: "The open-source multimedia framework that powers the conversion pipeline." },
+            { title: "ffmpeg.wasm \u2014 GitHub", url: "https://github.com/ffmpegwasm/ffmpeg.wasm", publisher: "GitHub", note: "The WebAssembly port of FFmpeg that runs the conversion in the browser." },
+          ]}
+        />
 
         <section className="rounded-2xl border border-primary/30 bg-primary/5 p-6 text-center">
           <h2 className="text-xl font-bold">Convert MP4 to MP3 online now</h2>

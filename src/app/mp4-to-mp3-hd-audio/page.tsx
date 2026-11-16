@@ -3,6 +3,7 @@ import Link from "next/link";
 import { PageShell } from "@/components/page-shell";
 import { JsonLd } from "@/components/json-ld";
 import { QuickAnswer } from "@/components/quick-answer";
+import { Citations, type Citation } from "@/components/citations";
 import {
   FileAudio,
   Music,
@@ -39,6 +40,11 @@ export default function Page() {
     mainEntityOfPage: "https://www.mp4tomp3.online/mp4-to-mp3-hd-audio",
     datePublished: "2026-11-16",
     dateModified: "2026-11-16",
+    citation: [
+      "https://en.wikipedia.org/wiki/Advanced_Audio_Coding",
+      "https://en.wikipedia.org/wiki/FLAC",
+      "https://developer.mozilla.org/en-US/docs/Web/Media/Formats/Audio_codecs",
+    ],
   };
 
   return (
@@ -379,6 +385,14 @@ export default function Page() {
             and an audio-only format.
           </p>
         </section>
+
+        <Citations
+          sources={[
+            { title: "Advanced Audio Coding \u2014 Wikipedia", url: "https://en.wikipedia.org/wiki/Advanced_Audio_Coding", publisher: "Wikipedia", note: "AAC as the typical high-definition audio source inside MP4 files." },
+            { title: "FLAC \u2014 Wikipedia", url: "https://en.wikipedia.org/wiki/FLAC", publisher: "Wikipedia", note: "FLAC as the lossless HD audio reference, beyond what MP3 can represent." },
+            { title: "Audio codecs \u2014 MDN", url: "https://developer.mozilla.org/en-US/docs/Web/Media/Formats/Audio_codecs", publisher: "Mozilla MDN", note: "Sample rates and bit depths across HD-capable audio codecs." },
+          ]}
+        />
 
         <section className="rounded-2xl border border-primary/30 bg-primary/5 p-6 text-center">
           <h2 className="text-xl font-bold">

@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { LandingPage } from "@/components/landing-page";
+import { Citations, type Citation } from "@/components/citations";
+import { JsonLd } from "@/components/json-ld";
 
 export const metadata: Metadata = {
   title: "M4A to MP4 Converter – Free Online Audio to Video Tool",
@@ -15,8 +17,27 @@ export const metadata: Metadata = {
   alternates: { canonical: "/m4a-to-mp4" },
 };
 
+  const citationJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: "M4A to MP4 Converter",
+    description: "Convert M4A audio files (Apple voice memos, AAC audio, iPhone recordings) to MP4 video format online for free. Perfect for uploading M4A audio to YouTube, Instagram, and TikTok. No sign-up.",
+    author: { "@type": "Organization", name: "MP4toMP3.online" },
+    publisher: { "@type": "Organization", name: "MP4toMP3.online" },
+    mainEntityOfPage: "https://www.mp4tomp3.online/m4a-to-mp4",
+    datePublished: "2026-11-16",
+    dateModified: "2026-11-16",
+    citation: [
+      "https://en.wikipedia.org/wiki/Advanced_Audio_Coding",
+      "https://en.wikipedia.org/wiki/MPEG-4",
+      "https://developer.mozilla.org/en-US/docs/Web/Media/Formats/Containers",
+    ],
+  };
+
 export default function Page() {
   return (
+    <>
+      <JsonLd data={citationJsonLd} />
     <LandingPage
       currentPath="/m4a-to-mp4"
       h1="M4A to MP4 Converter"
@@ -111,5 +132,14 @@ export default function Page() {
         },
       ]}
     />
+
+      <Citations
+        sources={[
+          { title: "Advanced Audio Coding \u2014 Wikipedia", url: "https://en.wikipedia.org/wiki/Advanced_Audio_Coding", publisher: "Wikipedia", note: "AAC, the audio codec typically inside an .m4a file." },
+          { title: "MPEG-4 \u2014 Wikipedia", url: "https://en.wikipedia.org/wiki/MPEG-4", publisher: "Wikipedia", note: "The MP4 container that wraps the M4A audio into a video file." },
+          { title: "Media container formats \u2014 MDN", url: "https://developer.mozilla.org/en-US/docs/Web/Media/Formats/Containers", publisher: "Mozilla MDN", note: "How the MP4 container bundles audio and video streams." },
+        ]}
+      />
+    </>
   );
 }

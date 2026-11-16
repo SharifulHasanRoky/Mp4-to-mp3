@@ -3,7 +3,35 @@ import Link from "next/link";
 import { PageShell } from "@/components/page-shell";
 import { JsonLd } from "@/components/json-ld";
 import { QuickAnswer } from "@/components/quick-answer";
+import { Citations, type Citation } from "@/components/citations";
 import { FileAudio, Film, Gauge, Download, Check } from "lucide-react";
+
+const sources: Citation[] = [
+  {
+    title: "MP3 — Wikipedia",
+    url: "https://en.wikipedia.org/wiki/MP3",
+    publisher: "Wikipedia",
+    note: "Background on the MP3 format, MPEG-1 Audio Layer III, and why it is the universal target for audio extraction.",
+  },
+  {
+    title: "MPEG-4 — Wikipedia",
+    url: "https://en.wikipedia.org/wiki/MPEG-4",
+    publisher: "Wikipedia",
+    note: "Defines the MP4 container that the source video arrives in, and the audio/video stream model used during conversion.",
+  },
+  {
+    title: "FFmpeg — Wikipedia",
+    url: "https://en.wikipedia.org/wiki/FFmpeg",
+    publisher: "Wikipedia",
+    note: "Confirms FFmpeg as the open-source multimedia framework that performs the in-browser demuxing and re-encode step.",
+  },
+  {
+    title: "LAME — Wikipedia",
+    url: "https://en.wikipedia.org/wiki/LAME",
+    publisher: "Wikipedia",
+    note: "Documents libmp3lame, the MP3 encoder used at VBR ~190 kbps during the conversion step.",
+  },
+];
 
 export const metadata: Metadata = {
   title: "How to Convert MP4 to MP3 (Step-by-Step Guide, Any Device)",
@@ -35,6 +63,12 @@ export default function Page() {
         "@type": "HowToTool",
         name: "MP4toMP3.online — free online MP4 to MP3 converter",
       },
+    ],
+    citation: [
+      "https://en.wikipedia.org/wiki/MP3",
+      "https://en.wikipedia.org/wiki/MPEG-4",
+      "https://en.wikipedia.org/wiki/FFmpeg",
+      "https://en.wikipedia.org/wiki/LAME",
     ],
     step: [
       {
@@ -280,6 +314,8 @@ export default function Page() {
             &quot;Restricted&quot; to &quot;Anyone with the link.&quot;
           </p>
         </section>
+
+        <Citations sources={sources} />
 
         <section className="rounded-2xl border border-primary/30 bg-primary/5 p-6 text-center">
           <h2 className="text-xl font-bold">Ready to try it?</h2>

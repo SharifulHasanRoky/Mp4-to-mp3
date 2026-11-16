@@ -1,5 +1,60 @@
 import type { Metadata } from "next";
 import { LandingPage } from "@/components/landing-page";
+import { JsonLd } from "@/components/json-ld";
+import { Citations, type Citation } from "@/components/citations";
+
+const sources: Citation[] = [
+  {
+    title: "MP3 — Wikipedia",
+    url: "https://en.wikipedia.org/wiki/MP3",
+    publisher: "Wikipedia",
+    note: "Documents the MP3 format and why it is the universal output of an MP3 extractor.",
+  },
+  {
+    title: "FFmpeg — Wikipedia",
+    url: "https://en.wikipedia.org/wiki/FFmpeg",
+    publisher: "Wikipedia",
+    note: "Background on FFmpeg, the framework that powers the in-browser MP3 extraction pipeline.",
+  },
+  {
+    title: "LAME — Wikipedia",
+    url: "https://en.wikipedia.org/wiki/LAME",
+    publisher: "Wikipedia",
+    note: "Documents libmp3lame, the encoder invoked at VBR ~190 kbps by the extractor.",
+  },
+  {
+    title: "MPEG-4 — Wikipedia",
+    url: "https://en.wikipedia.org/wiki/MPEG-4",
+    publisher: "Wikipedia",
+    note: "Defines the MP4 container, the most common input an MP3 extractor receives.",
+  },
+  {
+    title: "Container formats — MDN Web Docs",
+    url: "https://developer.mozilla.org/en-US/docs/Web/Media/Formats/Containers",
+    publisher: "Mozilla MDN",
+    note: "Lists the multimedia containers (MP4, MOV, MKV, WebM and others) the extractor accepts as input.",
+  },
+];
+
+const articleJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: "MP3 Extractor Online – Free Audio Extractor from Video",
+  description:
+    "A guide to using a free, browser-based MP3 extractor to pull audio out of any video file and save it as a high-quality MP3 using FFmpeg.",
+  author: { "@type": "Organization", name: "MP4toMP3.online" },
+  publisher: { "@type": "Organization", name: "MP4toMP3.online" },
+  mainEntityOfPage: "https://www.mp4tomp3.online/mp3-extractor",
+  datePublished: "2026-11-16",
+  dateModified: "2026-11-16",
+  citation: [
+    "https://en.wikipedia.org/wiki/MP3",
+    "https://en.wikipedia.org/wiki/FFmpeg",
+    "https://en.wikipedia.org/wiki/LAME",
+    "https://en.wikipedia.org/wiki/MPEG-4",
+    "https://developer.mozilla.org/en-US/docs/Web/Media/Formats/Containers",
+  ],
+};
 
 export const metadata: Metadata = {
   title: "MP3 Extractor Online – Free Audio Extractor from Video",
@@ -17,8 +72,10 @@ export const metadata: Metadata = {
 
 export default function Page() {
   return (
-    <LandingPage
-      currentPath="/mp3-extractor"
+    <>
+      <JsonLd data={articleJsonLd} />
+      <LandingPage
+        currentPath="/mp3-extractor"
       h1="MP3 Extractor"
       keyword="MP3 extractor"
       subtitle="Pull the audio track out of any video file and save it as a clean, high-quality MP3. Free online MP3 extractor — powered by FFmpeg, processed privately, no sign-up required."
@@ -91,5 +148,9 @@ export default function Page() {
         },
       ]}
     />
+      <section className="mx-auto max-w-3xl px-4 py-12 sm:px-6 lg:px-8">
+        <Citations sources={sources} />
+      </section>
+    </>
   );
 }

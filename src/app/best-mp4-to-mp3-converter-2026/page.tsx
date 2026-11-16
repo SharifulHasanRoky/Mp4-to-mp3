@@ -3,6 +3,7 @@ import Link from "next/link";
 import { PageShell } from "@/components/page-shell";
 import { JsonLd } from "@/components/json-ld";
 import { QuickAnswer } from "@/components/quick-answer";
+import { Citations, type Citation } from "@/components/citations";
 import {
   FileAudio,
   Check,
@@ -43,6 +44,11 @@ export default function Page() {
       "https://www.mp4tomp3.online/best-mp4-to-mp3-converter-2026",
     datePublished: "2026-11-16",
     dateModified: "2026-11-16",
+    citation: [
+      "https://en.wikipedia.org/wiki/FFmpeg",
+      "https://en.wikipedia.org/wiki/WebAssembly",
+      "https://trac.ffmpeg.org/wiki/Encode/MP3",
+    ],
   };
 
   return (
@@ -448,6 +454,14 @@ export default function Page() {
             walkthrough covers each platform step by step.
           </p>
         </section>
+
+        <Citations
+          sources={[
+            { title: "FFmpeg \u2014 Wikipedia", url: "https://en.wikipedia.org/wiki/FFmpeg", publisher: "Wikipedia", note: "The engine behind the 2026 browser-based converter recommendation." },
+            { title: "WebAssembly \u2014 Wikipedia", url: "https://en.wikipedia.org/wiki/WebAssembly", publisher: "Wikipedia", note: "The runtime that makes install-free conversion possible." },
+            { title: "FFmpeg Wiki: Encode/MP3", url: "https://trac.ffmpeg.org/wiki/Encode/MP3", publisher: "FFmpeg Wiki", note: "Current best-practice MP3 encoding settings." },
+          ]}
+        />
 
         <section className="rounded-2xl border border-primary/30 bg-primary/5 p-6 text-center">
           <h2 className="text-xl font-bold">Try the 2026 best pick</h2>

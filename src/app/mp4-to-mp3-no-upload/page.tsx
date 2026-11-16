@@ -3,6 +3,7 @@ import Link from "next/link";
 import { PageShell } from "@/components/page-shell";
 import { JsonLd } from "@/components/json-ld";
 import { QuickAnswer } from "@/components/quick-answer";
+import { Citations, type Citation } from "@/components/citations";
 import {
   FileAudio,
   ShieldCheck,
@@ -39,6 +40,11 @@ export default function Page() {
     mainEntityOfPage: "https://www.mp4tomp3.online/mp4-to-mp3-no-upload",
     datePublished: "2026-11-16",
     dateModified: "2026-11-16",
+    citation: [
+      "https://developer.mozilla.org/en-US/docs/WebAssembly",
+      "https://github.com/ffmpegwasm/ffmpeg.wasm",
+      "https://ffmpeg.org/ffmpeg.html",
+    ],
   };
 
   return (
@@ -313,6 +319,14 @@ export default function Page() {
             is the right reference.
           </p>
         </section>
+
+        <Citations
+          sources={[
+            { title: "WebAssembly \u2014 MDN", url: "https://developer.mozilla.org/en-US/docs/WebAssembly", publisher: "Mozilla MDN", note: "How WebAssembly runs native code, like FFmpeg, inside the browser sandbox." },
+            { title: "ffmpeg.wasm \u2014 GitHub", url: "https://github.com/ffmpegwasm/ffmpeg.wasm", publisher: "GitHub", note: "The WebAssembly FFmpeg port that enables no-upload media conversion." },
+            { title: "FFmpeg documentation", url: "https://ffmpeg.org/ffmpeg.html", publisher: "FFmpeg", note: "The FFmpeg pipeline that runs entirely client-side when compiled to WASM." },
+          ]}
+        />
 
         <section className="rounded-2xl border border-primary/30 bg-primary/5 p-6 text-center">
           <h2 className="text-xl font-bold">

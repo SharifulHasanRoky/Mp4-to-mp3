@@ -3,6 +3,7 @@ import Link from "next/link";
 import { PageShell } from "@/components/page-shell";
 import { JsonLd } from "@/components/json-ld";
 import { QuickAnswer } from "@/components/quick-answer";
+import { Citations, type Citation } from "@/components/citations";
 import {
   FileAudio,
   Activity,
@@ -39,6 +40,11 @@ export default function Page() {
       "https://www.mp4tomp3.online/mp4-to-mp3-sample-rate",
     datePublished: "2026-11-16",
     dateModified: "2026-11-16",
+    citation: [
+      "https://developer.mozilla.org/en-US/docs/Web/Media/Formats/Audio_codecs",
+      "https://en.wikipedia.org/wiki/MP3",
+      "https://ffmpeg.org/ffmpeg-codecs.html",
+    ],
   };
 
   return (
@@ -407,6 +413,14 @@ export default function Page() {
             </li>
           </ul>
         </section>
+
+        <Citations
+          sources={[
+            { title: "Audio codecs \u2014 MDN", url: "https://developer.mozilla.org/en-US/docs/Web/Media/Formats/Audio_codecs", publisher: "Mozilla MDN", note: "Common sample rates (44.1 kHz, 48 kHz) and their use in web audio." },
+            { title: "MP3 \u2014 Wikipedia", url: "https://en.wikipedia.org/wiki/MP3", publisher: "Wikipedia", note: "MPEG-1 Layer III sample-rate tables and the Nyquist limit on MP3 audio." },
+            { title: "FFmpeg codecs documentation", url: "https://ffmpeg.org/ffmpeg-codecs.html", publisher: "FFmpeg", note: "The -ar flag for setting output sample rate in libmp3lame." },
+          ]}
+        />
 
         <section className="rounded-2xl border border-primary/30 bg-primary/5 p-6 text-center">
           <h2 className="text-xl font-bold">

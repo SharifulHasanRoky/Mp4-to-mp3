@@ -3,6 +3,7 @@ import Link from "next/link";
 import { PageShell } from "@/components/page-shell";
 import { JsonLd } from "@/components/json-ld";
 import { QuickAnswer } from "@/components/quick-answer";
+import { Citations, type Citation } from "@/components/citations";
 import {
   FileVideo,
   Zap,
@@ -41,6 +42,11 @@ export default function Page() {
     mainEntityOfPage: "https://www.mp4tomp3.online/convert-wav-to-mp4",
     datePublished: "2026-11-16",
     dateModified: "2026-11-16",
+    citation: [
+      "https://en.wikipedia.org/wiki/FLAC",
+      "https://en.wikipedia.org/wiki/MPEG-4",
+      "https://developer.mozilla.org/en-US/docs/Web/Media/Formats/Containers",
+    ],
   };
 
   return (
@@ -317,6 +323,14 @@ export default function Page() {
             them.
           </p>
         </section>
+
+        <Citations
+          sources={[
+            { title: "FLAC \u2014 Wikipedia", url: "https://en.wikipedia.org/wiki/FLAC", publisher: "Wikipedia", note: "Lossless audio context relevant to wrapping WAV into MP4." },
+            { title: "MPEG-4 \u2014 Wikipedia", url: "https://en.wikipedia.org/wiki/MPEG-4", publisher: "Wikipedia", note: "The MP4 container that wraps the WAV audio into a video file." },
+            { title: "Media container formats \u2014 MDN", url: "https://developer.mozilla.org/en-US/docs/Web/Media/Formats/Containers", publisher: "Mozilla MDN", note: "How the MP4 container bundles audio and video streams." },
+          ]}
+        />
 
         <section className="rounded-2xl border border-primary/30 bg-primary/5 p-6 text-center">
           <h2 className="text-xl font-bold">Convert WAV to MP4 now</h2>

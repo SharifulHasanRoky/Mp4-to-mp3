@@ -3,6 +3,7 @@ import Link from "next/link";
 import { PageShell } from "@/components/page-shell";
 import { JsonLd } from "@/components/json-ld";
 import { QuickAnswer } from "@/components/quick-answer";
+import { Citations, type Citation } from "@/components/citations";
 import {
   FileAudio,
   Music,
@@ -12,6 +13,33 @@ import {
   Mic,
   Languages,
 } from "lucide-react";
+
+const sources: Citation[] = [
+  {
+    title: "Container format (digital) — Wikipedia",
+    url: "https://en.wikipedia.org/wiki/Container_format_(digital)",
+    publisher: "Wikipedia",
+    note: "Defines multimedia containers and how audio and video streams are split apart during extraction.",
+  },
+  {
+    title: "MP3 — Wikipedia",
+    url: "https://en.wikipedia.org/wiki/MP3",
+    publisher: "Wikipedia",
+    note: "Documents the MP3 output format that the extracted audio is saved as.",
+  },
+  {
+    title: "FFmpeg — Wikipedia",
+    url: "https://en.wikipedia.org/wiki/FFmpeg",
+    publisher: "Wikipedia",
+    note: "Background on FFmpeg, the framework that performs the in-browser demux and re-encode described in the article.",
+  },
+  {
+    title: "Container formats — MDN Web Docs",
+    url: "https://developer.mozilla.org/en-US/docs/Web/Media/Formats/Containers",
+    publisher: "Mozilla MDN",
+    note: "Lists the multimedia containers (MP4, MOV, MKV, WebM and others) the extractor accepts as input.",
+  },
+];
 
 export const metadata: Metadata = {
   title: "Get Audio From Video — Free Online Audio Extractor",
@@ -39,6 +67,12 @@ export default function Page() {
     mainEntityOfPage: "https://www.mp4tomp3.online/get-audio-from-video",
     datePublished: "2026-11-16",
     dateModified: "2026-11-16",
+    citation: [
+      "https://en.wikipedia.org/wiki/Container_format_(digital)",
+      "https://en.wikipedia.org/wiki/MP3",
+      "https://en.wikipedia.org/wiki/FFmpeg",
+      "https://developer.mozilla.org/en-US/docs/Web/Media/Formats/Containers",
+    ],
   };
 
   return (
@@ -342,6 +376,8 @@ export default function Page() {
             URLs that point to them.
           </p>
         </section>
+
+        <Citations sources={sources} />
 
         <section className="rounded-2xl border border-primary/30 bg-primary/5 p-6 text-center">
           <h2 className="text-xl font-bold">Get audio from your video now</h2>

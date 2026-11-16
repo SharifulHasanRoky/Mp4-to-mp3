@@ -3,6 +3,7 @@ import Link from "next/link";
 import { PageShell } from "@/components/page-shell";
 import { JsonLd } from "@/components/json-ld";
 import { QuickAnswer } from "@/components/quick-answer";
+import { Citations, type Citation } from "@/components/citations";
 import {
   FileAudio,
   Headphones,
@@ -11,6 +12,33 @@ import {
   Gauge,
   Check,
 } from "lucide-react";
+
+const sources: Citation[] = [
+  {
+    title: "MP3 — Wikipedia",
+    url: "https://en.wikipedia.org/wiki/MP3",
+    publisher: "Wikipedia",
+    note: "Documents the MP3 format and why it is the universal target for language-learning listening material.",
+  },
+  {
+    title: "Psychoacoustics — Wikipedia",
+    url: "https://en.wikipedia.org/wiki/Psychoacoustics",
+    publisher: "Wikipedia",
+    note: "Explains the psychoacoustic model used by MP3, supporting speech-friendly encoding settings for language study.",
+  },
+  {
+    title: "FFmpeg — Wikipedia",
+    url: "https://en.wikipedia.org/wiki/FFmpeg",
+    publisher: "Wikipedia",
+    note: "Background on FFmpeg, which performs the in-browser demux and re-encode to produce the listening-ready MP3.",
+  },
+  {
+    title: "MPEG-4 — Wikipedia",
+    url: "https://en.wikipedia.org/wiki/MPEG-4",
+    publisher: "Wikipedia",
+    note: "Defines the MP4 container that language-lesson videos typically arrive in before extraction.",
+  },
+];
 
 export const metadata: Metadata = {
   title: "MP4 to MP3 for Language Learning: Best Bitrate & Tips",
@@ -39,6 +67,12 @@ export default function Page() {
       "https://www.mp4tomp3.online/mp4-to-mp3-for-language-learning",
     datePublished: "2026-11-16",
     dateModified: "2026-11-16",
+    citation: [
+      "https://en.wikipedia.org/wiki/MP3",
+      "https://en.wikipedia.org/wiki/Psychoacoustics",
+      "https://en.wikipedia.org/wiki/FFmpeg",
+      "https://en.wikipedia.org/wiki/MPEG-4",
+    ],
   };
 
   return (
@@ -276,6 +310,8 @@ export default function Page() {
             guide covers the upstream steps.
           </p>
         </section>
+
+        <Citations sources={sources} />
 
         <section className="rounded-2xl border border-primary/30 bg-primary/5 p-6 text-center">
           <h2 className="text-xl font-bold">

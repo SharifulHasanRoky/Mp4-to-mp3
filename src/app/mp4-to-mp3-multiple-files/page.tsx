@@ -3,6 +3,7 @@ import Link from "next/link";
 import { PageShell } from "@/components/page-shell";
 import { JsonLd } from "@/components/json-ld";
 import { QuickAnswer } from "@/components/quick-answer";
+import { Citations, type Citation } from "@/components/citations";
 import {
   FileAudio,
   Check,
@@ -13,6 +14,33 @@ import {
   MousePointerClick,
   Clock,
 } from "lucide-react";
+
+const sources: Citation[] = [
+  {
+    title: "FFmpeg — Wikipedia",
+    url: "https://en.wikipedia.org/wiki/FFmpeg",
+    publisher: "Wikipedia",
+    note: "Background on FFmpeg, whose sequential invocation drives the multiple-file workflow described in the article.",
+  },
+  {
+    title: "MP3 — Wikipedia",
+    url: "https://en.wikipedia.org/wiki/MP3",
+    publisher: "Wikipedia",
+    note: "Documents the MP3 output format produced by each file in the multiple-file queue.",
+  },
+  {
+    title: "WebAssembly — Wikipedia",
+    url: "https://en.wikipedia.org/wiki/WebAssembly",
+    publisher: "Wikipedia",
+    note: "Explains the WebAssembly runtime whose per-tab memory limits cap how many files a browser session can process.",
+  },
+  {
+    title: "MPEG-4 — Wikipedia",
+    url: "https://en.wikipedia.org/wiki/MPEG-4",
+    publisher: "Wikipedia",
+    note: "Defines the MP4 container that each input file in the multiple-file set arrives in.",
+  },
+];
 
 export const metadata: Metadata = {
   title: "Convert Multiple MP4 Files to MP3 at Once — Workflow",
@@ -40,6 +68,12 @@ export default function Page() {
     mainEntityOfPage: "https://www.mp4tomp3.online/mp4-to-mp3-multiple-files",
     datePublished: "2026-11-16",
     dateModified: "2026-11-16",
+    citation: [
+      "https://en.wikipedia.org/wiki/FFmpeg",
+      "https://en.wikipedia.org/wiki/MP3",
+      "https://en.wikipedia.org/wiki/WebAssembly",
+      "https://en.wikipedia.org/wiki/MPEG-4",
+    ],
   };
 
   return (
@@ -296,6 +330,8 @@ export default function Page() {
             batch.
           </p>
         </section>
+
+        <Citations sources={sources} />
 
         <section className="rounded-2xl border border-primary/30 bg-primary/5 p-6 text-center">
           <h2 className="text-xl font-bold">Convert multiple MP4 files now</h2>

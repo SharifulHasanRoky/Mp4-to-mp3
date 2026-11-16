@@ -3,6 +3,7 @@ import Link from "next/link";
 import { PageShell } from "@/components/page-shell";
 import { JsonLd } from "@/components/json-ld";
 import { QuickAnswer } from "@/components/quick-answer";
+import { Citations, type Citation } from "@/components/citations";
 import {
   FileAudio,
   Music,
@@ -12,6 +13,39 @@ import {
   Layers,
   Mic,
 } from "lucide-react";
+
+const sources: Citation[] = [
+  {
+    title: "MPEG-4 — Wikipedia",
+    url: "https://en.wikipedia.org/wiki/MPEG-4",
+    publisher: "Wikipedia",
+    note: "Documents the MP4 container and how its mixed audio stream (voice plus music) is extracted as a single track.",
+  },
+  {
+    title: "MP3 — Wikipedia",
+    url: "https://en.wikipedia.org/wiki/MP3",
+    publisher: "Wikipedia",
+    note: "Confirms MP3 as the output format for the full mixed-audio extraction described in the article.",
+  },
+  {
+    title: "FFmpeg — Wikipedia",
+    url: "https://en.wikipedia.org/wiki/FFmpeg",
+    publisher: "Wikipedia",
+    note: "Background on FFmpeg, which performs the demux step that pulls the mixed audio out of the MP4.",
+  },
+  {
+    title: "Audio codecs — MDN Web Docs",
+    url: "https://developer.mozilla.org/en-US/docs/Web/Media/Formats/Audio_codecs",
+    publisher: "Mozilla MDN",
+    note: "Lists audio codecs found inside MP4 containers, supporting the explanation of mixed-audio extraction.",
+  },
+  {
+    title: "Fair use — Wikipedia",
+    url: "https://en.wikipedia.org/wiki/Fair_use",
+    publisher: "Wikipedia",
+    note: "Underpins the guidance on only extracting background music from videos you own or have permission to process.",
+  },
+];
 
 export const metadata: Metadata = {
   title: "How to Extract Background Music from MP4 Video Files",
@@ -39,6 +73,13 @@ export default function Page() {
     mainEntityOfPage: "https://www.mp4tomp3.online/extract-background-music-from-mp4",
     datePublished: "2026-11-16",
     dateModified: "2026-11-16",
+    citation: [
+      "https://en.wikipedia.org/wiki/MPEG-4",
+      "https://en.wikipedia.org/wiki/MP3",
+      "https://en.wikipedia.org/wiki/FFmpeg",
+      "https://developer.mozilla.org/en-US/docs/Web/Media/Formats/Audio_codecs",
+      "https://en.wikipedia.org/wiki/Fair_use",
+    ],
   };
 
   return (
@@ -254,6 +295,8 @@ export default function Page() {
             being straight with you.
           </p>
         </section>
+
+        <Citations sources={sources} />
 
         <section className="rounded-2xl border border-primary/30 bg-primary/5 p-6 text-center">
           <h2 className="text-xl font-bold">

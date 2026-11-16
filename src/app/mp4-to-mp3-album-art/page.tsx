@@ -3,6 +3,7 @@ import Link from "next/link";
 import { PageShell } from "@/components/page-shell";
 import { JsonLd } from "@/components/json-ld";
 import { QuickAnswer } from "@/components/quick-answer";
+import { Citations, type Citation } from "@/components/citations";
 import {
   FileAudio,
   Image as ImageIcon,
@@ -38,6 +39,12 @@ export default function Page() {
     mainEntityOfPage: "https://www.mp4tomp3.online/mp4-to-mp3-album-art",
     datePublished: "2026-11-16",
     dateModified: "2026-11-16",
+    citation: [
+      "https://en.wikipedia.org/wiki/ID3",
+      "https://en.wikipedia.org/wiki/MP3",
+      "https://ffmpeg.org/ffmpeg.html",
+      "https://en.wikipedia.org/wiki/LAME",
+    ],
   };
 
   return (
@@ -313,6 +320,15 @@ export default function Page() {
             guide covers the upstream steps.
           </p>
         </section>
+
+        <Citations
+          sources={[
+            { title: "ID3 \u2014 Wikipedia", url: "https://en.wikipedia.org/wiki/ID3", publisher: "Wikipedia", note: "The ID3 APIC frame that embeds album art inside an MP3." },
+            { title: "MP3 \u2014 Wikipedia", url: "https://en.wikipedia.org/wiki/MP3", publisher: "Wikipedia", note: "How MP3 carries embedded cover art via ID3 frames." },
+            { title: "FFmpeg documentation", url: "https://ffmpeg.org/ffmpeg.html", publisher: "FFmpeg", note: "FFmpeg options for attaching album art to MP3 output." },
+            { title: "LAME \u2014 Wikipedia", url: "https://en.wikipedia.org/wiki/LAME", publisher: "Wikipedia", note: "The libmp3lame encoder that writes APIC artwork frames." },
+          ]}
+        />
 
         <section className="rounded-2xl border border-primary/30 bg-primary/5 p-6 text-center">
           <h2 className="text-xl font-bold">

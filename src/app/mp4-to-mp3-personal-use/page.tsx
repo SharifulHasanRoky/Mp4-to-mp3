@@ -3,6 +3,7 @@ import Link from "next/link";
 import { PageShell } from "@/components/page-shell";
 import { JsonLd } from "@/components/json-ld";
 import { QuickAnswer } from "@/components/quick-answer";
+import { Citations, type Citation } from "@/components/citations";
 import {
   FileAudio,
   Scale,
@@ -40,6 +41,11 @@ export default function Page() {
       "https://www.mp4tomp3.online/mp4-to-mp3-personal-use",
     datePublished: "2026-11-16",
     dateModified: "2026-11-16",
+    citation: [
+      "https://www.copyright.gov/",
+      "https://en.wikipedia.org/wiki/Fair_use",
+      "https://www.copyright.gov/fair-use/",
+    ],
   };
 
   return (
@@ -325,6 +331,14 @@ export default function Page() {
             explains how to file takedown notices if you are a rightsholder.
           </p>
         </section>
+
+        <Citations
+          sources={[
+            { title: "U.S. Copyright Office", url: "https://www.copyright.gov/", publisher: "U.S. Copyright Office", note: "Official authority on personal copying of lawfully acquired media." },
+            { title: "Fair use \u2014 Wikipedia", url: "https://en.wikipedia.org/wiki/Fair_use", publisher: "Wikipedia", note: "How personal, non-commercial use interacts with the fair-use doctrine." },
+            { title: "Fair use index \u2014 U.S. Copyright Office", url: "https://www.copyright.gov/fair-use/", publisher: "U.S. Copyright Office", note: "Official fair-use guidance relevant to personal format-shifting." },
+          ]}
+        />
 
         <section className="rounded-2xl border border-primary/30 bg-primary/5 p-6 text-center">
           <h2 className="text-xl font-bold">

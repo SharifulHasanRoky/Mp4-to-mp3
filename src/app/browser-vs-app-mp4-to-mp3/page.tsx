@@ -3,6 +3,7 @@ import Link from "next/link";
 import { PageShell } from "@/components/page-shell";
 import { JsonLd } from "@/components/json-ld";
 import { QuickAnswer } from "@/components/quick-answer";
+import { Citations, type Citation } from "@/components/citations";
 import {
   FileAudio,
   Globe,
@@ -42,6 +43,13 @@ export default function Page() {
       "https://www.mp4tomp3.online/browser-vs-app-mp4-to-mp3",
     datePublished: "2026-11-16",
     dateModified: "2026-11-16",
+    citation: [
+      "https://en.wikipedia.org/wiki/WebAssembly",
+      "https://github.com/ffmpegwasm/ffmpeg.wasm",
+      "https://en.wikipedia.org/wiki/FFmpeg",
+      "https://developer.mozilla.org/en-US/docs/WebAssembly",
+      "https://en.wikipedia.org/wiki/General_Data_Protection_Regulation",
+    ],
   };
 
   return (
@@ -304,6 +312,16 @@ export default function Page() {
             side.
           </p>
         </section>
+
+        <Citations
+          sources={[
+            { title: "WebAssembly \u2014 Wikipedia", url: "https://en.wikipedia.org/wiki/WebAssembly", publisher: "Wikipedia", note: "The runtime that lets browser converters rival desktop apps." },
+            { title: "ffmpeg.wasm \u2014 GitHub", url: "https://github.com/ffmpegwasm/ffmpeg.wasm", publisher: "GitHub", note: "The WASM FFmpeg port powering the browser-based path." },
+            { title: "FFmpeg \u2014 Wikipedia", url: "https://en.wikipedia.org/wiki/FFmpeg", publisher: "Wikipedia", note: "The engine shared by both browser and desktop-app converters." },
+            { title: "WebAssembly \u2014 MDN", url: "https://developer.mozilla.org/en-US/docs/WebAssembly", publisher: "Mozilla MDN", note: "MDN reference for in-browser FFmpeg execution." },
+            { title: "General Data Protection Regulation \u2014 Wikipedia", url: "https://en.wikipedia.org/wiki/General_Data_Protection_Regulation", publisher: "Wikipedia", note: "Privacy advantage of browser-based over installed apps." },
+          ]}
+        />
 
         <section className="rounded-2xl border border-primary/30 bg-primary/5 p-6 text-center">
           <h2 className="text-xl font-bold">Start with the browser</h2>

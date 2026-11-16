@@ -3,6 +3,7 @@ import Link from "next/link";
 import { PageShell } from "@/components/page-shell";
 import { JsonLd } from "@/components/json-ld";
 import { QuickAnswer } from "@/components/quick-answer";
+import { Citations, type Citation } from "@/components/citations";
 import {
   FileAudio,
   Scissors,
@@ -38,6 +39,12 @@ export default function Page() {
     mainEntityOfPage: "https://www.mp4tomp3.online/mp4-to-mp3-trim-audio",
     datePublished: "2026-11-16",
     dateModified: "2026-11-16",
+    citation: [
+      "https://en.wikipedia.org/wiki/FFmpeg",
+      "https://ffmpeg.org/ffmpeg.html",
+      "https://en.wikipedia.org/wiki/MP3",
+      "https://en.wikipedia.org/wiki/ID3",
+    ],
   };
 
   return (
@@ -306,6 +313,15 @@ export default function Page() {
             source MP4s.
           </p>
         </section>
+
+        <Citations
+          sources={[
+            { title: "FFmpeg \u2014 Wikipedia", url: "https://en.wikipedia.org/wiki/FFmpeg", publisher: "Wikipedia", note: "The engine whose -ss/-t flags trim audio during conversion." },
+            { title: "FFmpeg documentation", url: "https://ffmpeg.org/ffmpeg.html", publisher: "FFmpeg", note: "Official manual for the seek and duration flags used to trim." },
+            { title: "MP3 \u2014 Wikipedia", url: "https://en.wikipedia.org/wiki/MP3", publisher: "Wikipedia", note: "The MP3 output format produced after trimming." },
+            { title: "ID3 \u2014 Wikipedia", url: "https://en.wikipedia.org/wiki/ID3", publisher: "Wikipedia", note: "Metadata handling preserved across a trimmed MP3." },
+          ]}
+        />
 
         <section className="rounded-2xl border border-primary/30 bg-primary/5 p-6 text-center">
           <h2 className="text-xl font-bold">

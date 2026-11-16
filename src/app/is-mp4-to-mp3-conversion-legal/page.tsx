@@ -3,6 +3,7 @@ import Link from "next/link";
 import { PageShell } from "@/components/page-shell";
 import { JsonLd } from "@/components/json-ld";
 import { QuickAnswer } from "@/components/quick-answer";
+import { Citations, type Citation } from "@/components/citations";
 import {
   FileAudio,
   Scale,
@@ -39,6 +40,11 @@ export default function Page() {
       "https://www.mp4tomp3.online/is-mp4-to-mp3-conversion-legal",
     datePublished: "2026-11-16",
     dateModified: "2026-11-16",
+    citation: [
+      "https://www.copyright.gov/",
+      "https://en.wikipedia.org/wiki/Fair_use",
+      "https://www.copyright.gov/fair-use/",
+    ],
   };
 
   return (
@@ -367,6 +373,14 @@ export default function Page() {
             is a good starting point.
           </p>
         </section>
+
+        <Citations
+          sources={[
+            { title: "U.S. Copyright Office", url: "https://www.copyright.gov/", publisher: "U.S. Copyright Office", note: "Official U.S. government authority on copyright law and personal copying." },
+            { title: "Fair use \u2014 Wikipedia", url: "https://en.wikipedia.org/wiki/Fair_use", publisher: "Wikipedia", note: "The four-factor fair use test applied to format conversion." },
+            { title: "Fair use index \u2014 U.S. Copyright Office", url: "https://www.copyright.gov/fair-use/", publisher: "U.S. Copyright Office", note: "Official fair-use guidance from the U.S. Copyright Office." },
+          ]}
+        />
 
         <section className="rounded-2xl border border-primary/30 bg-primary/5 p-6 text-center">
           <h2 className="text-xl font-bold">

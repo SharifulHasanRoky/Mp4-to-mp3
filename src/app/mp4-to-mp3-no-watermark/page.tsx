@@ -3,6 +3,7 @@ import Link from "next/link";
 import { PageShell } from "@/components/page-shell";
 import { JsonLd } from "@/components/json-ld";
 import { QuickAnswer } from "@/components/quick-answer";
+import { Citations, type Citation } from "@/components/citations";
 import {
   FileAudio,
   Check,
@@ -41,6 +42,11 @@ export default function Page() {
     mainEntityOfPage: "https://www.mp4tomp3.online/mp4-to-mp3-no-watermark",
     datePublished: "2026-11-16",
     dateModified: "2026-11-16",
+    citation: [
+      "https://ffmpeg.org/ffmpeg.html",
+      "https://en.wikipedia.org/wiki/LAME",
+      "https://en.wikipedia.org/wiki/MP3",
+    ],
   };
 
   return (
@@ -285,6 +291,14 @@ export default function Page() {
             not accept URLs that point to them.
           </p>
         </section>
+
+        <Citations
+          sources={[
+            { title: "FFmpeg documentation", url: "https://ffmpeg.org/ffmpeg.html", publisher: "FFmpeg", note: "Official FFmpeg manual for the clean, watermark-free output pipeline." },
+            { title: "LAME \u2014 Wikipedia", url: "https://en.wikipedia.org/wiki/LAME", publisher: "Wikipedia", note: "The libmp3lame encoder that writes unmodified MP3 audio." },
+            { title: "MP3 \u2014 Wikipedia", url: "https://en.wikipedia.org/wiki/MP3", publisher: "Wikipedia", note: "The MP3 output format delivered without any watermark." },
+          ]}
+        />
 
         <section className="rounded-2xl border border-primary/30 bg-primary/5 p-6 text-center">
           <h2 className="text-xl font-bold">Convert MP4 to MP3 — no watermark</h2>

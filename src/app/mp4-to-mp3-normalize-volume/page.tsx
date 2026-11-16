@@ -3,6 +3,7 @@ import Link from "next/link";
 import { PageShell } from "@/components/page-shell";
 import { JsonLd } from "@/components/json-ld";
 import { QuickAnswer } from "@/components/quick-answer";
+import { Citations, type Citation } from "@/components/citations";
 import {
   FileAudio,
   Volume2,
@@ -39,6 +40,13 @@ export default function Page() {
       "https://www.mp4tomp3.online/mp4-to-mp3-normalize-volume",
     datePublished: "2026-11-16",
     dateModified: "2026-11-16",
+    citation: [
+      "https://en.wikipedia.org/wiki/MP3",
+      "https://en.wikipedia.org/wiki/LAME",
+      "https://wiki.hydrogenaud.io/index.php?title=MP3",
+      "https://wiki.hydrogenaud.io/index.php?title=LAME",
+      "https://ffmpeg.org/ffmpeg.html",
+    ],
   };
 
   return (
@@ -311,6 +319,16 @@ export default function Page() {
             page covers the conversion process in detail.
           </p>
         </section>
+
+        <Citations
+          sources={[
+            { title: "MP3 \u2014 Wikipedia", url: "https://en.wikipedia.org/wiki/MP3", publisher: "Wikipedia", note: "How MP3 stores loudness and why normalization is needed." },
+            { title: "LAME \u2014 Wikipedia", url: "https://en.wikipedia.org/wiki/LAME", publisher: "Wikipedia", note: "The libmp3lame encoder flags relevant to volume normalization." },
+            { title: "Hydrogenaudio \u2014 MP3", url: "https://wiki.hydrogenaud.io/index.php?title=MP3", publisher: "Hydrogenaudio", note: "Community reference on MP3 volume and replay gain." },
+            { title: "Hydrogenaudio \u2014 LAME", url: "https://wiki.hydrogenaud.io/index.php?title=LAME", publisher: "Hydrogenaudio", note: "Recommended LAME settings touching output loudness." },
+            { title: "FFmpeg documentation", url: "https://ffmpeg.org/ffmpeg.html", publisher: "FFmpeg", note: "FFmpeg audio filter reference used for loudness normalization." },
+          ]}
+        />
 
         <section className="rounded-2xl border border-primary/30 bg-primary/5 p-6 text-center">
           <h2 className="text-xl font-bold">

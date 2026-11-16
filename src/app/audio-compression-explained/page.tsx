@@ -3,6 +3,7 @@ import Link from "next/link";
 import { PageShell } from "@/components/page-shell";
 import { JsonLd } from "@/components/json-ld";
 import { QuickAnswer } from "@/components/quick-answer";
+import { Citations, type Citation } from "@/components/citations";
 import {
   FileAudio,
   Waves,
@@ -39,6 +40,12 @@ export default function Page() {
     mainEntityOfPage: "https://www.mp4tomp3.online/audio-compression-explained",
     datePublished: "2026-11-16",
     dateModified: "2026-11-16",
+    citation: [
+      "https://en.wikipedia.org/wiki/Psychoacoustics",
+      "https://en.wikipedia.org/wiki/Lossy_compression",
+      "https://en.wikipedia.org/wiki/MP3",
+      "https://en.wikipedia.org/wiki/LAME",
+    ],
   };
 
   return (
@@ -302,6 +309,15 @@ export default function Page() {
             for audio pulled out of video files.
           </p>
         </section>
+
+        <Citations
+          sources={[
+            { title: "Psychoacoustics \u2014 Wikipedia", url: "https://en.wikipedia.org/wiki/Psychoacoustics", publisher: "Wikipedia", note: "The perceptual model that lets MP3 and AAC discard inaudible sound." },
+            { title: "Lossy compression \u2014 Wikipedia", url: "https://en.wikipedia.org/wiki/Lossy_compression", publisher: "Wikipedia", note: "Transform coding and quantisation as used by modern audio codecs." },
+            { title: "MP3 \u2014 Wikipedia", url: "https://en.wikipedia.org/wiki/MP3", publisher: "Wikipedia", note: "MPEG-1 Audio Layer III as the canonical example of psychoacoustic compression." },
+            { title: "LAME MP3 encoder \u2014 Wikipedia", url: "https://en.wikipedia.org/wiki/LAME", publisher: "Wikipedia", note: "The reference encoder implementation of the MP3 psychoacoustic model." },
+          ]}
+        />
 
         <section className="rounded-2xl border border-primary/30 bg-primary/5 p-6 text-center">
           <h2 className="text-xl font-bold">

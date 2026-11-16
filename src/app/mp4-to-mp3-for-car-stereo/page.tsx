@@ -3,6 +3,7 @@ import Link from "next/link";
 import { PageShell } from "@/components/page-shell";
 import { JsonLd } from "@/components/json-ld";
 import { QuickAnswer } from "@/components/quick-answer";
+import { Citations, type Citation } from "@/components/citations";
 import {
   FileAudio,
   Car,
@@ -12,6 +13,33 @@ import {
   AlertTriangle,
   Volume2,
 } from "lucide-react";
+
+const sources: Citation[] = [
+  {
+    title: "MP3 — Wikipedia",
+    url: "https://en.wikipedia.org/wiki/MP3",
+    publisher: "Wikipedia",
+    note: "Documents the MP3 format and why it is the universally supported format for car-stereo USB playback.",
+  },
+  {
+    title: "ID3 — Wikipedia",
+    url: "https://en.wikipedia.org/wiki/ID3",
+    publisher: "Wikipedia",
+    note: "Describes ID3 tags, which car stereos read to display track titles and artists from the extracted MP3.",
+  },
+  {
+    title: "Bit rate — Wikipedia",
+    url: "https://en.wikipedia.org/wiki/Bit_rate",
+    publisher: "Wikipedia",
+    note: "Supports the bitrate recommendations (192/320 kbps) given for in-car MP3 playback quality.",
+  },
+  {
+    title: "MPEG-4 — Wikipedia",
+    url: "https://en.wikipedia.org/wiki/MPEG-4",
+    publisher: "Wikipedia",
+    note: "Defines the MP4 container the car-stereo source video typically arrives in before extraction.",
+  },
+];
 
 export const metadata: Metadata = {
   title: "Convert MP4 to MP3 for Your Car Stereo (USB or Aux)",
@@ -39,6 +67,12 @@ export default function Page() {
     mainEntityOfPage: "https://www.mp4tomp3.online/mp4-to-mp3-for-car-stereo",
     datePublished: "2026-11-16",
     dateModified: "2026-11-16",
+    citation: [
+      "https://en.wikipedia.org/wiki/MP3",
+      "https://en.wikipedia.org/wiki/ID3",
+      "https://en.wikipedia.org/wiki/Bit_rate",
+      "https://en.wikipedia.org/wiki/MPEG-4",
+    ],
   };
 
   return (
@@ -300,6 +334,8 @@ export default function Page() {
             quality cost, but for in-car listening it is imperceptible.
           </p>
         </section>
+
+        <Citations sources={sources} />
 
         <section className="rounded-2xl border border-primary/30 bg-primary/5 p-6 text-center">
           <h2 className="text-xl font-bold">

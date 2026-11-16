@@ -3,6 +3,7 @@ import Link from "next/link";
 import { PageShell } from "@/components/page-shell";
 import { JsonLd } from "@/components/json-ld";
 import { QuickAnswer } from "@/components/quick-answer";
+import { Citations, type Citation } from "@/components/citations";
 import {
   FileAudio,
   Zap,
@@ -42,6 +43,11 @@ export default function Page() {
     mainEntityOfPage: "https://www.mp4tomp3.online/mp4-to-wav-converter",
     datePublished: "2026-11-16",
     dateModified: "2026-11-16",
+    citation: [
+      "https://en.wikipedia.org/wiki/FLAC",
+      "https://en.wikipedia.org/wiki/Advanced_Audio_Coding",
+      "https://ffmpeg.org/ffmpeg.html",
+    ],
   };
 
   return (
@@ -343,6 +349,14 @@ export default function Page() {
             handles every format on any device with a modern browser.
           </p>
         </section>
+
+        <Citations
+          sources={[
+            { title: "FLAC \u2014 Wikipedia", url: "https://en.wikipedia.org/wiki/FLAC", publisher: "Wikipedia", note: "Lossless audio reference relevant to MP4-to-WAV extraction." },
+            { title: "Advanced Audio Coding \u2014 Wikipedia", url: "https://en.wikipedia.org/wiki/Advanced_Audio_Coding", publisher: "Wikipedia", note: "AAC source codec that the WAV converter decodes." },
+            { title: "FFmpeg documentation", url: "https://ffmpeg.org/ffmpeg.html", publisher: "FFmpeg", note: "Official manual for the MP4-to-WAV decode pipeline." },
+          ]}
+        />
 
         <section className="rounded-2xl border border-primary/30 bg-primary/5 p-6 text-center">
           <h2 className="text-xl font-bold">Convert MP4 to WAV now</h2>

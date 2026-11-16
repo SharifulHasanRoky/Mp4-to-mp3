@@ -3,6 +3,7 @@ import Link from "next/link";
 import { PageShell } from "@/components/page-shell";
 import { JsonLd } from "@/components/json-ld";
 import { QuickAnswer } from "@/components/quick-answer";
+import { Citations, type Citation } from "@/components/citations";
 import {
   FileAudio,
   Music,
@@ -38,6 +39,11 @@ export default function Page() {
     mainEntityOfPage: "https://www.mp4tomp3.online/mp4-to-mp3-high-quality",
     datePublished: "2026-11-16",
     dateModified: "2026-11-16",
+    citation: [
+      "https://en.wikipedia.org/wiki/MP3",
+      "https://wiki.hydrogenaud.io/index.php?title=LAME",
+      "https://ffmpeg.org/ffmpeg-codecs.html",
+    ],
   };
 
   return (
@@ -411,6 +417,14 @@ export default function Page() {
             </li>
           </ul>
         </section>
+
+        <Citations
+          sources={[
+            { title: "MP3 \u2014 Wikipedia", url: "https://en.wikipedia.org/wiki/MP3", publisher: "Wikipedia", note: "High-quality MP3 bitrate recommendations and the transparency threshold." },
+            { title: "LAME recommended settings \u2014 Hydrogenaudio", url: "https://wiki.hydrogenaud.io/index.php?title=LAME", publisher: "Hydrogenaudio Wiki", note: "Community-verified high-quality LAME settings (V0/V2 and 320 kbps CBR)." },
+            { title: "FFmpeg codecs documentation", url: "https://ffmpeg.org/ffmpeg-codecs.html", publisher: "FFmpeg", note: "libmp3lame flags for high-quality MP3 encoding." },
+          ]}
+        />
 
         <section className="rounded-2xl border border-primary/30 bg-primary/5 p-6 text-center">
           <h2 className="text-xl font-bold">

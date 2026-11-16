@@ -3,6 +3,7 @@ import Link from "next/link";
 import { PageShell } from "@/components/page-shell";
 import { JsonLd } from "@/components/json-ld";
 import { QuickAnswer } from "@/components/quick-answer";
+import { Citations, type Citation } from "@/components/citations";
 import {
   Terminal,
   Globe,
@@ -10,6 +11,39 @@ import {
   AlertTriangle,
   Download,
 } from "lucide-react";
+
+const sources: Citation[] = [
+  {
+    title: "Container format (digital) — Wikipedia",
+    url: "https://en.wikipedia.org/wiki/Container_format_(digital)",
+    publisher: "Wikipedia",
+    note: "Defines multimedia containers and the demuxing operation that underlies audio extraction.",
+  },
+  {
+    title: "FFmpeg — Wikipedia",
+    url: "https://en.wikipedia.org/wiki/FFmpeg",
+    publisher: "Wikipedia",
+    note: "Background on the FFmpeg framework used to demux containers and re-encode audio streams.",
+  },
+  {
+    title: "MP3 — Wikipedia",
+    url: "https://en.wikipedia.org/wiki/MP3",
+    publisher: "Wikipedia",
+    note: "Documents the MP3 output format and why it remains the default extraction target.",
+  },
+  {
+    title: "Lossy compression — Wikipedia",
+    url: "https://en.wikipedia.org/wiki/Lossy_compression",
+    publisher: "Wikipedia",
+    note: "Explains the lossy compression trade-off discussed when choosing output quality during extraction.",
+  },
+  {
+    title: "WebAssembly — Wikipedia",
+    url: "https://en.wikipedia.org/wiki/WebAssembly",
+    publisher: "Wikipedia",
+    note: "Describes WebAssembly, which lets the in-browser extraction tool run a full FFmpeg build without install.",
+  },
+];
 
 export const metadata: Metadata = {
   title: "Extracting Audio From Video — Complete Guide (2026)",
@@ -37,6 +71,13 @@ export default function Page() {
     mainEntityOfPage: "https://www.mp4tomp3.online/extracting-audio-from-video",
     datePublished: "2026-11-16",
     dateModified: "2026-11-16",
+    citation: [
+      "https://en.wikipedia.org/wiki/Container_format_(digital)",
+      "https://en.wikipedia.org/wiki/FFmpeg",
+      "https://en.wikipedia.org/wiki/MP3",
+      "https://en.wikipedia.org/wiki/Lossy_compression",
+      "https://en.wikipedia.org/wiki/WebAssembly",
+    ],
   };
 
   return (
@@ -347,6 +388,8 @@ export default function Page() {
             guide covers the browser-based conversion pipeline end to end.
           </p>
         </section>
+
+        <Citations sources={sources} />
 
         <section className="rounded-2xl border border-primary/30 bg-primary/5 p-6 text-center">
           <h2 className="text-xl font-bold">Extract audio from your video</h2>

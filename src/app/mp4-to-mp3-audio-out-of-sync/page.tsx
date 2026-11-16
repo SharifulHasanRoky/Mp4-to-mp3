@@ -3,6 +3,7 @@ import Link from "next/link";
 import { PageShell } from "@/components/page-shell";
 import { JsonLd } from "@/components/json-ld";
 import { QuickAnswer } from "@/components/quick-answer";
+import { Citations, type Citation } from "@/components/citations";
 import {
   FileAudio,
   Clock,
@@ -11,6 +12,33 @@ import {
   AlertTriangle,
   Check,
 } from "lucide-react";
+
+const sources: Citation[] = [
+  {
+    title: "MPEG-4 — Wikipedia",
+    url: "https://en.wikipedia.org/wiki/MPEG-4",
+    publisher: "Wikipedia",
+    note: "Documents MP4 edit lists (elst atoms) and timecode handling that can introduce the start offset responsible for sync drift.",
+  },
+  {
+    title: "FFmpeg — Wikipedia",
+    url: "https://en.wikipedia.org/wiki/FFmpeg",
+    publisher: "Wikipedia",
+    note: "Explains the FFmpeg -map and -itsoffset options used to correct stream offsets during extraction.",
+  },
+  {
+    title: "MP3 — Wikipedia",
+    url: "https://en.wikipedia.org/wiki/MP3",
+    publisher: "Wikipedia",
+    note: "Notes MP3 encoder delay and gapless playback limitations that can be perceived as sync drift in the extracted file.",
+  },
+  {
+    title: "H.264/MPEG-4 AVC — Wikipedia",
+    url: "https://en.wikipedia.org/wiki/H.264/MPEG-4_AVC",
+    publisher: "Wikipedia",
+    note: "Describes variable frame rate handling in H.264 sources that can cause the audio to drift out of sync after extraction.",
+  },
+];
 
 export const metadata: Metadata = {
   title: "Fix: Audio Out of Sync After MP4 to MP3 Conversion",
@@ -39,6 +67,12 @@ export default function Page() {
       "https://www.mp4tomp3.online/mp4-to-mp3-audio-out-of-sync",
     datePublished: "2026-11-16",
     dateModified: "2026-11-16",
+    citation: [
+      "https://en.wikipedia.org/wiki/MPEG-4",
+      "https://en.wikipedia.org/wiki/FFmpeg",
+      "https://en.wikipedia.org/wiki/MP3",
+      "https://en.wikipedia.org/wiki/H.264/MPEG-4_AVC",
+    ],
   };
 
   return (
@@ -267,6 +301,8 @@ export default function Page() {
             </li>
           </ul>
         </section>
+
+        <Citations sources={sources} />
 
         <section className="rounded-2xl border border-primary/30 bg-primary/5 p-6 text-center">
           <h2 className="text-xl font-bold">Convert with the timing intact</h2>

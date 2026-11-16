@@ -3,6 +3,7 @@ import Link from "next/link";
 import { PageShell } from "@/components/page-shell";
 import { JsonLd } from "@/components/json-ld";
 import { QuickAnswer } from "@/components/quick-answer";
+import { Citations, type Citation } from "@/components/citations";
 import {
   FileAudio,
   Cpu,
@@ -12,6 +13,33 @@ import {
   Zap,
   Check,
 } from "lucide-react";
+
+const sources: Citation[] = [
+  {
+    title: "FFmpeg — Wikipedia",
+    url: "https://en.wikipedia.org/wiki/FFmpeg",
+    publisher: "Wikipedia",
+    note: "Background on the FFmpeg pipeline whose demux and re-encode stages determine CPU-bound conversion time.",
+  },
+  {
+    title: "LAME — Wikipedia",
+    url: "https://en.wikipedia.org/wiki/LAME",
+    publisher: "Wikipedia",
+    note: "Documents libmp3lame, the encoder whose VBR quality setting directly influences encode time.",
+  },
+  {
+    title: "WebAssembly — Wikipedia",
+    url: "https://en.wikipedia.org/wiki/WebAssembly",
+    publisher: "Wikipedia",
+    note: "Explains why in-browser WebAssembly FFmpeg is CPU-bound and slower than a native build, particularly on mobile.",
+  },
+  {
+    title: "Bit rate — Wikipedia",
+    url: "https://en.wikipedia.org/wiki/Bit_rate",
+    publisher: "Wikipedia",
+    note: "Supports the relationship between source bit rate, file size and the work the encoder must do per second of audio.",
+  },
+];
 
 export const metadata: Metadata = {
   title: "Why Is Your MP4 to MP3 Conversion Slow? Speed It Up",
@@ -40,6 +68,12 @@ export default function Page() {
       "https://www.mp4tomp3.online/mp4-to-mp3-slow-conversion",
     datePublished: "2026-11-16",
     dateModified: "2026-11-16",
+    citation: [
+      "https://en.wikipedia.org/wiki/FFmpeg",
+      "https://en.wikipedia.org/wiki/LAME",
+      "https://en.wikipedia.org/wiki/WebAssembly",
+      "https://en.wikipedia.org/wiki/Bit_rate",
+    ],
   };
 
   return (
@@ -285,6 +319,8 @@ export default function Page() {
             </li>
           </ul>
         </section>
+
+        <Citations sources={sources} />
 
         <section className="rounded-2xl border border-primary/30 bg-primary/5 p-6 text-center">
           <h2 className="text-xl font-bold">Convert MP4 to MP3 in seconds</h2>

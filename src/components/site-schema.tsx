@@ -15,7 +15,21 @@ const organizationSchema = {
   logo: `${SITE_URL}/logo.png`,
   description:
     "Free online MP4 to MP3 converter. Convert video files to MP3, WAV, or MP4 entirely in the browser. No sign-up, no watermark, no server-side upload.",
-  sameAs: [],
+  // sameAs links the Organization to its authoritative external identities.
+  // This is the Schema.org "sameAs" property — it tells Google/AI engines
+  // that this organization is the same entity as the one on these pages.
+  // Only canonical, authoritative, official URLs belong here.
+  sameAs: [
+    "https://en.wikipedia.org/wiki/MP3",
+    "https://en.wikipedia.org/wiki/MPEG-4",
+    "https://en.wikipedia.org/wiki/FFmpeg",
+    "https://ffmpeg.org/",
+    "https://en.wikipedia.org/wiki/LAME",
+    "https://lame.sourceforge.io/",
+    "https://github.com/ffmpegwasm/ffmpeg.wasm",
+    "https://www.iso.org/standard/53943.html", // ISO/IEC 14496-14 (MP4)
+    "https://www.iso.org/standard/22413.html", // ISO/IEC 11172-3 (MP3 audio)
+  ],
   contactPoint: [
     {
       "@type": "ContactPoint",

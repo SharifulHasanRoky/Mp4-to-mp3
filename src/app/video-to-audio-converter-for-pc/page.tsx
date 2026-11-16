@@ -3,6 +3,7 @@ import Link from "next/link";
 import { PageShell } from "@/components/page-shell";
 import { JsonLd } from "@/components/json-ld";
 import { QuickAnswer } from "@/components/quick-answer";
+import { Citations, type Citation } from "@/components/citations";
 import {
   FileAudio,
   Monitor,
@@ -41,6 +42,11 @@ export default function Page() {
       "https://www.mp4tomp3.online/video-to-audio-converter-for-pc",
     datePublished: "2026-11-16",
     dateModified: "2026-11-16",
+    citation: [
+      "https://en.wikipedia.org/wiki/FFmpeg",
+      "https://ffmpeg.org/",
+      "https://en.wikipedia.org/wiki/LAME",
+    ],
   };
 
   return (
@@ -392,6 +398,14 @@ export default function Page() {
             available if you want a lossless intermediate for editing.
           </p>
         </section>
+
+        <Citations
+          sources={[
+            { title: "FFmpeg \u2014 Wikipedia", url: "https://en.wikipedia.org/wiki/FFmpeg", publisher: "Wikipedia", note: "The FFmpeg engine used by desktop and PC converters alike." },
+            { title: "FFmpeg", url: "https://ffmpeg.org/", publisher: "FFmpeg.org", note: "Official FFmpeg project home for PC-side conversion tooling." },
+            { title: "LAME \u2014 Wikipedia", url: "https://en.wikipedia.org/wiki/LAME", publisher: "Wikipedia", note: "The libmp3lame encoder shared by PC and browser converters." },
+          ]}
+        />
 
         <section className="rounded-2xl border border-primary/30 bg-primary/5 p-6 text-center">
           <h2 className="text-xl font-bold">

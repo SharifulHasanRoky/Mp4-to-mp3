@@ -3,6 +3,7 @@ import Link from "next/link";
 import { PageShell } from "@/components/page-shell";
 import { JsonLd } from "@/components/json-ld";
 import { QuickAnswer } from "@/components/quick-answer";
+import { Citations, type Citation } from "@/components/citations";
 import { FileAudio } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -111,6 +112,11 @@ export default function Page() {
       name: item.q,
       acceptedAnswer: { "@type": "Answer", text: item.a },
     })),
+    citation: [
+      "https://en.wikipedia.org/wiki/MP3",
+      "https://ffmpeg.org/ffmpeg.html",
+      "https://developer.mozilla.org/en-US/docs/WebAssembly",
+    ],
   };
 
   return (
@@ -201,6 +207,14 @@ export default function Page() {
             guide explains the browser-based model in depth.
           </p>
         </section>
+
+        <Citations
+          sources={[
+            { title: "MP3 \u2014 Wikipedia", url: "https://en.wikipedia.org/wiki/MP3", publisher: "Wikipedia", note: "Foundational MP3 facts referenced across the FAQ answers." },
+            { title: "FFmpeg documentation", url: "https://ffmpeg.org/ffmpeg.html", publisher: "FFmpeg", note: "The FFmpeg pipeline that powers browser-based MP4 to MP3 conversion." },
+            { title: "WebAssembly \u2014 MDN", url: "https://developer.mozilla.org/en-US/docs/WebAssembly", publisher: "Mozilla MDN", note: "How WebAssembly lets FFmpeg run inside the browser without uploads." },
+          ]}
+        />
 
         <section className="rounded-2xl border border-primary/30 bg-primary/5 p-6 text-center">
           <h2 className="text-xl font-bold">Convert MP4 to MP3 now</h2>

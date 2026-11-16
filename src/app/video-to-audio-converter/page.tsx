@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { LandingPage } from "@/components/landing-page";
+import { Citations, type Citation } from "@/components/citations";
+import { JsonLd } from "@/components/json-ld";
 
 export const metadata: Metadata = {
   title: "Video to Audio Converter – Free Online Tool (No Sign-up)",
@@ -16,8 +18,27 @@ export const metadata: Metadata = {
   alternates: { canonical: "/video-to-audio-converter" },
 };
 
+  const citationJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: "Video to Audio Converter",
+    description: "Convert any video file to a high-quality MP3 audio track in seconds. Free, private, and powered by FFmpeg \u2014 no software to install, no sign-up. Works on PC, Mac, iPhone, and Android.",
+    author: { "@type": "Organization", name: "MP4toMP3.online" },
+    publisher: { "@type": "Organization", name: "MP4toMP3.online" },
+    mainEntityOfPage: "https://www.mp4tomp3.online/video-to-audio-converter",
+    datePublished: "2026-11-16",
+    dateModified: "2026-11-16",
+    citation: [
+      "https://ffmpeg.org/ffmpeg.html",
+      "https://en.wikipedia.org/wiki/LAME",
+      "https://developer.mozilla.org/en-US/docs/Web/Media/Formats/Audio_codecs",
+    ],
+  };
+
 export default function Page() {
   return (
+    <>
+      <JsonLd data={citationJsonLd} />
     <LandingPage
       currentPath="/video-to-audio-converter"
       h1="Video to Audio Converter"
@@ -96,5 +117,14 @@ export default function Page() {
         },
       ]}
     />
+
+      <Citations
+        sources={[
+          { title: "FFmpeg documentation", url: "https://ffmpeg.org/ffmpeg.html", publisher: "FFmpeg", note: "Official FFmpeg manual for the video-to-audio extraction pipeline." },
+          { title: "LAME \u2014 Wikipedia", url: "https://en.wikipedia.org/wiki/LAME", publisher: "Wikipedia", note: "The libmp3lame encoder used for the MP3 output." },
+          { title: "Web audio codec guide \u2014 MDN", url: "https://developer.mozilla.org/en-US/docs/Web/Media/Formats/Audio_codecs", publisher: "Mozilla MDN", note: "Codec characteristics for MP3 and related audio output." },
+        ]}
+      />
+    </>
   );
 }

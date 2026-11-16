@@ -3,6 +3,7 @@ import Link from "next/link";
 import { PageShell } from "@/components/page-shell";
 import { JsonLd } from "@/components/json-ld";
 import { QuickAnswer } from "@/components/quick-answer";
+import { Citations, type Citation } from "@/components/citations";
 import {
   FileAudio,
   Film,
@@ -40,6 +41,11 @@ export default function Page() {
     mainEntityOfPage: "https://www.mp4tomp3.online/mp4-to-mp3-vs-handbrake",
     datePublished: "2026-11-16",
     dateModified: "2026-11-16",
+    citation: [
+      "https://en.wikipedia.org/wiki/FFmpeg",
+      "https://en.wikipedia.org/wiki/H.264/MPEG-4_AVC",
+      "https://ffmpeg.org/ffmpeg-codecs.html",
+    ],
   };
 
   return (
@@ -303,6 +309,14 @@ export default function Page() {
             roundup covers both browser and desktop tools.
           </p>
         </section>
+
+        <Citations
+          sources={[
+            { title: "FFmpeg \u2014 Wikipedia", url: "https://en.wikipedia.org/wiki/FFmpeg", publisher: "Wikipedia", note: "FFmpeg, the engine HandBrake uses for transcoding alongside libavcodec." },
+            { title: "H.264/MPEG-4 AVC \u2014 Wikipedia", url: "https://en.wikipedia.org/wiki/H.264/MPEG-4_AVC", publisher: "Wikipedia", note: "The video codec HandBrake targets, compared with MP3 audio output." },
+            { title: "FFmpeg codecs documentation", url: "https://ffmpeg.org/ffmpeg-codecs.html", publisher: "FFmpeg", note: "The codec reference shared by HandBrake's and FFmpeg-based converters." },
+          ]}
+        />
 
         <section className="rounded-2xl border border-primary/30 bg-primary/5 p-6 text-center">
           <h2 className="text-xl font-bold">Extract audio, skip the video</h2>

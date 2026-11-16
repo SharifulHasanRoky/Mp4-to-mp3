@@ -3,6 +3,7 @@ import Link from "next/link";
 import { PageShell } from "@/components/page-shell";
 import { JsonLd } from "@/components/json-ld";
 import { QuickAnswer } from "@/components/quick-answer";
+import { Citations, type Citation } from "@/components/citations";
 import {
   FileAudio,
   Music,
@@ -40,6 +41,11 @@ export default function Page() {
     mainEntityOfPage: "https://www.mp4tomp3.online/video-into-audio-file",
     datePublished: "2026-11-16",
     dateModified: "2026-11-16",
+    citation: [
+      "https://en.wikipedia.org/wiki/Comparison_of_video_container_formats",
+      "https://en.wikipedia.org/wiki/Advanced_Audio_Coding",
+      "https://developer.mozilla.org/en-US/docs/Web/Media/Formats/Audio_codecs",
+    ],
   };
 
   return (
@@ -377,6 +383,14 @@ export default function Page() {
             them.
           </p>
         </section>
+
+        <Citations
+          sources={[
+            { title: "Comparison of video container formats \u2014 Wikipedia", url: "https://en.wikipedia.org/wiki/Comparison_of_video_container_formats", publisher: "Wikipedia", note: "Container formats that carry the source video audio." },
+            { title: "Advanced Audio Coding \u2014 Wikipedia", url: "https://en.wikipedia.org/wiki/Advanced_Audio_Coding", publisher: "Wikipedia", note: "AAC, the usual audio codec inside common video files." },
+            { title: "Web audio codec guide \u2014 MDN", url: "https://developer.mozilla.org/en-US/docs/Web/Media/Formats/Audio_codecs", publisher: "Mozilla MDN", note: "Codec options for the output audio file." },
+          ]}
+        />
 
         <section className="rounded-2xl border border-primary/30 bg-primary/5 p-6 text-center">
           <h2 className="text-xl font-bold">

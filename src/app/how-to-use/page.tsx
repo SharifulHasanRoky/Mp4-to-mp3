@@ -1,7 +1,42 @@
 import type { Metadata } from "next";
 import { PageShell } from "@/components/page-shell";
+import { JsonLd } from "@/components/json-ld";
+import { Citations, type Citation } from "@/components/citations";
 import { FileAudio, Film, Download, Check } from "lucide-react";
 import Link from "next/link";
+
+const sources: Citation[] = [
+  {
+    title: "MP3 — Wikipedia",
+    url: "https://en.wikipedia.org/wiki/MP3",
+    publisher: "Wikipedia",
+    note: "Confirms MP3 as the universally compatible output format produced by the extraction step.",
+  },
+  {
+    title: "MPEG-4 — Wikipedia",
+    url: "https://en.wikipedia.org/wiki/MPEG-4",
+    publisher: "Wikipedia",
+    note: "Defines the MP4 container that the source video arrives in and how its audio/video streams are multiplexed.",
+  },
+  {
+    title: "FFmpeg — Wikipedia",
+    url: "https://en.wikipedia.org/wiki/FFmpeg",
+    publisher: "Wikipedia",
+    note: "Documents the open-source FFmpeg framework that demuxes the container and re-encodes the audio as MP3.",
+  },
+  {
+    title: "LAME — Wikipedia",
+    url: "https://en.wikipedia.org/wiki/LAME",
+    publisher: "Wikipedia",
+    note: "Describes libmp3lame, the encoder invoked at VBR ~190 kbps during the extraction.",
+  },
+  {
+    title: "Fair use — Wikipedia",
+    url: "https://en.wikipedia.org/wiki/Fair_use",
+    publisher: "Wikipedia",
+    note: "Underpins the guidance on only extracting audio from files you own or have explicit permission to process.",
+  },
+];
 
 export const metadata: Metadata = {
   title: "How to Use – MP4 to MP3 Guide",
@@ -11,11 +46,33 @@ export const metadata: Metadata = {
 };
 
 export default function Page() {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: "How to Use – MP4 to MP3 Guide",
+    description:
+      "Step-by-step guide to extract audio from your own video files using MP4 to MP3. Upload a video, extract the audio, download the MP3 — all in under a minute.",
+    author: { "@type": "Organization", name: "MP4toMP3.online" },
+    publisher: { "@type": "Organization", name: "MP4toMP3.online" },
+    mainEntityOfPage: "https://www.mp4tomp3.online/how-to-use",
+    datePublished: "2026-11-16",
+    dateModified: "2026-11-16",
+    citation: [
+      "https://en.wikipedia.org/wiki/MP3",
+      "https://en.wikipedia.org/wiki/MPEG-4",
+      "https://en.wikipedia.org/wiki/FFmpeg",
+      "https://en.wikipedia.org/wiki/LAME",
+      "https://en.wikipedia.org/wiki/Fair_use",
+    ],
+  };
+
   return (
-    <PageShell
-      title="How to use MP4 to MP3"
-      subtitle="A complete step-by-step guide to extract audio from your own video files in under a minute."
-    >
+    <>
+      <JsonLd data={jsonLd} />
+      <PageShell
+        title="How to use MP4 to MP3"
+        subtitle="A complete step-by-step guide to extract audio from your own video files in under a minute."
+      >
       <p className="text-base leading-relaxed text-muted-foreground">
         MP4 to MP3 is designed to be self-explanatory — drag, drop,
         extract, download. But if you are new to audio extraction or want to
@@ -150,6 +207,8 @@ export default function Page() {
         </p>
       </section>
 
+      <Citations sources={sources} />
+
       <section className="rounded-2xl border border-primary/30 bg-primary/5 p-6 text-center">
         <h2 className="text-xl font-bold">Ready to try it?</h2>
         <p className="mt-2 text-sm text-muted-foreground">
@@ -164,5 +223,6 @@ export default function Page() {
         </Link>
       </section>
     </PageShell>
+    </>
   );
 }

@@ -3,6 +3,7 @@ import Link from "next/link";
 import { PageShell } from "@/components/page-shell";
 import { JsonLd } from "@/components/json-ld";
 import { QuickAnswer } from "@/components/quick-answer";
+import { Citations, type Citation } from "@/components/citations";
 import {
   FileAudio,
   Music,
@@ -12,6 +13,39 @@ import {
   Volume2,
   Smartphone,
 } from "lucide-react";
+
+const sources: Citation[] = [
+  {
+    title: "MP3 — Wikipedia",
+    url: "https://en.wikipedia.org/wiki/MP3",
+    publisher: "Wikipedia",
+    note: "Documents the MP3 format and bitrate choices (192/320 kbps) recommended for music extraction.",
+  },
+  {
+    title: "ID3 — Wikipedia",
+    url: "https://en.wikipedia.org/wiki/ID3",
+    publisher: "Wikipedia",
+    note: "Describes the ID3 metadata tags discussed for organizing extracted music in a library.",
+  },
+  {
+    title: "Advanced Audio Coding — Wikipedia",
+    url: "https://en.wikipedia.org/wiki/Advanced_Audio_Coding",
+    publisher: "Wikipedia",
+    note: "Notes AAC as the typical audio codec inside MP4 music videos, which is re-encoded to MP3.",
+  },
+  {
+    title: "FFmpeg — Wikipedia",
+    url: "https://en.wikipedia.org/wiki/FFmpeg",
+    publisher: "Wikipedia",
+    note: "Background on the FFmpeg framework that performs the demux and re-encode described for music files.",
+  },
+  {
+    title: "Bit rate — Wikipedia",
+    url: "https://en.wikipedia.org/wiki/Bit_rate",
+    publisher: "Wikipedia",
+    note: "Supports the bitrate recommendations (192/320 kbps stereo) given for music extraction quality.",
+  },
+];
 
 export const metadata: Metadata = {
   title: "How to Extract Music or Songs from MP4 Video Files",
@@ -39,6 +73,13 @@ export default function Page() {
     mainEntityOfPage: "https://www.mp4tomp3.online/extract-music-from-mp4",
     datePublished: "2026-11-16",
     dateModified: "2026-11-16",
+    citation: [
+      "https://en.wikipedia.org/wiki/MP3",
+      "https://en.wikipedia.org/wiki/ID3",
+      "https://en.wikipedia.org/wiki/Advanced_Audio_Coding",
+      "https://en.wikipedia.org/wiki/FFmpeg",
+      "https://en.wikipedia.org/wiki/Bit_rate",
+    ],
   };
 
   return (
@@ -310,6 +351,8 @@ export default function Page() {
             .
           </p>
         </section>
+
+        <Citations sources={sources} />
 
         <section className="rounded-2xl border border-primary/30 bg-primary/5 p-6 text-center">
           <h2 className="text-xl font-bold">

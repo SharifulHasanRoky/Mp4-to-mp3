@@ -3,6 +3,7 @@ import Link from "next/link";
 import { PageShell } from "@/components/page-shell";
 import { JsonLd } from "@/components/json-ld";
 import { QuickAnswer } from "@/components/quick-answer";
+import { Citations, type Citation } from "@/components/citations";
 import {
   FileAudio,
   Boxes,
@@ -37,6 +38,12 @@ export default function Page() {
     mainEntityOfPage: "https://www.mp4tomp3.online/container-formats-explained",
     datePublished: "2026-11-16",
     dateModified: "2026-11-16",
+    citation: [
+      "https://developer.mozilla.org/en-US/docs/Web/Media/Formats/Containers",
+      "https://en.wikipedia.org/wiki/Comparison_of_video_container_formats",
+      "https://en.wikipedia.org/wiki/Container_format_(digital)",
+      "https://www.iso.org/standard/53943.html",
+    ],
   };
 
   return (
@@ -355,6 +362,15 @@ export default function Page() {
             command tells you the truth in one line.
           </p>
         </section>
+
+        <Citations
+          sources={[
+            { title: "Container formats \u2014 MDN", url: "https://developer.mozilla.org/en-US/docs/Web/Media/Formats/Containers", publisher: "Mozilla MDN", note: "How MP4, WebM, MKV and other containers bundle media streams." },
+            { title: "Comparison of video container formats \u2014 Wikipedia", url: "https://en.wikipedia.org/wiki/Comparison_of_video_container_formats", publisher: "Wikipedia", note: "Side-by-side comparison of container features and supported codecs." },
+            { title: "Container format (digital) \u2014 Wikipedia", url: "https://en.wikipedia.org/wiki/Container_format_(digital)", publisher: "Wikipedia", note: "General definition and history of multimedia container formats." },
+            { title: "MPEG-4 Part 14 file format \u2014 ISO", url: "https://www.iso.org/standard/53943.html", publisher: "ISO", note: "Official ISO/IEC 14496-14:2003 specification for the MP4 container." },
+          ]}
+        />
 
         <section className="rounded-2xl border border-primary/30 bg-primary/5 p-6 text-center">
           <h2 className="text-xl font-bold">Extract audio from any container now</h2>

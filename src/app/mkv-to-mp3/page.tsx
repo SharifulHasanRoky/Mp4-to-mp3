@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { LandingPage } from "@/components/landing-page";
+import { Citations, type Citation } from "@/components/citations";
+import { JsonLd } from "@/components/json-ld";
 
 export const metadata: Metadata = {
   title: "MKV to MP3 Converter – Free Online Matroska to MP3 Tool",
@@ -15,8 +17,27 @@ export const metadata: Metadata = {
   alternates: { canonical: "/mkv-to-mp3" },
 };
 
+  const citationJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: "MKV to MP3 Converter",
+    description: "Convert MKV (Matroska) video files to high-quality MP3 audio online for free. FFmpeg-powered, private, no sign-up required. Works on Windows, Mac, Linux.",
+    author: { "@type": "Organization", name: "MP4toMP3.online" },
+    publisher: { "@type": "Organization", name: "MP4toMP3.online" },
+    mainEntityOfPage: "https://www.mp4tomp3.online/mkv-to-mp3",
+    datePublished: "2026-11-16",
+    dateModified: "2026-11-16",
+    citation: [
+      "https://en.wikipedia.org/wiki/Comparison_of_video_container_formats",
+      "https://en.wikipedia.org/wiki/FFmpeg",
+      "https://en.wikipedia.org/wiki/MP3",
+    ],
+  };
+
 export default function Page() {
   return (
+    <>
+      <JsonLd data={citationJsonLd} />
     <LandingPage
       currentPath="/mkv-to-mp3"
       h1="MKV to MP3 Converter"
@@ -107,5 +128,14 @@ export default function Page() {
         },
       ]}
     />
+
+      <Citations
+        sources={[
+          { title: "Comparison of video container formats \u2014 Wikipedia", url: "https://en.wikipedia.org/wiki/Comparison_of_video_container_formats", publisher: "Wikipedia", note: "How the MKV (Matroska) container differs from MP4." },
+          { title: "FFmpeg \u2014 Wikipedia", url: "https://en.wikipedia.org/wiki/FFmpeg", publisher: "Wikipedia", note: "The engine that demuxes MKV and re-encodes its audio to MP3." },
+          { title: "MP3 \u2014 Wikipedia", url: "https://en.wikipedia.org/wiki/MP3", publisher: "Wikipedia", note: "The MP3 output format for converted MKV audio." },
+        ]}
+      />
+    </>
   );
 }

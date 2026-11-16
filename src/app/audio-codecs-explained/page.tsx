@@ -3,6 +3,7 @@ import Link from "next/link";
 import { PageShell } from "@/components/page-shell";
 import { JsonLd } from "@/components/json-ld";
 import { QuickAnswer } from "@/components/quick-answer";
+import { Citations, type Citation } from "@/components/citations";
 import {
   FileAudio,
   Volume2,
@@ -37,6 +38,13 @@ export default function Page() {
     mainEntityOfPage: "https://www.mp4tomp3.online/audio-codecs-explained",
     datePublished: "2026-11-16",
     dateModified: "2026-11-16",
+    citation: [
+      "https://developer.mozilla.org/en-US/docs/Web/Media/Formats/Audio_codecs",
+      "https://en.wikipedia.org/wiki/Advanced_Audio_Coding",
+      "https://en.wikipedia.org/wiki/Opus_(audio_format)",
+      "https://en.wikipedia.org/wiki/Vorbis",
+      "https://en.wikipedia.org/wiki/LAME",
+    ],
   };
 
   return (
@@ -315,6 +323,16 @@ export default function Page() {
             lays out the trade-offs.
           </p>
         </section>
+
+        <Citations
+          sources={[
+            { title: "Audio codecs \u2014 MDN", url: "https://developer.mozilla.org/en-US/docs/Web/Media/Formats/Audio_codecs", publisher: "Mozilla MDN", note: "Browser support, bitrate ranges and codec characteristics for MP3, AAC, Opus and Vorbis." },
+            { title: "Advanced Audio Coding \u2014 Wikipedia", url: "https://en.wikipedia.org/wiki/Advanced_Audio_Coding", publisher: "Wikipedia", note: "AAC codec spec, the default audio codec inside MP4 containers." },
+            { title: "Opus audio format \u2014 Wikipedia", url: "https://en.wikipedia.org/wiki/Opus_(audio_format)", publisher: "Wikipedia", note: "Modern open royalty-free audio codec for comparison." },
+            { title: "Vorbis \u2014 Wikipedia", url: "https://en.wikipedia.org/wiki/Vorbis", publisher: "Wikipedia", note: "Open lossy audio codec used in OGG containers, for comparison with MP3/AAC." },
+            { title: "LAME MP3 encoder \u2014 Wikipedia", url: "https://en.wikipedia.org/wiki/LAME", publisher: "Wikipedia", note: "The reference open-source MP3 encoder used by FFmpeg." },
+          ]}
+        />
 
         <section className="rounded-2xl border border-primary/30 bg-primary/5 p-6 text-center">
           <h2 className="text-xl font-bold">Convert your MP4 audio to MP3 now</h2>

@@ -3,6 +3,7 @@ import Link from "next/link";
 import { PageShell } from "@/components/page-shell";
 import { JsonLd } from "@/components/json-ld";
 import { QuickAnswer } from "@/components/quick-answer";
+import { Citations, type Citation } from "@/components/citations";
 import {
   FileAudio,
   Music,
@@ -39,6 +40,11 @@ export default function Page() {
       "https://www.mp4tomp3.online/mp4-to-mp3-stereo-vs-mono",
     datePublished: "2026-11-16",
     dateModified: "2026-11-16",
+    citation: [
+      "https://en.wikipedia.org/wiki/MP3",
+      "https://developer.mozilla.org/en-US/docs/Web/Media/Formats/Audio_codecs",
+      "https://wiki.hydrogenaud.io/index.php?title=LAME",
+    ],
   };
 
   return (
@@ -333,6 +339,14 @@ export default function Page() {
             page covers the other half of the size equation.
           </p>
         </section>
+
+        <Citations
+          sources={[
+            { title: "MP3 \u2014 Wikipedia", url: "https://en.wikipedia.org/wiki/MP3", publisher: "Wikipedia", note: "Joint stereo mode and how MP3 encodes mono versus stereo channels." },
+            { title: "Audio codecs \u2014 MDN", url: "https://developer.mozilla.org/en-US/docs/Web/Media/Formats/Audio_codecs", publisher: "Mozilla MDN", note: "Channel layout handling for MP3 and other web audio codecs." },
+            { title: "LAME recommended settings \u2014 Hydrogenaudio", url: "https://wiki.hydrogenaud.io/index.php?title=LAME", publisher: "Hydrogenaudio Wiki", note: "Recommended joint-stereo and mono settings for the LAME encoder." },
+          ]}
+        />
 
         <section className="rounded-2xl border border-primary/30 bg-primary/5 p-6 text-center">
           <h2 className="text-xl font-bold">

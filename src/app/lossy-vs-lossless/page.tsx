@@ -3,6 +3,7 @@ import Link from "next/link";
 import { PageShell } from "@/components/page-shell";
 import { JsonLd } from "@/components/json-ld";
 import { QuickAnswer } from "@/components/quick-answer";
+import { Citations, type Citation } from "@/components/citations";
 import {
   FileAudio,
   Volume2,
@@ -40,6 +41,12 @@ export default function Page() {
     mainEntityOfPage: "https://www.mp4tomp3.online/lossy-vs-lossless",
     datePublished: "2026-11-16",
     dateModified: "2026-11-16",
+    citation: [
+      "https://en.wikipedia.org/wiki/Lossy_compression",
+      "https://en.wikipedia.org/wiki/Lossless_compression",
+      "https://en.wikipedia.org/wiki/FLAC",
+      "https://developer.mozilla.org/en-US/docs/Web/Media/Formats/Audio_codecs",
+    ],
   };
 
   return (
@@ -349,6 +356,15 @@ export default function Page() {
             already have, lossy MP3 is the pragmatic default.
           </p>
         </section>
+
+        <Citations
+          sources={[
+            { title: "Lossy compression \u2014 Wikipedia", url: "https://en.wikipedia.org/wiki/Lossy_compression", publisher: "Wikipedia", note: "How lossy codecs like MP3 and AAC discard data to reduce file size." },
+            { title: "Lossless compression \u2014 Wikipedia", url: "https://en.wikipedia.org/wiki/Lossless_compression", publisher: "Wikipedia", note: "How lossless codecs like FLAC preserve every sample exactly." },
+            { title: "FLAC \u2014 Wikipedia", url: "https://en.wikipedia.org/wiki/FLAC", publisher: "Wikipedia", note: "Free Lossless Audio Codec, the reference lossless format." },
+            { title: "Audio codecs \u2014 MDN", url: "https://developer.mozilla.org/en-US/docs/Web/Media/Formats/Audio_codecs", publisher: "Mozilla MDN", note: "Browser support and trade-offs across lossy and lossless audio codecs." },
+          ]}
+        />
 
         <section className="rounded-2xl border border-primary/30 bg-primary/5 p-6 text-center">
           <h2 className="text-xl font-bold">

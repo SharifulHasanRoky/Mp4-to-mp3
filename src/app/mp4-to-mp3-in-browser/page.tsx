@@ -3,6 +3,7 @@ import Link from "next/link";
 import { PageShell } from "@/components/page-shell";
 import { JsonLd } from "@/components/json-ld";
 import { QuickAnswer } from "@/components/quick-answer";
+import { Citations, type Citation } from "@/components/citations";
 import {
   FileAudio,
   Check,
@@ -42,6 +43,11 @@ export default function Page() {
     mainEntityOfPage: "https://www.mp4tomp3.online/mp4-to-mp3-in-browser",
     datePublished: "2026-11-16",
     dateModified: "2026-11-16",
+    citation: [
+      "https://en.wikipedia.org/wiki/WebAssembly",
+      "https://github.com/ffmpegwasm/ffmpeg.wasm",
+      "https://en.wikipedia.org/wiki/FFmpeg",
+    ],
   };
 
   return (
@@ -281,6 +287,14 @@ export default function Page() {
             roundup flags the server-side ones explicitly.
           </p>
         </section>
+
+        <Citations
+          sources={[
+            { title: "WebAssembly \u2014 Wikipedia", url: "https://en.wikipedia.org/wiki/WebAssembly", publisher: "Wikipedia", note: "The runtime that lets FFmpeg run inside the browser." },
+            { title: "ffmpeg.wasm \u2014 GitHub", url: "https://github.com/ffmpegwasm/ffmpeg.wasm", publisher: "GitHub", note: "The WebAssembly FFmpeg port enabling in-browser conversion." },
+            { title: "FFmpeg \u2014 Wikipedia", url: "https://en.wikipedia.org/wiki/FFmpeg", publisher: "Wikipedia", note: "The engine that runs entirely client-side when compiled to WASM." },
+          ]}
+        />
 
         <section className="rounded-2xl border border-primary/30 bg-primary/5 p-6 text-center">
           <h2 className="text-xl font-bold">Convert MP4 to MP3 in your browser</h2>

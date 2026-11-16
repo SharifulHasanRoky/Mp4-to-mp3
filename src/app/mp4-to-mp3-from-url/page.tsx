@@ -3,6 +3,7 @@ import Link from "next/link";
 import { PageShell } from "@/components/page-shell";
 import { JsonLd } from "@/components/json-ld";
 import { QuickAnswer } from "@/components/quick-answer";
+import { Citations, type Citation } from "@/components/citations";
 import {
   FileAudio,
   Check,
@@ -14,6 +15,39 @@ import {
   Lock,
   XCircle,
 } from "lucide-react";
+
+const sources: Citation[] = [
+  {
+    title: "MP3 — Wikipedia",
+    url: "https://en.wikipedia.org/wiki/MP3",
+    publisher: "Wikipedia",
+    note: "Documents the MP3 output format produced from the URL-fetched source file.",
+  },
+  {
+    title: "MPEG-4 — Wikipedia",
+    url: "https://en.wikipedia.org/wiki/MPEG-4",
+    publisher: "Wikipedia",
+    note: "Defines the MP4 container the converter expects at the URL endpoint.",
+  },
+  {
+    title: "FFmpeg — Wikipedia",
+    url: "https://en.wikipedia.org/wiki/FFmpeg",
+    publisher: "Wikipedia",
+    note: "Background on FFmpeg, the framework that performs the in-browser demux and re-encode once the URL-fetched file arrives.",
+  },
+  {
+    title: "WebAssembly — Wikipedia",
+    url: "https://en.wikipedia.org/wiki/WebAssembly",
+    publisher: "Wikipedia",
+    note: "Describes WebAssembly, which lets the in-browser pipeline run a full FFmpeg build on the fetched file without install.",
+  },
+  {
+    title: "Copyright — U.S. Copyright Office",
+    url: "https://www.copyright.gov/",
+    publisher: "U.S. Copyright Office",
+    note: "Underpins the guidance that only files you own or have permission to use should be converted from a URL.",
+  },
+];
 
 export const metadata: Metadata = {
   title: "Convert MP4 to MP3 From a URL — Direct Link Support",
@@ -41,6 +75,13 @@ export default function Page() {
     mainEntityOfPage: "https://www.mp4tomp3.online/mp4-to-mp3-from-url",
     datePublished: "2026-11-16",
     dateModified: "2026-11-16",
+    citation: [
+      "https://en.wikipedia.org/wiki/MP3",
+      "https://en.wikipedia.org/wiki/MPEG-4",
+      "https://en.wikipedia.org/wiki/FFmpeg",
+      "https://en.wikipedia.org/wiki/WebAssembly",
+      "https://www.copyright.gov/",
+    ],
   };
 
   return (
@@ -364,6 +405,8 @@ export default function Page() {
             and the device support matrix.
           </p>
         </section>
+
+        <Citations sources={sources} />
 
         <section className="rounded-2xl border border-primary/30 bg-primary/5 p-6 text-center">
           <h2 className="text-xl font-bold">Convert MP4 from a URL now</h2>

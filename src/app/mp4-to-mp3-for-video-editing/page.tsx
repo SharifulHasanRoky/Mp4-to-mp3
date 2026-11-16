@@ -3,6 +3,7 @@ import Link from "next/link";
 import { PageShell } from "@/components/page-shell";
 import { JsonLd } from "@/components/json-ld";
 import { QuickAnswer } from "@/components/quick-answer";
+import { Citations, type Citation } from "@/components/citations";
 import {
   FileAudio,
   Film,
@@ -11,6 +12,33 @@ import {
   Check,
   Layers,
 } from "lucide-react";
+
+const sources: Citation[] = [
+  {
+    title: "MP3 — Wikipedia",
+    url: "https://en.wikipedia.org/wiki/MP3",
+    publisher: "Wikipedia",
+    note: "Documents the MP3 format and the higher bitrates (256-320 kbps) recommended for video-editing scratch tracks.",
+  },
+  {
+    title: "MPEG-4 — Wikipedia",
+    url: "https://en.wikipedia.org/wiki/MPEG-4",
+    publisher: "Wikipedia",
+    note: "Defines the MP4 container that video editors typically export as the source before audio extraction.",
+  },
+  {
+    title: "FFmpeg — Wikipedia",
+    url: "https://en.wikipedia.org/wiki/FFmpeg",
+    publisher: "Wikipedia",
+    note: "Background on FFmpeg, the framework that performs the in-browser demux and re-encode described for editing workflows.",
+  },
+  {
+    title: "Container formats — MDN Web Docs",
+    url: "https://developer.mozilla.org/en-US/docs/Web/Media/Formats/Containers",
+    publisher: "Mozilla MDN",
+    note: "Lists the multimedia containers a video editor may export, supporting the discussion of source formats.",
+  },
+];
 
 export const metadata: Metadata = {
   title: "MP4 to MP3 for Video Editing: Premiere, DaVinci, FCP",
@@ -39,6 +67,12 @@ export default function Page() {
       "https://www.mp4tomp3.online/mp4-to-mp3-for-video-editing",
     datePublished: "2026-11-16",
     dateModified: "2026-11-16",
+    citation: [
+      "https://en.wikipedia.org/wiki/MP3",
+      "https://en.wikipedia.org/wiki/MPEG-4",
+      "https://en.wikipedia.org/wiki/FFmpeg",
+      "https://developer.mozilla.org/en-US/docs/Web/Media/Formats/Containers",
+    ],
   };
 
   return (
@@ -313,6 +347,8 @@ export default function Page() {
             you do here.
           </p>
         </section>
+
+        <Citations sources={sources} />
 
         <section className="rounded-2xl border border-primary/30 bg-primary/5 p-6 text-center">
           <h2 className="text-xl font-bold">

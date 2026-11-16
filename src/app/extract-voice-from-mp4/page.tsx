@@ -3,6 +3,7 @@ import Link from "next/link";
 import { PageShell } from "@/components/page-shell";
 import { JsonLd } from "@/components/json-ld";
 import { QuickAnswer } from "@/components/quick-answer";
+import { Citations, type Citation } from "@/components/citations";
 import {
   FileAudio,
   Mic,
@@ -12,6 +13,33 @@ import {
   HardDrive,
   Headphones,
 } from "lucide-react";
+
+const sources: Citation[] = [
+  {
+    title: "MP3 — Wikipedia",
+    url: "https://en.wikipedia.org/wiki/MP3",
+    publisher: "Wikipedia",
+    note: "Documents the MP3 format and the lower bitrates (e.g. 128 kbps mono) recommended for speech extraction.",
+  },
+  {
+    title: "Psychoacoustics — Wikipedia",
+    url: "https://en.wikipedia.org/wiki/Psychoacoustics",
+    publisher: "Wikipedia",
+    note: "Explains the psychoacoustic model used by MP3, which is the basis for speech-friendly encoding settings.",
+  },
+  {
+    title: "Advanced Audio Coding — Wikipedia",
+    url: "https://en.wikipedia.org/wiki/Advanced_Audio_Coding",
+    publisher: "Wikipedia",
+    note: "Notes AAC as the typical audio codec inside MP4 interview and lecture recordings, which is re-encoded to MP3.",
+  },
+  {
+    title: "FFmpeg — Wikipedia",
+    url: "https://en.wikipedia.org/wiki/FFmpeg",
+    publisher: "Wikipedia",
+    note: "Background on the FFmpeg framework that performs the in-browser demux and re-encode for voice extraction.",
+  },
+];
 
 export const metadata: Metadata = {
   title: "How to Extract Voice or Speech from MP4 Video Files",
@@ -39,6 +67,12 @@ export default function Page() {
     mainEntityOfPage: "https://www.mp4tomp3.online/extract-voice-from-mp4",
     datePublished: "2026-11-16",
     dateModified: "2026-11-16",
+    citation: [
+      "https://en.wikipedia.org/wiki/MP3",
+      "https://en.wikipedia.org/wiki/Psychoacoustics",
+      "https://en.wikipedia.org/wiki/Advanced_Audio_Coding",
+      "https://en.wikipedia.org/wiki/FFmpeg",
+    ],
   };
 
   return (
@@ -317,6 +351,8 @@ export default function Page() {
             library of speech content actually fit and stay usable.
           </p>
         </section>
+
+        <Citations sources={sources} />
 
         <section className="rounded-2xl border border-primary/30 bg-primary/5 p-6 text-center">
           <h2 className="text-xl font-bold">

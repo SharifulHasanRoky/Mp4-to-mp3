@@ -3,6 +3,7 @@ import Link from "next/link";
 import { PageShell } from "@/components/page-shell";
 import { JsonLd } from "@/components/json-ld";
 import { QuickAnswer } from "@/components/quick-answer";
+import { Citations, type Citation } from "@/components/citations";
 import {
   FileAudio,
   Music,
@@ -40,6 +41,11 @@ export default function Page() {
       "https://www.mp4tomp3.online/mp4-to-mp3-without-quality-loss",
     datePublished: "2026-11-16",
     dateModified: "2026-11-16",
+    citation: [
+      "https://en.wikipedia.org/wiki/Lossy_compression",
+      "https://en.wikipedia.org/wiki/FLAC",
+      "https://ffmpeg.org/ffmpeg-codecs.html",
+    ],
   };
 
   return (
@@ -374,6 +380,14 @@ export default function Page() {
             to try it for yourself.
           </p>
         </section>
+
+        <Citations
+          sources={[
+            { title: "Lossy compression \u2014 Wikipedia", url: "https://en.wikipedia.org/wiki/Lossy_compression", publisher: "Wikipedia", note: "Why MP3 conversion is inherently lossy compared to the source." },
+            { title: "FLAC \u2014 Wikipedia", url: "https://en.wikipedia.org/wiki/FLAC", publisher: "Wikipedia", note: "The lossless alternative when true zero-loss audio extraction is required." },
+            { title: "FFmpeg codecs documentation", url: "https://ffmpeg.org/ffmpeg-codecs.html", publisher: "FFmpeg", note: "Codec options that minimise generational loss during MP4 audio extraction." },
+          ]}
+        />
 
         <section className="rounded-2xl border border-primary/30 bg-primary/5 p-6 text-center">
           <h2 className="text-xl font-bold">

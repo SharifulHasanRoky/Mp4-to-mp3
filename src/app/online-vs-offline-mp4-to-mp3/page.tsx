@@ -3,6 +3,7 @@ import Link from "next/link";
 import { PageShell } from "@/components/page-shell";
 import { JsonLd } from "@/components/json-ld";
 import { QuickAnswer } from "@/components/quick-answer";
+import { Citations, type Citation } from "@/components/citations";
 import {
   FileAudio,
   Globe,
@@ -42,6 +43,13 @@ export default function Page() {
       "https://www.mp4tomp3.online/online-vs-offline-mp4-to-mp3",
     datePublished: "2026-11-16",
     dateModified: "2026-11-16",
+    citation: [
+      "https://en.wikipedia.org/wiki/WebAssembly",
+      "https://github.com/ffmpegwasm/ffmpeg.wasm",
+      "https://en.wikipedia.org/wiki/FFmpeg",
+      "https://en.wikipedia.org/wiki/General_Data_Protection_Regulation",
+      "https://gdpr.eu/",
+    ],
   };
 
   return (
@@ -299,6 +307,16 @@ export default function Page() {
             </li>
           </ul>
         </section>
+
+        <Citations
+          sources={[
+            { title: "WebAssembly \u2014 Wikipedia", url: "https://en.wikipedia.org/wiki/WebAssembly", publisher: "Wikipedia", note: "The runtime enabling online, no-upload conversion." },
+            { title: "ffmpeg.wasm \u2014 GitHub", url: "https://github.com/ffmpegwasm/ffmpeg.wasm", publisher: "GitHub", note: "The WASM FFmpeg port behind the online converter." },
+            { title: "FFmpeg \u2014 Wikipedia", url: "https://en.wikipedia.org/wiki/FFmpeg", publisher: "Wikipedia", note: "The engine shared by both online and offline converters." },
+            { title: "General Data Protection Regulation \u2014 Wikipedia", url: "https://en.wikipedia.org/wiki/General_Data_Protection_Regulation", publisher: "Wikipedia", note: "Why online, no-upload conversion reduces privacy risk." },
+            { title: "GDPR.eu", url: "https://gdpr.eu/", publisher: "gdpr.eu", note: "Plain-language reference for the EU privacy regime relevant to uploads." },
+          ]}
+        />
 
         <section className="rounded-2xl border border-primary/30 bg-primary/5 p-6 text-center">
           <h2 className="text-xl font-bold">Try the hybrid</h2>

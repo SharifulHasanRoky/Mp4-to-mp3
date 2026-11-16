@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { LandingPage } from "@/components/landing-page";
+import { Citations, type Citation } from "@/components/citations";
+import { JsonLd } from "@/components/json-ld";
 
 export const metadata: Metadata = {
   title: "Convert Video to Audio File – Free Online Video to MP3 Tool",
@@ -15,8 +17,27 @@ export const metadata: Metadata = {
   alternates: { canonical: "/convert-video-to-audio" },
 };
 
+  const citationJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: "Convert Video to Audio File",
+    description: "Change any video into an audio file (MP3) online for free. Upload a video you own, click Convert, and download your MP3 in seconds. FFmpeg-powered, private, no sign-up required.",
+    author: { "@type": "Organization", name: "MP4toMP3.online" },
+    publisher: { "@type": "Organization", name: "MP4toMP3.online" },
+    mainEntityOfPage: "https://www.mp4tomp3.online/convert-video-to-audio",
+    datePublished: "2026-11-16",
+    dateModified: "2026-11-16",
+    citation: [
+      "https://en.wikipedia.org/wiki/FFmpeg",
+      "https://en.wikipedia.org/wiki/Advanced_Audio_Coding",
+      "https://en.wikipedia.org/wiki/MP3",
+    ],
+  };
+
 export default function Page() {
   return (
+    <>
+      <JsonLd data={citationJsonLd} />
     <LandingPage
       currentPath="/convert-video-to-audio"
       h1="Convert Video to Audio File"
@@ -108,5 +129,14 @@ export default function Page() {
         },
       ]}
     />
+
+      <Citations
+        sources={[
+          { title: "FFmpeg \u2014 Wikipedia", url: "https://en.wikipedia.org/wiki/FFmpeg", publisher: "Wikipedia", note: "The engine that demuxes video and extracts its audio stream." },
+          { title: "Advanced Audio Coding \u2014 Wikipedia", url: "https://en.wikipedia.org/wiki/Advanced_Audio_Coding", publisher: "Wikipedia", note: "AAC, the typical source audio codec inside uploaded video." },
+          { title: "MP3 \u2014 Wikipedia", url: "https://en.wikipedia.org/wiki/MP3", publisher: "Wikipedia", note: "The MP3 output format produced for converted audio." },
+        ]}
+      />
+    </>
   );
 }

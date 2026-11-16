@@ -3,6 +3,7 @@ import Link from "next/link";
 import { PageShell } from "@/components/page-shell";
 import { JsonLd } from "@/components/json-ld";
 import { QuickAnswer } from "@/components/quick-answer";
+import { Citations, type Citation } from "@/components/citations";
 import {
   FileAudio,
   SlidersHorizontal,
@@ -41,6 +42,11 @@ export default function Page() {
       "https://www.mp4tomp3.online/mp4-to-mp3-best-quality",
     datePublished: "2026-11-16",
     dateModified: "2026-11-16",
+    citation: [
+      "https://en.wikipedia.org/wiki/MP3",
+      "https://wiki.hydrogenaud.io/index.php?title=LAME",
+      "https://en.wikipedia.org/wiki/Psychoacoustics",
+    ],
   };
 
   return (
@@ -418,6 +424,14 @@ export default function Page() {
             </li>
           </ul>
         </section>
+
+        <Citations
+          sources={[
+            { title: "MP3 \u2014 Wikipedia", url: "https://en.wikipedia.org/wiki/MP3", publisher: "Wikipedia", note: "The 320 kbps maximum bitrate and when it represents best quality for MP3." },
+            { title: "LAME recommended settings \u2014 Hydrogenaudio", url: "https://wiki.hydrogenaud.io/index.php?title=LAME", publisher: "Hydrogenaudio Wiki", note: "Best-quality LAME presets (insane and extreme) verified by listening tests." },
+            { title: "Psychoacoustics \u2014 Wikipedia", url: "https://en.wikipedia.org/wiki/Psychoacoustics", publisher: "Wikipedia", note: "Why above 320 kbps MP3 offers no further audible improvement." },
+          ]}
+        />
 
         <section className="rounded-2xl border border-primary/30 bg-primary/5 p-6 text-center">
           <h2 className="text-xl font-bold">

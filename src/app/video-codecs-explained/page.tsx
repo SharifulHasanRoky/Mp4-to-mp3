@@ -3,6 +3,7 @@ import Link from "next/link";
 import { PageShell } from "@/components/page-shell";
 import { JsonLd } from "@/components/json-ld";
 import { QuickAnswer } from "@/components/quick-answer";
+import { Citations, type Citation } from "@/components/citations";
 import {
   FileAudio,
   Film,
@@ -37,6 +38,12 @@ export default function Page() {
     mainEntityOfPage: "https://www.mp4tomp3.online/video-codecs-explained",
     datePublished: "2026-11-16",
     dateModified: "2026-11-16",
+    citation: [
+      "https://developer.mozilla.org/en-US/docs/Web/Media/Formats/Video_codecs",
+      "https://en.wikipedia.org/wiki/H.264/MPEG-4_AVC",
+      "https://en.wikipedia.org/wiki/H.265",
+      "https://ffmpeg.org/ffmpeg-codecs.html",
+    ],
   };
 
   return (
@@ -322,6 +329,15 @@ export default function Page() {
             article is the right place to start.
           </p>
         </section>
+
+        <Citations
+          sources={[
+            { title: "Video codecs \u2014 MDN", url: "https://developer.mozilla.org/en-US/docs/Web/Media/Formats/Video_codecs", publisher: "Mozilla MDN", note: "Browser support and characteristics for H.264, H.265, VP9 and AV1." },
+            { title: "H.264/MPEG-4 AVC \u2014 Wikipedia", url: "https://en.wikipedia.org/wiki/H.264/MPEG-4_AVC", publisher: "Wikipedia", note: "The dominant video codec inside MP4 files." },
+            { title: "H.265/HEVC \u2014 Wikipedia", url: "https://en.wikipedia.org/wiki/H.265", publisher: "Wikipedia", note: "Newer High Efficiency Video Coding standard, the successor to H.264." },
+            { title: "FFmpeg codecs documentation", url: "https://ffmpeg.org/ffmpeg-codecs.html", publisher: "FFmpeg", note: "Reference for video decoders and encoders supported by FFmpeg." },
+          ]}
+        />
 
         <section className="rounded-2xl border border-primary/30 bg-primary/5 p-6 text-center">
           <h2 className="text-xl font-bold">Extract audio from any MP4 now</h2>

@@ -3,7 +3,41 @@ import Link from "next/link";
 import { PageShell } from "@/components/page-shell";
 import { JsonLd } from "@/components/json-ld";
 import { QuickAnswer } from "@/components/quick-answer";
+import { Citations, type Citation } from "@/components/citations";
 import { FileAudio, Download } from "lucide-react";
+
+const sources: Citation[] = [
+  {
+    title: "MPEG-4 — Wikipedia",
+    url: "https://en.wikipedia.org/wiki/MPEG-4",
+    publisher: "Wikipedia",
+    note: "Defines the MP4 container and how its audio and video streams are demultiplexed during extraction.",
+  },
+  {
+    title: "MP3 — Wikipedia",
+    url: "https://en.wikipedia.org/wiki/MP3",
+    publisher: "Wikipedia",
+    note: "Documents the MP3 output format that the extracted audio stream is re-encoded into.",
+  },
+  {
+    title: "Advanced Audio Coding — Wikipedia",
+    url: "https://en.wikipedia.org/wiki/Advanced_Audio_Coding",
+    publisher: "Wikipedia",
+    note: "Describes AAC, the most common audio codec inside MP4 files and the typical source stream for extraction.",
+  },
+  {
+    title: "FFmpeg — Wikipedia",
+    url: "https://en.wikipedia.org/wiki/FFmpeg",
+    publisher: "Wikipedia",
+    note: "Background on the FFmpeg framework that performs the in-browser demux and re-encode.",
+  },
+  {
+    title: "Audio codecs — MDN Web Docs",
+    url: "https://developer.mozilla.org/en-US/docs/Web/Media/Formats/Audio_codecs",
+    publisher: "Mozilla MDN",
+    note: "Lists the audio codecs used inside MP4 containers, including AAC and MP3, with browser playback support details.",
+  },
+];
 
 export const metadata: Metadata = {
   title: "Extract Audio From MP4 — Free MP4 Audio Extractor",
@@ -31,6 +65,13 @@ export default function Page() {
     mainEntityOfPage: "https://www.mp4tomp3.online/extract-audio-from-mp4",
     datePublished: "2026-11-16",
     dateModified: "2026-11-16",
+    citation: [
+      "https://en.wikipedia.org/wiki/MPEG-4",
+      "https://en.wikipedia.org/wiki/MP3",
+      "https://en.wikipedia.org/wiki/Advanced_Audio_Coding",
+      "https://en.wikipedia.org/wiki/FFmpeg",
+      "https://developer.mozilla.org/en-US/docs/Web/Media/Formats/Audio_codecs",
+    ],
   };
 
   return (
@@ -298,6 +339,8 @@ export default function Page() {
             guide goes deeper on the conversion pipeline.
           </p>
         </section>
+
+        <Citations sources={sources} />
 
         <section className="rounded-2xl border border-primary/30 bg-primary/5 p-6 text-center">
           <h2 className="text-xl font-bold">Extract audio from your MP4</h2>

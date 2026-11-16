@@ -3,6 +3,7 @@ import Link from "next/link";
 import { PageShell } from "@/components/page-shell";
 import { JsonLd } from "@/components/json-ld";
 import { QuickAnswer } from "@/components/quick-answer";
+import { Citations, type Citation } from "@/components/citations";
 import {
   FileAudio,
   VolumeX,
@@ -11,6 +12,33 @@ import {
   Check,
   Settings2,
 } from "lucide-react";
+
+const sources: Citation[] = [
+  {
+    title: "MPEG-4 — Wikipedia",
+    url: "https://en.wikipedia.org/wiki/MPEG-4",
+    publisher: "Wikipedia",
+    note: "Explains how MP4 stores multiple audio and video streams, which is why the wrong stream can be selected during conversion.",
+  },
+  {
+    title: "FFmpeg — Wikipedia",
+    url: "https://en.wikipedia.org/wiki/FFmpeg",
+    publisher: "Wikipedia",
+    note: "Documents the FFmpeg behavior — including -map and ffprobe — used to detect missing audio tracks and select the correct stream.",
+  },
+  {
+    title: "MP3 — Wikipedia",
+    url: "https://en.wikipedia.org/wiki/MP3",
+    publisher: "Wikipedia",
+    note: "Describes the MP3 output format, confirming that a silent MP3 indicates the encode ran but the source stream was empty.",
+  },
+  {
+    title: "Audio codeсs — MDN Web Docs",
+    url: "https://developer.mozilla.org/en-US/docs/Web/Media/Formats/Audio_codecs",
+    publisher: "Mozilla MDN",
+    note: "Lists the audio codecs browsers can decode, which is the basis for diagnosing unsupported-codec failures in MP4 sources.",
+  },
+];
 
 export const metadata: Metadata = {
   title: "Fix: MP4 to MP3 Conversion Has No Audio — Causes & Fixes",
@@ -38,6 +66,12 @@ export default function Page() {
     mainEntityOfPage: "https://www.mp4tomp3.online/mp4-to-mp3-no-audio",
     datePublished: "2026-11-16",
     dateModified: "2026-11-16",
+    citation: [
+      "https://en.wikipedia.org/wiki/MPEG-4",
+      "https://en.wikipedia.org/wiki/FFmpeg",
+      "https://en.wikipedia.org/wiki/MP3",
+      "https://developer.mozilla.org/en-US/docs/Web/Media/Formats/Audio_codecs",
+    ],
   };
 
   return (
@@ -273,6 +307,8 @@ export default function Page() {
             file.
           </p>
         </section>
+
+        <Citations sources={sources} />
 
         <section className="rounded-2xl border border-primary/30 bg-primary/5 p-6 text-center">
           <h2 className="text-xl font-bold">Convert MP4 to MP3 now</h2>

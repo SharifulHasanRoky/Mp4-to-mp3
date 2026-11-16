@@ -3,6 +3,7 @@ import Link from "next/link";
 import { PageShell } from "@/components/page-shell";
 import { JsonLd } from "@/components/json-ld";
 import { QuickAnswer } from "@/components/quick-answer";
+import { Citations, type Citation } from "@/components/citations";
 import {
   FileAudio,
   DollarSign,
@@ -41,6 +42,12 @@ export default function Page() {
     mainEntityOfPage: "https://www.mp4tomp3.online/free-vs-paid-mp4-to-mp3",
     datePublished: "2026-11-16",
     dateModified: "2026-11-16",
+    citation: [
+      "https://en.wikipedia.org/wiki/FFmpeg",
+      "https://en.wikipedia.org/wiki/LAME",
+      "https://en.wikipedia.org/wiki/Fair_use",
+      "https://www.copyright.gov/",
+    ],
   };
 
   return (
@@ -319,6 +326,15 @@ export default function Page() {
             </li>
           </ul>
         </section>
+
+        <Citations
+          sources={[
+            { title: "FFmpeg \u2014 Wikipedia", url: "https://en.wikipedia.org/wiki/FFmpeg", publisher: "Wikipedia", note: "The open-source engine that lets free converters match paid ones." },
+            { title: "LAME \u2014 Wikipedia", url: "https://en.wikipedia.org/wiki/LAME", publisher: "Wikipedia", note: "The free MP3 encoder used by both free and paid tools." },
+            { title: "Fair use \u2014 Wikipedia", url: "https://en.wikipedia.org/wiki/Fair_use", publisher: "Wikipedia", note: "Fair-use boundaries for free conversion of personal media." },
+            { title: "U.S. Copyright Office", url: "https://www.copyright.gov/", publisher: "U.S. Copyright Office", note: "Official authority on what free and paid converters may legally process." },
+          ]}
+        />
 
         <section className="rounded-2xl border border-primary/30 bg-primary/5 p-6 text-center">
           <h2 className="text-xl font-bold">Convert free, no catch</h2>
