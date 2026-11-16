@@ -1,6 +1,10 @@
 # MP4toMP3.online
 
 > Free online MP4 to MP3 converter. Convert MP4, MOV, WebM, MKV, AVI video files to MP3 audio in the browser. Files are processed entirely client-side using FFmpeg.wasm — they never leave the user's device. No sign-up, no watermark, no upload to server.
+## Full content
+
+- [Complete site content for LLMs](https://www.mp4tomp3.online/llms-full.txt): All 108 pages concatenated as plain markdown for AI consumption.
+
 
 MP4toMP3.online is a browser-based audio extraction tool. It accepts any video file the user uploads (or a direct file URL, Google Drive share link, or Dropbox share link) and extracts the audio track as a high-quality MP3 file. Conversion happens entirely in the browser using FFmpeg compiled to WebAssembly — there is no server-side processing of media.
 

@@ -1,0 +1,81 @@
+# MP4toMP3.online robots.txt
+# https://www.mp4tomp3.online
+
+# Default rule: allow everything
+User-agent: *
+Allow: /
+
+# Block API routes from indexing (they are POST endpoints, not pages)
+Disallow: /api/
+
+# AI crawlers — allow (we want to be cited in AI answers)
+# Explicitly allow major AI/LLM crawlers for GEO (Generative Engine Optimization)
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: Meta-ExternalAgent
+Allow: /
+
+User-agent: Meta-ExternalFetcher
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+# Block known content-scraping / training-only bots that don't drive traffic
+User-agent: CCBot
+Disallow: /
+
+User-agent: GPTBot-Image
+Disallow: /
+
+User-agent: omgili
+Disallow: /
+
+User-agent: omgilibot
+Disallow: /
+
+User-agent: FacebookBot
+Disallow: /
+
+# Sitemap location
+Sitemap: https://www.mp4tomp3.online/sitemap.xml
+
+# IndexNow key verification (for instant indexing on Bing/Yandex/Naver)
+# https://www.bing.com/indexnow
