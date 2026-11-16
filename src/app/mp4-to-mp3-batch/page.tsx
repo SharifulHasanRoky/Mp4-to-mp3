@@ -44,9 +44,9 @@ const sources: Citation[] = [
 ];
 
 export const metadata: Metadata = {
-  title: "How to Batch Convert Multiple MP4 Files to MP3 Online",
+  title: "How to Batch Convert MP4 to MP3 — Free Guide",
   description:
-    "Batch convert MP4 files to MP3 in your browser. MP4toMP3.online processes files one at a time at native FFmpeg speed — honest limits and the right workflow.",
+    "How to batch convert multiple MP4 files to MP3 efficiently in your browser. Free, no sign-up, no upload. Try it now.",
   alternates: { canonical: "/mp4-to-mp3-batch" },
   openGraph: {
     title: "How to Batch Convert Multiple MP4 Files to MP3 Online",

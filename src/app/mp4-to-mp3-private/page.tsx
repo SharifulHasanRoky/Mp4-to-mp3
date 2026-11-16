@@ -15,9 +15,9 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "How MP4toMP3.online Protects Your Privacy (Browser-Based)",
+  title: "How MP4toMP3.online Protects Your Privacy — Free",
   description:
-    "MP4toMP3.online runs FFmpeg in your browser via WebAssembly. Your file is never uploaded, stored, or logged. Here is exactly how it works.",
+    "How MP4toMP3.online keeps your files private: browser-based processing, no upload, no server storage. Free, no sign-up.",
   alternates: { canonical: "/mp4-to-mp3-private" },
   openGraph: {
     title: "How MP4toMP3.online Protects Your Privacy (Browser-Based)",

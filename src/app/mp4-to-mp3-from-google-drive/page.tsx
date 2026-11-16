@@ -43,9 +43,9 @@ const sources: Citation[] = [
 ];
 
 export const metadata: Metadata = {
-  title: "How to Convert MP4 to MP3 From Google Drive Online",
+  title: "Convert MP4 to MP3 From Google Drive — Free Tool",
   description:
-    "Convert an MP4 stored in Google Drive to MP3 without re-uploading. MP4toMP3.online reads your Drive share URL, fetches the file, and encodes it locally.",
+    "Convert MP4 to MP3 directly from a Google Drive share link. Free, no sign-up, files stay in your browser. Try it now.",
   alternates: { canonical: "/mp4-to-mp3-from-google-drive" },
   openGraph: {
     title: "How to Convert MP4 to MP3 From Google Drive Online",

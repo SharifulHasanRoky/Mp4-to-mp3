@@ -15,9 +15,9 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Fair Use and MP4 to MP3 Conversion: What You Need to Know",
+  title: "Fair Use and MP4 to MP3 — Free Plain-English Guide",
   description:
-    "US fair use can excuse some MP4 to MP3 conversions — criticism, commentary, teaching, parody. Learn the four-factor test and its limits.",
+    "How fair use applies to converting MP4 to MP3: the four factors, personal use, and common real cases. Free guide. Not legal advice.",
   alternates: { canonical: "/mp4-to-mp3-fair-use" },
   openGraph: {
     title: "Fair Use and MP4 to MP3 Conversion: What You Need to Know",

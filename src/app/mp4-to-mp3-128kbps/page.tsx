@@ -16,9 +16,9 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "MP4 to MP3 at 128 kbps — Smallest File Size Conversion",
+  title: "MP4 to MP3 at 128 kbps — Smallest File Size, Free Tool",
   description:
-    "Convert MP4 to MP3 at 128 kbps for the smallest file size. Learn when 128 kbps is enough for voice, speech, audiobooks, low bandwidth, and when to avoid it.",
+    "Convert MP4 to MP3 at 128 kbps for the smallest file size. Best for voice and podcasts. Free, no sign-up, no upload. Try it now.",
   alternates: { canonical: "/mp4-to-mp3-128kbps" },
   openGraph: {
     title: "MP4 to MP3 at 128 kbps — Smallest File Size Conversion",

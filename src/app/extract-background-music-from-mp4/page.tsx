@@ -48,9 +48,9 @@ const sources: Citation[] = [
 ];
 
 export const metadata: Metadata = {
-  title: "How to Extract Background Music from MP4 Video Files",
+  title: "Extract Background Music from MP4 — Free Online Guide",
   description:
-    "Want just the background music from an MP4? Simple conversion extracts the full mixed audio. Separating music from voice needs AI stem separation — here is what is and is not possible.",
+    "How to extract background music from an MP4 video. Honest guide on what simple conversion can do and when AI stem separation is needed. Free.",
   alternates: { canonical: "/extract-background-music-from-mp4" },
   openGraph: {
     title: "How to Extract Background Music from MP4 Video Files",

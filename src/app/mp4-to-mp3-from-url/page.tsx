@@ -50,9 +50,9 @@ const sources: Citation[] = [
 ];
 
 export const metadata: Metadata = {
-  title: "Convert MP4 to MP3 From a URL — Direct Link Support",
+  title: "Convert MP4 to MP3 From a URL — Free, No Upload",
   description:
-    "Convert an MP4 from a direct URL to MP3 in your browser. MP4toMP3.online fetches direct file URLs and cloud share links locally. Streaming platforms blocked.",
+    "Convert MP4 to MP3 from a direct file URL or cloud share link (Google Drive, Dropbox). Free, no sign-up, files stay in your browser.",
   alternates: { canonical: "/mp4-to-mp3-from-url" },
   openGraph: {
     title: "Convert MP4 to MP3 From a URL — Direct Link Support",

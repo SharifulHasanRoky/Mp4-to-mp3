@@ -14,9 +14,9 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "VBR vs CBR: Which MP3 Encoding Mode Is Better?",
+  title: "MP3 VBR vs CBR — Which to Choose? Free Guide",
   description:
-    "VBR gives better quality per megabyte; CBR gives predictability. Compare how each works, file sizes at common settings, and when to pick which for MP4-to-MP3 conversion.",
+    "Variable vs constant bitrate for MP3: quality, size, compatibility compared. Free plain-English guide. No sign-up required.",
   alternates: { canonical: "/mp4-to-mp3-vbr-vs-cbr" },
   openGraph: {
     title: "VBR vs CBR: Which MP3 Encoding Mode Is Better?",

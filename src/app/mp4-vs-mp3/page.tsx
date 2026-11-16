@@ -7,9 +7,9 @@ import { Citations, type Citation } from "@/components/citations";
 import { FileAudio, Check } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "MP4 vs MP3: What's the Difference? (Simple Guide)",
+  title: "MP4 vs MP3 — What's the Difference? Free Guide",
   description:
-    "MP4 is a video container; MP3 is an audio-only format. Learn the key differences, when to use each, and how to convert MP4 to MP3 in seconds.",
+    "MP4 (video container) vs MP3 (audio format): what each is, when to convert, quality and size tradeoffs. Free, no sign-up guide.",
   alternates: { canonical: "/mp4-vs-mp3" },
   openGraph: {
     title: "MP4 vs MP3: What's the Difference? (Simple Guide)",

@@ -41,9 +41,9 @@ const sources: Citation[] = [
 ];
 
 export const metadata: Metadata = {
-  title: "MP4 to MP3 for Video Editing: Premiere, DaVinci, FCP",
+  title: "MP4 to MP3 for Video Editing — Free NLE Guide",
   description:
-    "Convert MP4 to MP3 for Premiere Pro, Final Cut, and DaVinci Resolve. Pick a bitrate that survives re-encoding inside an NLE timeline. Free, browser-based.",
+    "Convert MP4 to MP3 for Premiere Pro, Final Cut Pro, DaVinci Resolve. Best bitrate for NLE re-encoding. Free guide, no sign-up.",
   alternates: { canonical: "/mp4-to-mp3-for-video-editing" },
   openGraph: {
     title: "MP4 to MP3 for Video Editing: Premiere, DaVinci, FCP",

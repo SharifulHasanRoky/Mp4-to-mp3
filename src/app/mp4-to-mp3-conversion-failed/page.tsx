@@ -42,9 +42,9 @@ const sources: Citation[] = [
 ];
 
 export const metadata: Metadata = {
-  title: "Fix: MP4 to MP3 Conversion Failed (Common Errors Explained)",
+  title: "Fix: MP4 to MP3 Conversion Failed — Free Guide",
   description:
-    "MP4 to MP3 conversion failed? Decode every common error message, browser memory limits, Safari WebAssembly quirks, codec support and the exact fix for each.",
+    "Why MP4 to MP3 conversion fails and how to fix the most common errors step by step. Free, plain-English troubleshooting guide. No sign-up.",
   alternates: { canonical: "/mp4-to-mp3-conversion-failed" },
   openGraph: {
     title: "Fix: MP4 to MP3 Conversion Failed (Common Errors Explained)",

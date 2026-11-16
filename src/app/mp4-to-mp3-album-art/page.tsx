@@ -14,9 +14,9 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Add Album Art or Cover Image to MP3 Files: A Guide",
+  title: "Add Album Art to MP3 — Free Step-by-Step Guide",
   description:
-    "Add cover art to MP3 files with Mp3tag or kid3. Learn how embedded cover art works, what resolutions to use, and how to add art after converting. Free converter.",
+    "How to add cover art to MP3 files using free tools like Mp3tag and kid3. Step-by-step with resolution tips. Free, no sign-up guide.",
   alternates: { canonical: "/mp4-to-mp3-album-art" },
   openGraph: {
     title: "Add Album Art or Cover Image to MP3 Files: A Guide",

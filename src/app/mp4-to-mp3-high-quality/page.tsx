@@ -14,9 +14,9 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "How to Convert MP4 to MP3 in High Quality",
+  title: "How to Convert MP4 to MP3 in High Quality — Free",
   description:
-    "High-quality MP4 to MP3 conversion means matching bitrate to source, using VBR, and avoiding re-encoding loss. Practical steps and recommended settings.",
+    "Best MP4 to MP3 quality settings: 320 kbps, 44.1 kHz, stereo, VBR. Free browser tool, no sign-up, no upload. Try it now.",
   alternates: { canonical: "/mp4-to-mp3-high-quality" },
   openGraph: {
     title: "How to Convert MP4 to MP3 in High Quality",

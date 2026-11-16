@@ -16,9 +16,9 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Browser-Based vs Desktop App MP4 to MP3: Pros and Cons",
+  title: "Browser vs Desktop App MP4 to MP3 — Free Comparison",
   description:
-    "Browser-based or desktop app for MP4 to MP3? Compare install, speed, batch handling, codec control and privacy — and see which fits how you actually work.",
+    "Browser-based vs desktop MP4 to MP3 converter: pros, cons, privacy, speed, install. Which is better for your use case? Free comparison guide.",
   alternates: { canonical: "/browser-vs-app-mp4-to-mp3" },
   openGraph: {
     title: "Browser-Based vs Desktop App MP4 to MP3: Pros and Cons",

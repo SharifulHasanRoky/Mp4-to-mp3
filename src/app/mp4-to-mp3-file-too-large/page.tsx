@@ -41,9 +41,9 @@ const sources: Citation[] = [
 ];
 
 export const metadata: Metadata = {
-  title: "How to Convert Large MP4 Files (Over 100MB) to MP3",
+  title: "MP4 Too Large to Convert? Fix It — Free Guide",
   description:
-    "Convert large MP4 files (over 100MB) to MP3 without crashes. Browser memory limits explained, plus workarounds: trim first, use Chrome, close tabs, and stream via WebAssembly.",
+    "How to convert large MP4 files to MP3 when the file is too big for the browser. Memory limits explained with workarounds. Free troubleshooting.",
   alternates: { canonical: "/mp4-to-mp3-file-too-large" },
   openGraph: {
     title: "How to Convert Large MP4 Files (Over 100MB) to MP3",

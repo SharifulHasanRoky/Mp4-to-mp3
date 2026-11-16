@@ -17,9 +17,9 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Convert MP4 to MP3 Without Installing Any Software",
+  title: "Convert MP4 to MP3 Without Software — Free Tool",
   description:
-    "Convert MP4 to MP3 without installing any software. MP4toMP3.online runs WebAssembly FFmpeg in your browser — no download, no admin rights, no leftover files.",
+    "Convert MP4 to MP3 without installing any software. Browser-based, free, no sign-up, no upload. Try it now.",
   alternates: { canonical: "/mp4-to-mp3-no-software" },
   openGraph: {
     title: "Convert MP4 to MP3 Without Installing Any Software",

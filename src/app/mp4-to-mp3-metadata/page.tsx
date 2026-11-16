@@ -14,9 +14,9 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Preserve or Add Metadata When Converting MP4 to MP3",
+  title: "MP4 to MP3 Metadata — Preserve or Add Tags Free",
   description:
-    "MP4 metadata rarely survives MP3 conversion. Here is what gets dropped, why ID3 tags differ, and how to add them with Mp3tag afterwards. Free, browser-based.",
+    "How to preserve or add metadata (title, artist, album) when converting MP4 to MP3. Free tools and workflow. No sign-up guide.",
   alternates: { canonical: "/mp4-to-mp3-metadata" },
   openGraph: {
     title: "Preserve or Add Metadata When Converting MP4 to MP3",

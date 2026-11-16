@@ -43,9 +43,9 @@ const sources: Citation[] = [
 ];
 
 export const metadata: Metadata = {
-  title: "How to Convert MP4 to MP3 From Dropbox — Free Online",
+  title: "Convert MP4 to MP3 From Dropbox — Free Tool",
   description:
-    "Convert an MP4 stored in Dropbox to MP3 without re-uploading. MP4toMP3.online rewrites your Dropbox share URL to a direct-download link and encodes locally.",
+    "Convert MP4 to MP3 directly from a Dropbox share link. Free, no sign-up, no upload. Try it now in your browser.",
   alternates: { canonical: "/mp4-to-mp3-from-dropbox" },
   openGraph: {
     title: "How to Convert MP4 to MP3 From Dropbox — Free Online",

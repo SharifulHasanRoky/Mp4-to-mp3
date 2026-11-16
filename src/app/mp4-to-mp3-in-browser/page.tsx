@@ -18,9 +18,9 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Convert MP4 to MP3 Entirely in Your Browser (No Upload)",
+  title: "Convert MP4 to MP3 Entirely in Browser — Free, Private",
   description:
-    "Convert MP4 to MP3 entirely in your browser with no upload. MP4toMP3.online runs FFmpeg locally via WebAssembly — your file never leaves your device.",
+    "Convert MP4 to MP3 entirely in your browser with no upload. FFmpeg.wasm runs locally. Free, no sign-up, fully private.",
   alternates: { canonical: "/mp4-to-mp3-in-browser" },
   openGraph: {
     title: "Convert MP4 to MP3 Entirely in Your Browser (No Upload)",

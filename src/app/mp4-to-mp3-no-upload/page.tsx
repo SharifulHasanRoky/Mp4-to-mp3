@@ -14,9 +14,9 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Why Your Files Never Leave Your Device with Our Tool",
+  title: "Why Files Never Leave Your Device — Free Privacy",
   description:
-    "MP4toMP3.online never uploads your file. Here is the technical proof: how WebAssembly FFmpeg processes MP4 to MP3 locally, with no server-side processing at all.",
+    "Why MP4toMP3.online never uploads your files: browser-based FFmpeg.wasm processing explained. Free, no sign-up, private.",
   alternates: { canonical: "/mp4-to-mp3-no-upload" },
   openGraph: {
     title: "Why Your Files Never Leave Your Device with Our Tool",

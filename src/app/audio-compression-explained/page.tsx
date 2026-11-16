@@ -15,9 +15,9 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Audio Compression Explained: How MP3 Makes Files Smaller",
+  title: "Audio Compression Explained: How MP3 Shrinks Files — Free",
   description:
-    "MP3 compression uses psychoacoustic models to discard sounds your ear cannot hear. Learn how frequency masking, quantization, and Huffman coding shrink audio by 10x.",
+    "How MP3 compression works: psychoacoustics, masking, bitrate. Understand lossy vs lossless before you convert. Free guide.",
   alternates: { canonical: "/audio-compression-explained" },
   openGraph: {
     title: "Audio Compression Explained: How MP3 Makes Files Smaller",

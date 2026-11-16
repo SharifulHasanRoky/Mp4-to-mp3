@@ -15,9 +15,9 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "5 Best MP4 to MP3 Alternatives Compared",
+  title: "5 Best MP4 to MP3 Alternatives Compared — Free 2026",
   description:
-    "An honest comparison of 5 MP4 to MP3 alternatives: MP4toMP3.online, VLC, Audacity, online-convert.com, and cloudconvert. Pros, cons, and who each wins for.",
+    "Compare MP4toMP3.online, VLC, Audacity, online-convert, cloudconvert: pros, cons, privacy, speed. Free 2026 comparison guide, no sign-up.",
   alternates: { canonical: "/mp4-to-mp3-alternatives" },
   openGraph: {
     title: "5 Best MP4 to MP3 Alternatives Compared",

@@ -18,9 +18,9 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "The Complete Guide to MP4 to MP3 Conversion",
+  title: "Complete Guide to MP4 to MP3 — Free Step-by-Step",
   description:
-    "Everything about converting MP4 to MP3: what the formats are, why convert, how conversion works, quality, privacy, troubleshooting, and which tool to pick. A full pillar guide.",
+    "Everything about MP4 to MP3: formats, quality settings, privacy, batch, troubleshooting, device guides. Free complete guide, no sign-up.",
   alternates: { canonical: "/mp4-to-mp3-complete-guide" },
   openGraph: {
     title: "The Complete Guide to MP4 to MP3 Conversion",

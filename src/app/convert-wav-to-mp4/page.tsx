@@ -17,9 +17,9 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Convert WAV to MP4 — Add Audio to Video Online",
+  title: "Convert WAV to MP4 — Add Audio to Video Online Free",
   description:
-    "Convert WAV to MP4 online for free. Wrap your audio in an MP4 video with a static image to upload to YouTube, TikTok and Instagram. No sign-up, no upload to a server.",
+    "Free WAV to MP4 converter: wrap your audio file in a video container entirely in your browser. No sign-up, no watermark, no upload. Try it free.",
   alternates: { canonical: "/convert-wav-to-mp4" },
   openGraph: {
     title: "Convert WAV to MP4 — Add Audio to Video Online",

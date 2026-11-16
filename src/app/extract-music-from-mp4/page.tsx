@@ -48,9 +48,9 @@ const sources: Citation[] = [
 ];
 
 export const metadata: Metadata = {
-  title: "How to Extract Music or Songs from MP4 Video Files",
+  title: "How to Extract Music from MP4 Video — Free Online",
   description:
-    "Pull songs and music out of MP4 videos — music videos, live recordings, concert footage. Browser-based, no upload. Step-by-step with bitrate and metadata tips.",
+    "Extract songs or music from MP4 videos as MP3. Free browser-based tool, no sign-up, no watermark. Step-by-step guide with bitrate tips.",
   alternates: { canonical: "/extract-music-from-mp4" },
   openGraph: {
     title: "How to Extract Music or Songs from MP4 Video Files",

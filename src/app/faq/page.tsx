@@ -5,9 +5,9 @@ import { JsonLd } from "@/components/json-ld";
 import { QuickAnswer } from "@/components/quick-answer";
 
 export const metadata: Metadata = {
-  title: "FAQ – Frequently Asked Questions",
+  title: "MP4 to MP3 FAQ — 20+ Common Questions Answered Free",
   description:
-    "Answers to the most common questions about MP4 to MP3: supported formats, file size limits, audio quality, privacy, and what you can legally extract.",
+    "Frequently asked questions about converting MP4 to MP3: audio quality, privacy, batch conversion, device support, legal. Free, no sign-up guide.",
   alternates: { canonical: "/faq" },
 };
 

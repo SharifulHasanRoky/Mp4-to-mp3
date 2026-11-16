@@ -16,9 +16,9 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Free vs Paid MP4 to MP3 Converters: Do You Need to Pay?",
+  title: "Free vs Paid MP4 to MP3 — Do You Need to Pay? Free",
   description:
-    "Do you need to pay for an MP4 to MP3 converter? What paid tools actually buy you, where free tools fall short, and when free is genuinely the right call.",
+    "Free vs paid MP4 to MP3 converters: what paid tools offer, when free is enough. Honest comparison. Free, no sign-up.",
   alternates: { canonical: "/free-vs-paid-mp4-to-mp3" },
   openGraph: {
     title: "Free vs Paid MP4 to MP3 Converters: Do You Need to Pay?",

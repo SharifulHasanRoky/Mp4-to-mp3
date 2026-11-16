@@ -42,9 +42,9 @@ const sources: Citation[] = [
 ];
 
 export const metadata: Metadata = {
-  title: "How to Extract Voice or Speech from MP4 Video Files",
+  title: "How to Extract Voice from MP4 — Free Speech Extraction",
   description:
-    "Extract voice, speech, interviews, lectures, and podcasts from MP4 videos. Mono 128 kbps MP3 is the speech-optimized sweet spot. Browser-based, no upload.",
+    "Extract speech or voice from MP4 as MP3 with speech-optimized settings (mono, 128kbps). Free, no sign-up, no upload. Try it now.",
   alternates: { canonical: "/extract-voice-from-mp4" },
   openGraph: {
     title: "How to Extract Voice or Speech from MP4 Video Files",

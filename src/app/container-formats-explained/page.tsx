@@ -13,9 +13,9 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Container Formats Explained: MP4, MKV, MOV, AVI Compared",
+  title: "Container Formats Explained: MP4, MKV, MOV, AVI — Free",
   description:
-    "What is a video container format? A clear explainer of MP4, MKV, MOV, and AVI — how they hold video and audio streams, what differs between them, and which to choose.",
+    "MP4, MKV, MOV, AVI compared: which codecs inside, browser compatibility, when to use each. Free, no sign-up guide for everyday users.",
   alternates: { canonical: "/container-formats-explained" },
   openGraph: {
     title: "Container Formats Explained: MP4, MKV, MOV, AVI Compared",

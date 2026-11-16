@@ -13,9 +13,9 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Audio Codecs Explained: AAC, MP3, Opus, FLAC Compared",
+  title: "Audio Codecs Explained: AAC, MP3, Opus, FLAC — Free Guide",
   description:
-    "What is an audio codec? A clear explainer of AAC, MP3, Opus, and FLAC — how they compress sound, their bitrates, and which one to choose for MP4 to MP3 conversion.",
+    "AAC, MP3, Opus, FLAC compared: audio quality, file size, browser compatibility. Pick the right codec before you convert MP4 to MP3. Free guide, no sign-up.",
   alternates: { canonical: "/audio-codecs-explained" },
   openGraph: {
     title: "Audio Codecs Explained: AAC, MP3, Opus, FLAC Compared",

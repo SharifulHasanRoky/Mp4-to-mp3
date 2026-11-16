@@ -7,9 +7,9 @@ import { Citations, type Citation } from "@/components/citations";
 import { FileAudio } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "20 Common Questions About MP4 to MP3 Conversion",
+  title: "20 Common MP4 to MP3 Questions — Free FAQ Guide",
   description:
-    "Answers to 20 common questions about converting MP4 to MP3: quality, speed, privacy, legality, file size, mobile devices, and more. Honest, practical answers.",
+    "Answers to the 20 most-asked MP4 to MP3 questions: audio quality, batch, devices, legal, privacy. Free, no sign-up FAQ guide.",
   alternates: { canonical: "/mp4-to-mp3-common-questions" },
   openGraph: {
     title: "20 Common Questions About MP4 to MP3 Conversion",

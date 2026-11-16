@@ -16,9 +16,9 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "The Fastest Way to Convert MP4 to MP3 Online in 2026",
+  title: "The Fastest Way to Convert MP4 to MP3 — Free",
   description:
-    "The fastest MP4 to MP3 conversion skips the upload entirely. MP4toMP3.online runs FFmpeg locally via WebAssembly — no queue, no sign-up, 8–15 seconds typical.",
+    "The fastest way to convert MP4 to MP3 online: browser-based, no upload, instant processing. Free, no sign-up. Try now.",
   alternates: { canonical: "/mp4-to-mp3-quickly" },
   openGraph: {
     title: "The Fastest Way to Convert MP4 to MP3 Online in 2026",

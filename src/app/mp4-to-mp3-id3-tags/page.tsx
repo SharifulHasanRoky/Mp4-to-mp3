@@ -14,9 +14,9 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "ID3 Tags Explained: Add Title, Artist, Album to MP3",
+  title: "ID3 Tags Explained — Add Title, Artist to MP3 Free",
   description:
-    "ID3 tags store title, artist, album, year, and genre inside the MP3 file itself. Learn ID3v1 vs ID3v2 differences and how to edit tags with Mp3tag. Free converter.",
+    "How to add ID3 tags (title, artist, album, year) to MP3 files with free tools like Mp3tag. Step-by-step guide. Free, no sign-up.",
   alternates: { canonical: "/mp4-to-mp3-id3-tags" },
   openGraph: {
     title: "ID3 Tags Explained: Add Title, Artist, Album to MP3",

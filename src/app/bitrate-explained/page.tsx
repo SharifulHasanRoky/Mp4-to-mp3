@@ -15,9 +15,9 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Bitrate Explained: How It Affects Audio Quality and File Size",
+  title: "Bitrate Explained: Quality vs File Size — Free MP3 Guide",
   description:
-    "Audio bitrate in kbps controls the tradeoff between quality and file size. Learn what 128, 192, and 320 kbps actually sound like and which bitrate to pick for music, voice, and phone playback.",
+    "What audio bitrate means, how 128/192/320 kbps compare in quality and size, and which to pick for music, voice, or podcasts. Free, no sign-up guide.",
   alternates: { canonical: "/bitrate-explained" },
   openGraph: {
     title: "Bitrate Explained: How It Affects Audio Quality and File Size",

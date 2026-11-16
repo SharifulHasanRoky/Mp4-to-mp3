@@ -13,9 +13,9 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "How to Trim or Cut Audio When Converting MP4 to MP3",
+  title: "How to Trim Audio When Converting MP4 to MP3 — Free",
   description:
-    "MP4toMP3.online does not trim audio. Here is why conversion is the wrong place to cut, and how to trim MP3 losslessly with mp3DirectCut afterwards. Free, browser-based.",
+    "Why conversion is the wrong place to trim and how to losslessly cut MP3 with mp3DirectCut. Free, no sign-up, honest guide.",
   alternates: { canonical: "/mp4-to-mp3-trim-audio" },
   openGraph: {
     title: "How to Trim or Cut Audio When Converting MP4 to MP3",

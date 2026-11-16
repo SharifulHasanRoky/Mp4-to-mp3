@@ -14,9 +14,9 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Normalize Volume When Converting MP4 to MP3: A Guide",
+  title: "Normalize Volume When Converting MP4 to MP3 — Free",
   description:
-    "MP4toMP3.online does not normalize volume. Here is when to do it, and how to normalize MP3 loudness losslessly with MP3Gain after converting. Free, browser-based.",
+    "How to normalize audio volume when converting MP4 to MP3. Free tools and workflow. No sign-up, plain-English guide.",
   alternates: { canonical: "/mp4-to-mp3-normalize-volume" },
   openGraph: {
     title: "Normalize Volume When Converting MP4 to MP3: A Guide",

@@ -15,9 +15,9 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Best MP4 to MP3 Converter Settings for Maximum Quality",
+  title: "Best MP4 to MP3 Quality Settings — Free Guide",
   description:
-    "Maximum MP3 quality means 320 kbps CBR, joint stereo, source sample rate, and libmp3lame. The exact settings and the reasons behind each one.",
+    "Best MP4 to MP3 quality settings: 320 kbps, 44.1 kHz, stereo, VBR. Free browser tool, no sign-up, no upload. Try it now.",
   alternates: { canonical: "/mp4-to-mp3-best-quality" },
   openGraph: {
     title: "Best MP4 to MP3 Converter Settings for Maximum Quality",

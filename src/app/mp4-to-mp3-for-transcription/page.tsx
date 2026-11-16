@@ -41,9 +41,9 @@ const sources: Citation[] = [
 ];
 
 export const metadata: Metadata = {
-  title: "MP4 to MP3 for Transcription: Speech-Optimized Settings",
+  title: "MP4 to MP3 for Transcription — Free Speech Settings",
   description:
-    "Convert MP4 to MP3 for speech-to-text with 16 kHz mono at 64 kbps. Optimized for Whisper, Otter.ai, and other transcription services. Free, browser-based.",
+    "Convert MP4 to MP3 for transcription (Whisper, Otter, Rev): 16kHz mono 64kbps speech-optimized settings. Free, no sign-up, no upload.",
   alternates: { canonical: "/mp4-to-mp3-for-transcription" },
   openGraph: {
     title: "MP4 to MP3 for Transcription: Speech-Optimized Settings",

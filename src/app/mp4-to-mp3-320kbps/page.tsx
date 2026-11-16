@@ -15,9 +15,9 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "MP4 to MP3 at 320 kbps — Highest Quality Conversion",
+  title: "MP4 to MP3 at 320 kbps — Highest Quality, Free Tool",
   description:
-    "Convert MP4 to MP3 at 320 kbps for highest MP3 quality. Learn what 320 kbps means, when to use it, file tradeoffs, and how to pick it in MP4toMP3.online.",
+    "Convert MP4 to MP3 at 320 kbps for maximum audio quality. Best for music. Free, no sign-up, no upload, no watermark. Try it now.",
   alternates: { canonical: "/mp4-to-mp3-320kbps" },
   openGraph: {
     title: "MP4 to MP3 at 320 kbps — Highest Quality Conversion",

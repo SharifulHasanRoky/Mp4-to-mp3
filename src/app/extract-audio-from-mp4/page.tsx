@@ -42,7 +42,7 @@ const sources: Citation[] = [
 export const metadata: Metadata = {
   title: "Extract Audio From MP4 — Free MP4 Audio Extractor",
   description:
-    "Extract audio from any MP4 for free in your browser. Demux the MP4 container, pull out the AAC or MP3 stream, save as MP3 — no upload, no install.",
+    "Free MP4 audio extractor: pull the audio track from any MP4 as a high-quality MP3 file. No sign-up, no upload, no watermark. Try it free now.",
   alternates: { canonical: "/extract-audio-from-mp4" },
   openGraph: {
     title: "Extract Audio From MP4 — Free MP4 Audio Extractor",

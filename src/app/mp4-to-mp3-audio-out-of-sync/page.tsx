@@ -41,9 +41,9 @@ const sources: Citation[] = [
 ];
 
 export const metadata: Metadata = {
-  title: "Fix: Audio Out of Sync After MP4 to MP3 Conversion",
+  title: "Fix: Audio Out of Sync After MP4 to MP3 — Free Guide",
   description:
-    "MP3 out of sync after converting from MP4? Diagnose edit-list offsets, variable frame rates, trimming errors and drift — plus the exact fix for each cause.",
+    "Why MP3 audio drifts out of sync after conversion from MP4, and how to fix it. Free, plain-English troubleshooting guide. No sign-up.",
   alternates: { canonical: "/mp4-to-mp3-audio-out-of-sync" },
   openGraph: {
     title: "Fix: Audio Out of Sync After MP4 to MP3 Conversion",

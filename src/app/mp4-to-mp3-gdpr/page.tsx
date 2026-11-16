@@ -14,9 +14,9 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "GDPR and MP4 to MP3: Your Data Protection Rights",
+  title: "GDPR and MP4 to MP3 — Free Privacy Rights Guide",
   description:
-    "How MP4toMP3.online handles GDPR obligations: no file uploads, no personal data stored, anonymized analytics, and your rights to access, delete, and object.",
+    "How GDPR applies to MP4 to MP3 conversion. Your data protection rights explained in plain English. Free, no sign-up required.",
   alternates: { canonical: "/mp4-to-mp3-gdpr" },
   openGraph: {
     title: "GDPR and MP4 to MP3: Your Data Protection Rights",

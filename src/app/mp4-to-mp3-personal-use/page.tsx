@@ -14,9 +14,9 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Personal Use Exceptions for MP4 to MP3 Conversion",
+  title: "MP4 to MP3 for Personal Use — Free Guide",
   description:
-    "Converting MP4 to MP3 for personal listening is tolerated in many jurisdictions but rarely a clear-cut right. Country-by-country breakdown and practical limits.",
+    "Personal use exceptions for converting MP4 to MP3: what's allowed, what's not. Free plain-English guide. Not legal advice.",
   alternates: { canonical: "/mp4-to-mp3-personal-use" },
   openGraph: {
     title: "Personal Use Exceptions for MP4 to MP3 Conversion",

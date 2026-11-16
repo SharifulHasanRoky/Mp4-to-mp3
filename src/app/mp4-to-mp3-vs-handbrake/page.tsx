@@ -15,9 +15,9 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "MP4toMP3.online vs HandBrake: Quick Audio vs Full Video Tool",
+  title: "MP4toMP3.online vs HandBrake — Free Comparison",
   description:
-    "MP4toMP3.online vs HandBrake compared honestly — purpose, speed, codec control and batch. See why a focused audio tool wins for MP4 to MP3.",
+    "MP4toMP3.online vs HandBrake for MP4 to MP3: speed, privacy, install, use case. Honest comparison. Free, no sign-up.",
   alternates: { canonical: "/mp4-to-mp3-vs-handbrake" },
   openGraph: {
     title: "MP4toMP3.online vs HandBrake: Quick Audio vs Full Video Tool",

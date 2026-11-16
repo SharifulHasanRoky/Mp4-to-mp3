@@ -14,9 +14,9 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Stereo vs Mono MP3: Which to Choose for Your Output",
+  title: "MP3 Stereo vs Mono — Which to Choose? Free Guide",
   description:
-    "Music sounds best in stereo; voice and speech are smaller and clearer in mono. Here is when to downmix and how much space mono saves. Free, browser-based converter.",
+    "Stereo vs mono MP3: when each is better, file size, voice vs music. Free plain-English guide. No sign-up required.",
   alternates: { canonical: "/mp4-to-mp3-stereo-vs-mono" },
   openGraph: {
     title: "Stereo vs Mono MP3: Which to Choose for Your Output",

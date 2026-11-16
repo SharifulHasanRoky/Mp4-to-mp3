@@ -43,9 +43,9 @@ const sources: Citation[] = [
 ];
 
 export const metadata: Metadata = {
-  title: "Convert Large MP4 Files to MP3 (Up to 500MB) in Browser",
+  title: "Convert Large MP4 to MP3 — Free, Up to 500MB",
   description:
-    "How to convert large MP4 files (up to 500MB) to MP3 in the browser. Memory limits, the right bitrate, and which browsers actually finish the job without crashing.",
+    "Convert large MP4 files (up to 500MB) to MP3 in your browser. Free, no sign-up, no upload. Try it now, works on any device.",
   alternates: { canonical: "/mp4-to-mp3-large-file" },
   openGraph: {
     title: "Convert Large MP4 Files to MP3 (Up to 500MB) in Browser",

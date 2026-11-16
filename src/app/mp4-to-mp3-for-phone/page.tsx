@@ -42,9 +42,9 @@ const sources: Citation[] = [
 ];
 
 export const metadata: Metadata = {
-  title: "Convert MP4 to MP3 Free for Your Phone Music Library",
+  title: "MP4 to MP3 for Phone — Free Music Library Guide",
   description:
-    "Convert MP4 to MP3 for iPhone or Android. Both platforms support MP3 natively. Step-by-step for getting converted MP3s into Apple Music, Files, and Android players.",
+    "Convert MP4 to MP3 for iPhone or Android music library. Best settings, how to import. Free, no sign-up, no upload. Step-by-step.",
   alternates: { canonical: "/mp4-to-mp3-for-phone" },
   openGraph: {
     title: "Convert MP4 to MP3 Free for Your Phone Music Library",

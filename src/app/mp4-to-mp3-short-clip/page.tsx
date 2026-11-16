@@ -42,9 +42,9 @@ const sources: Citation[] = [
 ];
 
 export const metadata: Metadata = {
-  title: "Convert Short MP4 Clips to MP3 Quickly — Under 30s",
+  title: "Convert Short MP4 Clips to MP3 — Free Fast Tool",
   description:
-    "Convert short MP4 clips (ringtones, voice memos, sound bites) to MP3 in seconds. Browser-based, no upload, no install. Fast for clips under one minute.",
+    "Convert short MP4 clips to MP3 quickly in your browser. Best for ringtones, sound bites, samples. Free, no sign-up, no upload.",
   alternates: { canonical: "/mp4-to-mp3-short-clip" },
   openGraph: {
     title: "Convert Short MP4 Clips to MP3 Quickly — Under 30s",

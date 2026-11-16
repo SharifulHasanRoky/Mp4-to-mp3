@@ -16,9 +16,9 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Online vs Offline MP4 to MP3 Converter: Which Is Better?",
+  title: "Online vs Offline MP4 to MP3 — Free Comparison",
   description:
-    "Online vs offline MP4 to MP3 converter compared on speed, privacy, install and reliability. See when each wins and why a browser-based hybrid usually wins.",
+    "Online vs offline MP4 to MP3 converter: privacy, speed, install, file size limits. Which is better for you? Free guide.",
   alternates: { canonical: "/online-vs-offline-mp4-to-mp3" },
   openGraph: {
     title: "Online vs Offline MP4 to MP3 Converter: Which Is Better?",

@@ -34,9 +34,9 @@ const sources: Citation[] = [
 ];
 
 export const metadata: Metadata = {
-  title: "How to Convert MP4 to MP3 (Step-by-Step Guide, Any Device)",
+  title: "How to Convert MP4 to MP3 — Step-by-Step (Any Device)",
   description:
-    "Convert MP4 to MP3 in 3 simple steps — no software install, no sign-up. Works on iPhone, Android, Mac, Windows, Linux. Free online tool, files processed in your browser.",
+    "Step-by-step MP4 to MP3 conversion guide for Windows, Mac, iPhone, Android. Free, no sign-up, no install. Try the browser tool now.",
   alternates: { canonical: "/how-to-convert-mp4-to-mp3" },
   openGraph: {
     title: "How to Convert MP4 to MP3 (Step-by-Step Guide, Any Device)",

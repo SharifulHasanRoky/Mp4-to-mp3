@@ -16,9 +16,9 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "MP4 to MP3 Converter Online Free — No Sign-up",
+  title: "MP4 to MP3 Converter Online Free — No Sign-up Needed",
   description:
-    "Free MP4 to MP3 converter online. Convert MP4 video to MP3 audio in your browser — no software install, no sign-up, no watermark. Files are processed privately and deleted automatically.",
+    "Free online MP4 to MP3 converter. No sign-up, no upload, no watermark. Files up to 500MB. Try it free in your browser right now.",
   alternates: { canonical: "/mp4-to-mp3-converter-online-free" },
   openGraph: {
     title: "MP4 to MP3 Converter Online Free — No Sign-up",

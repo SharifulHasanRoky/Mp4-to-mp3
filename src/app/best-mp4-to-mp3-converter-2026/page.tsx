@@ -18,9 +18,9 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Best MP4 to MP3 Converter in 2026 (Updated)",
+  title: "Best MP4 to MP3 Converter in 2026 — Free, Private, No Install",
   description:
-    "The best MP4 to MP3 converter in 2026 is browser-based. Compare MP4toMP3.online, VLC, Audacity, online-convert.com and cloudconvert with honest pros and cons.",
+    "The best MP4 to MP3 converter in 2026: browser-based, no upload, no sign-up, no watermark. Compare 5 tools. Free to use.",
   alternates: { canonical: "/best-mp4-to-mp3-converter-2026" },
   openGraph: {
     title: "Best MP4 to MP3 Converter in 2026 (Updated)",

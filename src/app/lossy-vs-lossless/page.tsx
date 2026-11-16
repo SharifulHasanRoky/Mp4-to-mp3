@@ -16,9 +16,9 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Lossy vs Lossless Audio: What's the Real Difference?",
+  title: "Lossy vs Lossless Audio — Free Plain-English Guide",
   description:
-    "Lossy formats like MP3 and AAC discard audio data to shrink files; lossless formats like FLAC keep it all. Learn the tradeoffs and when each matters for your MP4 extraction.",
+    "MP3 vs FLAC: what you lose with lossy compression, when lossless actually matters, and which to choose. Free guide with examples, no sign-up.",
   alternates: { canonical: "/lossy-vs-lossless" },
   openGraph: {
     title: "Lossy vs Lossless Audio: What's the Real Difference?",

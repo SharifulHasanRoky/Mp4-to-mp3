@@ -15,9 +15,9 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Extract HD Audio from MP4: Complete Guide",
+  title: "Extract HD Audio from MP4 — Free Complete Guide",
   description:
-    "MP4 audio is usually 44.1 kHz AAC. HD audio means 48 kHz or higher, or lossless WAV/FLAC. Here is how to extract the best audio your MP4 actually contains.",
+    "How to extract HD audio from MP4 as FLAC or high-bitrate MP3. Best settings for hi-res output. Free, no sign-up, no upload.",
   alternates: { canonical: "/mp4-to-mp3-hd-audio" },
   openGraph: {
     title: "Extract HD Audio from MP4: Complete Guide",

@@ -41,9 +41,9 @@ const sources: Citation[] = [
 ];
 
 export const metadata: Metadata = {
-  title: "Fix: MP4 to MP3 Conversion Has No Audio — Causes & Fixes",
+  title: "MP4 Has No Audio? Fix It Before Converting — Free",
   description:
-    "Converted an MP4 to MP3 and got silence? Diagnose the four real causes — no audio track, wrong stream, codec mismatch, conversion error — and fix each one.",
+    "Why some MP4 files have no audio track and how to check before converting to MP3. Free troubleshooting guide. No sign-up required.",
   alternates: { canonical: "/mp4-to-mp3-no-audio" },
   openGraph: {
     title: "Fix: MP4 to MP3 Conversion Has No Audio — Causes & Fixes",

@@ -42,9 +42,9 @@ const sources: Citation[] = [
 ];
 
 export const metadata: Metadata = {
-  title: "Convert Long MP4 Videos (1+ Hour) to MP3 — Full Guide",
+  title: "Convert Long MP4 Videos to MP3 — Free 1+ Hour",
   description:
-    "Convert hour-long MP4 videos (lectures, podcasts, concerts) to MP3 in the browser. Bitrate for long content, segmentation, and how to avoid decoder memory spikes.",
+    "Convert long MP4 videos (1+ hour) to MP3 in your browser. Tips for memory limits and best bitrate. Free, no sign-up, no upload.",
   alternates: { canonical: "/mp4-to-mp3-long-video" },
   openGraph: {
     title: "Convert Long MP4 Videos (1+ Hour) to MP3 — Full Guide",

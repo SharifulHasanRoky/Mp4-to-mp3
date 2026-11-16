@@ -14,9 +14,9 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "MP3 Sample Rate Explained: 44.1 kHz vs 48 kHz",
+  title: "MP3 Sample Rate Explained — Free Guide 44.1/48",
   description:
-    "What MP3 sample rate means, how the Nyquist theorem sets the limit, and when to use 44.1 kHz, 48 kHz, or 22.05 kHz. Plus how resampling affects audio quality.",
+    "What sample rate means for MP3 (44.1 vs 48 kHz) and which to choose for music, voice, video. Free, no sign-up guide.",
   alternates: { canonical: "/mp4-to-mp3-sample-rate" },
   openGraph: {
     title: "MP3 Sample Rate Explained: 44.1 kHz vs 48 kHz",

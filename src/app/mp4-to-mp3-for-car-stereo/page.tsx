@@ -42,9 +42,9 @@ const sources: Citation[] = [
 ];
 
 export const metadata: Metadata = {
-  title: "Convert MP4 to MP3 for Your Car Stereo (USB or Aux)",
+  title: "MP4 to MP3 for Car Stereo — Free USB/Aux Guide",
   description:
-    "Convert MP4 to MP3 for car stereo playback over USB or Aux. FAT32 limits, recommended 192 kbps bitrate, and folder structure tips so your car reads every track.",
+    "Convert MP4 to MP3 for car stereo: best bitrate, FAT32 file limits, folder structure, filename rules. Free, no sign-up. Try it now.",
   alternates: { canonical: "/mp4-to-mp3-for-car-stereo" },
   openGraph: {
     title: "Convert MP4 to MP3 for Your Car Stereo (USB or Aux)",

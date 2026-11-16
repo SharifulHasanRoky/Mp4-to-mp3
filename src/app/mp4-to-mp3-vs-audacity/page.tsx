@@ -15,9 +15,9 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "MP4toMP3.online vs Audacity: Which Is Better for You?",
+  title: "MP4toMP3.online vs Audacity — Which Is Better? Free",
   description:
-    "MP4toMP3.online vs Audacity compared honestly — install, speed, editing, batch, codec control and privacy. See which fits a quick convert vs a real audio edit.",
+    "MP4toMP3.online vs Audacity for MP4 to MP3: speed, privacy, install, editing. Honest comparison. Free, no sign-up tool included.",
   alternates: { canonical: "/mp4-to-mp3-vs-audacity" },
   openGraph: {
     title: "MP4toMP3.online vs Audacity: Which Is Better for You?",

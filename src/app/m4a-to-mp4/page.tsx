@@ -4,9 +4,9 @@ import { Citations, type Citation } from "@/components/citations";
 import { JsonLd } from "@/components/json-ld";
 
 export const metadata: Metadata = {
-  title: "M4A to MP4 Converter – Free Online Audio to Video Tool",
+  title: "M4A to MP4 Converter — Free Online Audio to Video Tool",
   description:
-    "Convert M4A audio files (Apple voice memos, AAC audio) to MP4 video format online for free. Perfect for uploading M4A audio to YouTube and other video platforms. No sign-up.",
+    "Free M4A to MP4 converter: wrap your audio in a video container entirely in your browser. No sign-up, no upload, no watermark. Try it free now.",
   keywords: [
     "m4a to mp4",
     "convert m4a to mp4",

@@ -14,9 +14,9 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Is MP4 to MP3 Conversion Legal? Copyright Explained",
+  title: "Is MP4 to MP3 Conversion Legal? Copyright Explained Free",
   description:
-    "Converting MP4 to MP3 is legal for files you own or have permission to use. Distributing converted files without a license usually is not. Read the full breakdown.",
+    "Is converting MP4 to MP3 legal? Personal use, fair use, copyright explained. Free, plain-English guide. Not legal advice.",
   alternates: { canonical: "/is-mp4-to-mp3-conversion-legal" },
   openGraph: {
     title: "Is MP4 to MP3 Conversion Legal? Copyright Explained",

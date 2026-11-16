@@ -15,9 +15,9 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "MP4toMP3.online vs VLC: Online vs Desktop Conversion",
+  title: "MP4toMP3.online vs VLC — Which Is Better? Free",
   description:
-    "MP4toMP3.online vs VLC compared honestly — install, speed, batch and privacy. See when the media player wins and when the browser tool is the right call.",
+    "MP4toMP3.online vs VLC for MP4 to MP3: speed, privacy, install, batch. Honest comparison for everyday users. Free, no sign-up.",
   alternates: { canonical: "/mp4-to-mp3-vs-vlc" },
   openGraph: {
     title: "MP4toMP3.online vs VLC: Online vs Desktop Conversion",

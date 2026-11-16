@@ -17,9 +17,9 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "MP4 to MP3 Converter With No Watermark — Clean Output",
+  title: "MP4 to MP3 with No Watermark — Free Online Tool",
   description:
-    "Convert MP4 to MP3 with no audio watermark, no voice-over, no beeps, no time limit. MP4toMP3.online outputs a clean MP3 encoded by libmp3lame.",
+    "MP4 to MP3 converter with no watermark in the output. Free, no sign-up, no upload. Clean MP3 files. Try it now.",
   alternates: { canonical: "/mp4-to-mp3-no-watermark" },
   openGraph: {
     title: "MP4 to MP3 Converter With No Watermark — Clean Output",

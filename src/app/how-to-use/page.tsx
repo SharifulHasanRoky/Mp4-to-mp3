@@ -39,9 +39,9 @@ const sources: Citation[] = [
 ];
 
 export const metadata: Metadata = {
-  title: "How to Use – MP4 to MP3 Guide",
+  title: "How to Use MP4toMP3.online — Free Step-by-Step Guide",
   description:
-    "Step-by-step guide to extract audio from your own video files using MP4 to MP3. Upload a video, extract the audio, download the MP3 — all in under a minute.",
+    "Step-by-step guide to using MP4toMP3.online: upload or paste URL, pick format, convert, download. Free, no sign-up, works on any device.",
   alternates: { canonical: "/how-to-use" },
 };
 

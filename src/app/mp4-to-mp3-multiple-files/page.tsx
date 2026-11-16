@@ -43,9 +43,9 @@ const sources: Citation[] = [
 ];
 
 export const metadata: Metadata = {
-  title: "Convert Multiple MP4 Files to MP3 at Once — Workflow",
+  title: "Convert Multiple MP4 to MP3 at Once — Free Tool",
   description:
-    "Convert several MP4 files to MP3 in one sitting. MP4toMP3.online accepts multiple files and encodes them in sequence — no upload, no queue, no sign-up.",
+    "Convert multiple MP4 files to MP3 at once in your browser. Free, no sign-up, no upload. Sequential fast processing.",
   alternates: { canonical: "/mp4-to-mp3-multiple-files" },
   openGraph: {
     title: "Convert Multiple MP4 Files to MP3 at Once — Workflow",
